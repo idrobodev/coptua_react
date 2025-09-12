@@ -150,7 +150,7 @@ const Dashboard = () => {
                     <h1 className="text-2xl font-Montserrat font-bold text-gray-800">
                       Dashboard
                     </h1>
-                    <p className="text-sm font-Poppins text-gray-600">Fundación Todo por un Alma</p>
+                    <p className="text-sm font-Poppins text-gray-600">Corporación Todo por un Alma</p>
                   </div>
                   <div className="flex items-center space-x-2">
                     <span className="text-sm font-Poppins text-gray-600">Sede:</span>

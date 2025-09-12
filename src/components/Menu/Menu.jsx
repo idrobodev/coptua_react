@@ -57,13 +57,13 @@ const Menu = () => {
             <div className="relative">
               <img 
                 src={logo} 
-                alt="Fundación Todo por un Alma" 
+                alt="Corporación Todo por un Alma" 
                 className="h-12 w-12 object-contain transition-transform duration-300 group-hover:scale-110"
               />
             </div>
             <div className="hidden md:block">
               <h1 className="text-xl font-Montserrat font-bold text-gray-800 leading-tight">
-                Fundación
+                Corporación
                 <span className="block text-lg font-Poppins font-medium text-primary">
                   Todo por un Alma
                 </span>

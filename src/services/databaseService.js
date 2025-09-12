@@ -5,7 +5,7 @@ const mockData = {
   fundacion: [
     {
       id: 1,
-      nombre: 'Fundación Todo por un Alma',
+      nombre: 'Corporación Todo por un Alma',
       nit: '900123456-1',
       direccion: 'Antioquia, Colombia',
       telefono: '3104577835',
@@ -42,7 +42,7 @@ const mockData = {
       id: 'mock-apoyotic-user',
       email: 'apoyotic@todoporunalma.org',
       nombre: 'Apoyo TIC',
-      apellido: 'Fundación',
+      apellido: 'Corporación',
       rol: ROLES.ADMINISTRADOR,
       sede_id: null,
       activo: true,

@@ -16,13 +16,13 @@ const Footer = () => {
           <div className="flex items-center mb-4">
             <img 
               src={logo} 
-              alt="Fundación Todo por un Alma" 
+              alt="Corporación Todo por un Alma" 
               className="h-16 w-16 object-contain mr-4 bg-white rounded-lg p-2 shadow-md"
               style={{ filter: 'brightness(1) contrast(1.1)', opacity: 1 }}
             />
             <div>
               <span className="text-2xl font-Montserrat font-bold border-l-4 px-2 border-white">
-                Fundación Todo por un Alma
+                Corporación Todo por un Alma
               </span>
             </div>
           </div>
@@ -146,7 +146,7 @@ const Footer = () => {
       {/* Línea inferior de copyright */}
       <div className="border-t border-white border-opacity-30 mt-8 pt-6 text-center text-sm text-white text-opacity-80 relative z-10">
         <div className="container font-Poppins">
-          <p>© {new Date().getFullYear()} Fundación Todo por un Alma. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} Corporación Todo por un Alma.</p>
           <p className="mt-2">Transformando vidas desde el amor y la evidencia científica</p>
         </div>
       </div>

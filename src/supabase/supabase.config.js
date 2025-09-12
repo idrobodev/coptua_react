@@ -31,7 +31,7 @@ export const supabase = {
           id: 'mock-apoyotic-user',
           email,
           user_metadata: { 
-            full_name: 'Apoyo TIC - Fundación Todo por un Alma',
+            full_name: 'Apoyo TIC - Corporación Todo por un Alma',
             role: 'admin'
           },
           created_at: new Date().toISOString(),

@@ -12,7 +12,7 @@ const About = () => {
         </div>
         <div className="lg:ml-8">
           <h1 className="text-3xl font-Poppins font-semibold">
-            Fundación Todo por un Alma
+            Corporación Todo por un Alma
           </h1>
           <p className="py-8">
             Somos un centro de desintoxicación que combina enfoques psicológicos validados 
