@@ -17,7 +17,8 @@ const Footer = () => {
             <img 
               src={logo} 
               alt="Fundación Todo por un Alma" 
-              className="h-16 w-16 object-contain mr-4"
+              className="h-16 w-16 object-contain mr-4 bg-white rounded-lg p-2 shadow-md"
+              style={{ filter: 'brightness(1) contrast(1.1)', opacity: 1 }}
             />
             <div>
               <span className="text-2xl font-Montserrat font-bold border-l-4 px-2 border-white">
