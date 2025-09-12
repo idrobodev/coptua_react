@@ -1,48 +1,56 @@
 import React from "react";
-import rashed from "../../images/review/1.jpg";
-import sohel from "../../images/review/2.jpg";
-import lipu from "../../images/review/3.jpg";
 import Review from "./Review";
+
 const reviews = [
   {
-    key: "HG42h",
-    name: "Rashed Ratan",
-    img: `${rashed}`,
-    detail:
-      "Our trip to Morocco was truly a once-in-a-lifetime experience and we are so grateful to everyone that made it happen seamlessly. Our travel planner, Jaouad, was incredible. After reading our initial request and speaking with us on the phone, he designed a tour perfectly custom to what our interests were.",
+    key: "testimonial1",
+    name: "María González",
+    title: "Testimonio de Transformación",
+    videoId: "kKsQRkOyKCI"
   },
   {
-    key: "SSF4",
-    name: "Sohel Rana",
-    img: `${sohel}`,
-    detail:
-      "Fantastic! Our Costa Rica travel company took care of everything. The owner and his wife met us at the airport with a care package of coffee and chocolate. It was such a nice welcome. Our drivers to and from the resort were great.",
+    key: "testimonial2",
+    name: "Carlos Rodríguez",
+    title: "Historia de Superación",
+    videoId: "EsCm0WnK-CE"
   },
   {
-    key: "GH54",
-    name: "Arsaful Lipu ",
-    img: `${lipu}`,
-    detail:
-      "This was a tour that was over two years in the making as it was delayed a full year when the world stopped vacation travel due to Covid.  As it was, Ireland had only opened indoor dining and lifted a number of pandemic restrictions only weeks before we arrived in early September.",
-  },
+    key: "testimonial3",
+    name: "Ana Martínez",
+    title: "Experiencia de Cambio",
+    videoId: "AjohVQntKuY"
+  }
 ];
 
 const CustomerReviews = () => {
   return (
-    <div className="container py-24">
-      <div className="text-center w-full">
-        <p className="text-primary font-semibold">TESTIMONIALS</p>
-        <h1 className="py-4 text-5xl font-semibold">Customer Reviews</h1>
-        <p className="">
-          Regardless of your situation, we can help you exit your comfort zone,
-          like we’ve done for <br /> other people. Hear what some of them have
-          to say:
+    <div className="container py-16 md:py-24 px-4">
+      <div className="text-center max-w-4xl mx-auto mb-16">
+        <p className="text-primary font-semibold text-lg mb-2 tracking-wide">TESTIMONIOS</p>
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+          Historias de Transformación
+        </h1>
+        <p className="text-gray-600 text-lg md:text-xl leading-relaxed">
+          Conoce las experiencias reales de quienes han encontrado esperanza y transformación 
+          a través de nuestro acompañamiento. Sus historias son testimonio del poder del amor y la fe.
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-20 py-20">
+      
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-12 lg:gap-16 xl:gap-20 justify-items-center max-w-7xl mx-auto">
         {reviews.map((review) => (
-          <Review key={review.key} review={review} />
+          <div key={review.key} className="w-full max-w-md">
+            <Review review={review} />
+          </div>
         ))}
+      </div>
+      
+      <div className="mt-16 text-center">
+        <div className="inline-flex items-center justify-center space-x-2 bg-primary/10 px-6 py-3 rounded-full">
+          <svg className="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+          </svg>
+          <span className="text-primary font-medium">Transformando vidas con amor y esperanza</span>
+        </div>
       </div>
     </div>
   );
