@@ -34,7 +34,7 @@ const Login = () => {
 
   return (
     <>
-      <Breadcrumbs title="Login" />
+      <Breadcrumbs title="Iniciar Sesión" />
       <div className="container">
         <div
           className="flex gap-8 items-center justify-center "
@@ -46,7 +46,7 @@ const Login = () => {
           >
             <form onSubmit={handleSubmit(onSubmit)}>
               <h2 className="text-2xl font-Poppins text-center">
-                Log In Your Account
+                Iniciar Sesión
               </h2>
               {error && <span className="text-red-600 py-2">{error}</span>}
 
@@ -54,19 +54,19 @@ const Login = () => {
                 <label htmlFor="email">Email</label>
                 <input
                   className="border border-gray-400 w-full px-4 py-2"
-                  placeholder="Enter Email"
+                  placeholder="Ingrese su correo electrónico"
                   {...register("email", { required: true })}
                 />
                 {errors.email && (
-                  <span className="text-red-600">This field is required</span>
+                  <span className="text-red-600">Este campo es obligatorio</span>
                 )}
               </div>
 
               <div className="mt-4 mb-4">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">Contraseña</label>
                 <input
                   type="password"
-                  placeholder="Password"
+                  placeholder="Ingrese su contraseña"
                   className="border border-gray-400 w-full px-4 py-2"
                   {...register("password", { required: true })}
                 />
@@ -74,10 +74,10 @@ const Login = () => {
                   to="forget-password"
                   className="float-right text-secondary"
                 >
-                  Forget password?
+                  ¿Olvidó su contraseña?
                 </Link>
                 {errors.password && (
-                  <span className="text-red-600">This field is required</span>
+                  <span className="text-red-600">Este campo es obligatorio</span>
                 )}
               </div>
 
@@ -85,16 +85,16 @@ const Login = () => {
                 className="w-full bg-primary text-white mt-4 mb-4  py-2 px-4 rounded-md"
                 type="submit"
               >
-                submit
+                Iniciar Sesión
               </button>
               <h1 className="py-4">
-                Don't Have an Account?
+                ¿No tiene una cuenta?
                 <Link className="text-primary px-2" to="/register">
-                  Register now
+                  Regístrese ahora
                 </Link>
               </h1>
             </form>
-            <SocialLogin title="Login" />
+            <SocialLogin title="Iniciar Sesión" />
           </div>
         </div>
       </div>
