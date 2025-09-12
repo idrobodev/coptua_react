@@ -21,8 +21,8 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    if (data.email !== data.password) {
-      setError("Passwords do not match");
+    if (data.password !== data.reEnterPassword) {
+      setError("Las contraseñas no coinciden");
     }
 
     try {
@@ -38,7 +38,7 @@ const Register = () => {
 
   return (
     <>
-      <Breadcrumbs title="Register" />
+      <Breadcrumbs title="Registro" />
       <div className="container">
         <div
           className="flex gap-8 items-center justify-center "
@@ -50,7 +50,7 @@ const Register = () => {
           >
             <form onSubmit={handleSubmit(onSubmit)}>
               <h2 className="text-2xl font-Poppins text-center">
-                Log In Your Account
+                Crear una cuenta
               </h2>
               {error && (
                 <span className="text-red-600 text-center py-2">{error}</span>
@@ -60,37 +60,37 @@ const Register = () => {
                 <label htmlFor="email">Email</label>
                 <input
                   className="border border-gray-400 w-full px-4 py-2"
-                  placeholder="Enter Email"
+                  placeholder="Ingrese su correo electrónico"
                   {...register("email", { required: true })}
                 />
                 {errors.email && (
-                  <span className="text-red-600">This field is required</span>
+                  <span className="text-red-600">Este campo es obligatorio</span>
                 )}
               </div>
 
               <div className="mt-4 mb-4">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">Contraseña</label>
                 <input
                   type="password"
-                  placeholder="Password"
+                  placeholder="Ingrese su contraseña"
                   className="border border-gray-400 w-full px-4 py-2"
                   {...register("password", { required: true })}
                 />
                 {errors.password && (
-                  <span className="text-red-600">This field is required</span>
+                  <span className="text-red-600">Este campo es obligatorio</span>
                 )}
               </div>
 
               <div className="mt-4 mb-4">
-                <label htmlFor="password">Re-enter Password</label>
+                <label htmlFor="reEnterPassword">Confirme su contraseña</label>
                 <input
                   type="password"
-                  placeholder="Re-enter Password"
+                  placeholder="Vuelva a escribir su contraseña"
                   className="border border-gray-400 w-full px-4 py-2"
                   {...register("reEnterPassword", { required: true })}
                 />
                 {errors.reEnterPassword && (
-                  <span className="text-red-600">This field is required</span>
+                  <span className="text-red-600">Este campo es obligatorio</span>
                 )}
               </div>
 
@@ -98,16 +98,16 @@ const Register = () => {
                 className="w-full bg-primary text-white mt-4 mb-4  py-2 px-4 rounded-md"
                 type="submit"
               >
-                submit
+                Registrarse
               </button>
               <h1 className="py-4">
-                Already have an account?
+                ¿Ya tienes una cuenta?
                 <Link className="text-primary px-2" to="/login">
-                  Log in
+                  Inicia sesión
                 </Link>
               </h1>
             </form>
-            <SocialLogin title="Register" />
+            <SocialLogin title="Registro" />
           </div>
         </div>
       </div>
