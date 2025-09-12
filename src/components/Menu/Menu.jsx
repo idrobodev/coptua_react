@@ -77,7 +77,7 @@ const Menu = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1">
+          <div className="hidden lg:flex items-center space-x-1 ml-12">
             <Link
               to="/"
               className={`px-4 py-2 rounded-lg font-Poppins font-medium text-sm transition-all duration-200 ${
@@ -120,24 +120,9 @@ const Menu = () => {
             </Link>
           </div>
 
-          {/* Auth Section */}
+          {/* User Profile Section */}
           <div className="hidden lg:flex items-center space-x-3">
-            {!currentUser?.email ? (
-              <>
-                <Link
-                  to="/login"
-                  className="px-6 py-2 font-Poppins font-medium text-sm text-primary border border-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-200"
-                >
-                  Iniciar Sesión
-                </Link>
-                <Link
-                  to="/register"
-                  className="px-6 py-2 font-Poppins font-medium text-sm bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
-                >
-                  Registrarse
-                </Link>
-              </>
-            ) : (
+            {currentUser?.email && (
               <div className="relative">
                 <button
                   onClick={triggerToggle}

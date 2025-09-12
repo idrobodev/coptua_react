@@ -1,5 +1,6 @@
 import React from "react";
 import FeatureItem from "./FeatureItem";
+
 const features = [
   {
     key: "HG42h",
@@ -26,17 +27,18 @@ const features = [
     detail: "Tratamiento integral que incluye al núcleo familiar en el proceso de recuperación.",
   },
 ];
+
 const Feature = () => {
   return (
-    <>
-      <div className="container -my-32 mb-16 ">
-        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
+    <div className="bg-gradient-to-b from-gray-50 to-white py-16 -mt-32 relative z-10">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 lg:gap-12">
           {features.map((feature) => (
             <FeatureItem key={feature.key} feature={feature} />
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import happyClient from "../../images/happyCl.jpg";
+import happyClient from "../../images/happyCL.jpg";
 const HappyCustomers = () => {
   return (
     <>
