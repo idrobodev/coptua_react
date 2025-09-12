@@ -246,24 +246,7 @@ const Menu = () => {
               Contacto
             </Link>
             
-            {!currentUser?.email ? (
-              <div className="pt-4 space-y-2 border-t border-gray-100">
-                <Link
-                  to="/login"
-                  onClick={closeMenu}
-                  className="block px-4 py-3 text-center border border-primary text-primary rounded-lg font-Poppins font-medium hover:bg-primary hover:text-white transition-all duration-200"
-                >
-                  Iniciar Sesión
-                </Link>
-                <Link
-                  to="/register"
-                  onClick={closeMenu}
-                  className="block px-4 py-3 text-center bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-Poppins font-medium hover:shadow-lg transition-all duration-200"
-                >
-                  Registrarse
-                </Link>
-              </div>
-            ) : (
+            {currentUser?.email && (
               <div className="pt-4 space-y-2 border-t border-gray-100">
                 <div className="flex items-center px-4 py-2 text-gray-600">
                   <div className="w-8 h-8 rounded-full bg-gradient-to-r from-primary to-secondary p-0.5 mr-3">
