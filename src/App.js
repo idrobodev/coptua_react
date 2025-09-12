@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, useLocation } from "react-router-dom";
 import AuthProvider from "./components/Context/AuthContext";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
@@ -19,63 +19,80 @@ import Programs from "./pages/Programs/Programs";
 import Register from "./pages/Register/Register";
 import SingleTour from "./pages/SingleTour/SingleTour";
 
+// Component to conditionally render header and footer
+const AppContent = () => {
+  const location = useLocation();
+  const isDashboardRoute = location.pathname.startsWith('/dashboard') || 
+                          location.pathname.startsWith('/participantes') ||
+                          location.pathname.startsWith('/add-tour') ||
+                          location.pathname.startsWith('/tour-list') ||
+                          location.pathname.startsWith('/my-booking') ||
+                          location.pathname.startsWith('/booking-list') ||
+                          location.pathname.startsWith('/update-tour');
+
+  return (
+    <>
+      {!isDashboardRoute && <Header />}
+      <div className={!isDashboardRoute ? "pt-20" : ""}>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/programs">
+            <Programs />
+          </Route>
+          <PrivateRoute path="/tour-details/:id">
+            <SingleTour />
+          </PrivateRoute>
+          <Route path="/contact">
+            <Contact />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/register">
+            <Register />
+          </Route>
+          <PrivateRoute path="/dashboard">
+            <Dashboard />
+          </PrivateRoute>
+          <PrivateRoute path="/participantes">
+            <Participantes />
+          </PrivateRoute>
+          <PrivateRoute path="/add-tour">
+            <AddTour />
+          </PrivateRoute>
+          <PrivateRoute path="/tour-list">
+            <TourList />
+          </PrivateRoute>
+          <PrivateRoute path="/my-booking/:id">
+            <MyBooking />
+          </PrivateRoute>
+          <PrivateRoute path="/booking-list">
+            <ManageBooking />
+          </PrivateRoute>
+          <PrivateRoute path="/update-tour/:id">
+            <UpdateTour />
+          </PrivateRoute>
+          <Route path="*">
+            <NotFound />
+          </Route>
+        </Switch>
+      </div>
+      {!isDashboardRoute && <Footer />}
+    </>
+  );
+};
 
 function App() {
   return (
     <div className="font-Poppins">
       <AuthProvider>
         <Router>
-          <Header />
-          <div className="pt-20">
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/about">
-              <About />
-            </Route>
-            <Route path="/programs">
-              <Programs />
-            </Route>
-            <PrivateRoute path="/tour-details/:id">
-              <SingleTour />
-            </PrivateRoute>
-            <Route path="/contact">
-              <Contact />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/register">
-              <Register />
-            </Route>
-            <PrivateRoute path="/dashboard">
-              <Dashboard />
-            </PrivateRoute>
-            <PrivateRoute path="/participantes">
-              <Participantes />
-            </PrivateRoute>
-            <PrivateRoute path="/add-tour">
-              <AddTour />
-            </PrivateRoute>
-            <PrivateRoute path="/tour-list">
-              <TourList />
-            </PrivateRoute>
-            <PrivateRoute path="/my-booking/:id">
-              <MyBooking />
-            </PrivateRoute>
-            <PrivateRoute path="/booking-list">
-              <ManageBooking />
-            </PrivateRoute>
-            <PrivateRoute path="/update-tour/:id">
-              <UpdateTour />
-            </PrivateRoute>
-            <Route path="*">
-              <NotFound />
-            </Route>
-          </Switch>
-          </div>
-          <Footer />
+          <AppContent />
         </Router>
       </AuthProvider>
     </div>

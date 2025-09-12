@@ -1,16 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useHistory } from "react-router-dom";
 import { useAuth } from "../../components/Context/AuthContext";
 import Sidebar from "../../components/Dashboard/Sidebar";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import { ParticipantsBySedeChart, PaymentStatusChart, MonthlyTrendChart, FormStatusChart } from "../../components/Charts/DashboardCharts";
 import { dbService } from "../../services/databaseService";
+import logo from "../../images/logo.png";
 
 const Dashboard = () => {
-  const { currentUser } = useAuth();
+  const { currentUser, logout } = useAuth();
+  const history = useHistory();
   const [selectedSede, setSelectedSede] = useState("Todas");
   const [dashboardData, setDashboardData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [sedes, setSedes] = useState([]);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const userMenuRef = useRef(null);
   const [chartData, setChartData] = useState({
     participantesBySede: [],
     paymentStatus: { pagadas: 0, pendientes: 0, vencidas: 0 },
@@ -96,6 +101,38 @@ const Dashboard = () => {
     try { localStorage.setItem('sidebarCollapsed', JSON.stringify(next)); } catch (_) {}
   };
 
+  // Close user menu on outside click
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
+        setUserMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      setUserMenuOpen(false);
+      history.push('/');
+    } catch (e) {
+      console.error('Error al cerrar sesión', e);
+    }
+  };
+
+  const handleCopyEmail = async () => {
+    try {
+      if (currentUser?.email) {
+        await navigator.clipboard.writeText(currentUser.email);
+        setUserMenuOpen(false);
+      }
+    } catch (e) {
+      console.error('No se pudo copiar el correo', e);
+    }
+  };
+
   const alertas = [
     { tipo: "urgente", mensaje: "3 mensualidades vencidas", color: "red", icon: "fas fa-exclamation-circle" },
     { tipo: "atencion", mensaje: "5 formularios atrasados", color: "yellow", icon: "fas fa-clock" },
@@ -146,11 +183,19 @@ const Dashboard = () => {
                   >
                     <i className={`fas ${sidebarCollapsed ? 'fa-angle-double-right' : 'fa-angle-double-left'} text-xl text-gray-700`}></i>
                   </button>
-                  <div>
-                    <h1 className="text-2xl font-Lato font-bold text-gray-800">
-                      Dashboard
-                    </h1>
-                    <p className="text-sm font-Poppins text-gray-600">Corporación Todo por un Alma</p>
+                  {/* Logo */}
+                  <div className="flex items-center space-x-3">
+                    <img 
+                      src={logo}
+                      alt="Todo por un Alma" 
+                      className="h-10 w-10 rounded-lg shadow-sm"
+                    />
+                    <div>
+                      <h1 className="text-2xl font-Lato font-bold text-gray-800">
+                        Dashboard
+                      </h1>
+                      <p className="text-sm font-Poppins text-gray-600">Corporación Todo por un Alma</p>
+                    </div>
                   </div>
                   <div className="flex items-center space-x-2">
                     <span className="text-sm font-Poppins text-gray-600">Sede:</span>
@@ -189,24 +234,55 @@ const Dashboard = () => {
                   </div>
                   
                   {/* Perfil de Usuario */}
-                  <div className="flex items-center space-x-3 bg-gray-50 rounded-xl px-3 py-2">
-                    <div className="relative">
-                      {currentUser?.photoURL ? (
-                        <img
-                          src={currentUser.photoURL}
-                          alt="Usuario"
-                          className="w-8 h-8 rounded-full border-2 border-primary"
-                        />
-                      ) : (
-                        <div className="w-8 h-8 rounded-full border-2 border-primary bg-primary flex items-center justify-center">
-                          <i className="fas fa-user text-white text-sm"></i>
+                  <div className="relative" ref={userMenuRef}>
+                    <button
+                      onClick={() => setUserMenuOpen((v) => !v)}
+                      className="flex items-center space-x-3 bg-gray-50 rounded-xl px-3 py-2 hover:bg-gray-100 transition-colors"
+                      aria-haspopup="true"
+                      aria-expanded={userMenuOpen}
+                    >
+                      <div className="relative">
+                        {currentUser?.photoURL ? (
+                          <img
+                            src={currentUser.photoURL}
+                            alt="Usuario"
+                            className="w-8 h-8 rounded-full border-2 border-primary"
+                          />
+                        ) : (
+                          <div className="w-8 h-8 rounded-full border-2 border-primary bg-primary flex items-center justify-center">
+                            <i className="fas fa-user text-white text-sm"></i>
+                          </div>
+                        )}
+                        <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></div>
+                      </div>
+                      <span className="text-sm font-Poppins font-medium text-gray-700 hidden md:block">
+                        {currentUser?.displayName || currentUser?.email}
+                      </span>
+                      <i className={`fas fa-chevron-${userMenuOpen ? 'up' : 'down'} text-gray-500 text-xs hidden md:block`}></i>
+                    </button>
+
+                    {userMenuOpen && (
+                      <div className="absolute right-0 mt-2 w-56 bg-white border border-gray-200 rounded-xl shadow-lg z-50 overflow-hidden">
+                        <div className="px-4 py-3 border-b border-gray-100">
+                          <p className="text-xs text-gray-500 font-Poppins">Sesión iniciada como</p>
+                          <p className="text-sm text-gray-800 truncate font-Poppins font-medium">{currentUser?.email}</p>
                         </div>
-                      )}
-                      <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></div>
-                    </div>
-                    <span className="text-sm font-Poppins font-medium text-gray-700 hidden md:block">
-                      {currentUser?.displayName || currentUser?.email}
-                    </span>
+                        <ul className="py-1">
+                          <li>
+                            <button onClick={handleCopyEmail} className="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 font-Poppins">
+                              <i className="fas fa-copy mr-2 text-gray-500"></i>
+                              Copiar correo
+                            </button>
+                          </li>
+                          <li>
+                            <button onClick={handleLogout} className="w-full flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50 font-Poppins">
+                              <i className="fas fa-sign-out-alt mr-2"></i>
+                              Cerrar sesión
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
