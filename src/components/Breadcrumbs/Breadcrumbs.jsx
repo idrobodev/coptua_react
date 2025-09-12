@@ -29,7 +29,7 @@ const Breadcrumbs = ({ title }) => {
           {/* Contenido centrado */}
           <div className="absolute inset-0 flex items-center justify-center z-10">
             <div className="text-center px-4">
-              <h1 className="text-4xl md:text-6xl font-bold text-white font-Montserrat mb-4 drop-shadow-2xl">
+              <h1 className="text-4xl md:text-6xl font-bold text-white font-Lato mb-4 drop-shadow-2xl">
                 {title}
               </h1>
               <div className="w-24 h-1 bg-white/80 mx-auto rounded-full"></div>

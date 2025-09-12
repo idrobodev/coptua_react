@@ -45,7 +45,7 @@ const ProtectedRoute = ({ children, requiredRole = ROLES.CONSULTA, fallback = nu
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
           <i className="fas fa-lock text-6xl text-gray-400 mb-4"></i>
-          <h2 className="text-2xl font-Montserrat font-bold text-gray-800 mb-2">
+          <h2 className="text-2xl font-Lato font-bold text-gray-800 mb-2">
             Acceso Restringido
           </h2>
           <p className="text-gray-600 font-Poppins">
@@ -61,7 +61,7 @@ const ProtectedRoute = ({ children, requiredRole = ROLES.CONSULTA, fallback = nu
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
           <i className="fas fa-user-slash text-6xl text-red-400 mb-4"></i>
-          <h2 className="text-2xl font-Montserrat font-bold text-gray-800 mb-2">
+          <h2 className="text-2xl font-Lato font-bold text-gray-800 mb-2">
             Sin Permisos Suficientes
           </h2>
           <p className="text-gray-600 font-Poppins">

@@ -115,7 +115,7 @@ const ReportsDashboard = () => {
             <div className="px-6 py-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h1 className="text-2xl font-Montserrat font-bold text-gray-800">
+                  <h1 className="text-2xl font-Lato font-bold text-gray-800">
                     Reportes y Estadísticas
                   </h1>
                   <p className="text-sm font-Poppins text-gray-600 mt-1">
@@ -171,7 +171,7 @@ const ReportsDashboard = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Total Participantes</p>
-                    <p className="text-3xl font-Montserrat font-bold text-blue-600 mt-2">
+                    <p className="text-3xl font-Lato font-bold text-blue-600 mt-2">
                       {reportData.generalStats.totalParticipantes}
                     </p>
                     <p className="text-xs font-Poppins text-green-600 mt-1">
@@ -188,7 +188,7 @@ const ReportsDashboard = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Ingresos Totales</p>
-                    <p className="text-2xl font-Montserrat font-bold text-green-600 mt-2">
+                    <p className="text-2xl font-Lato font-bold text-green-600 mt-2">
                       {formatCurrency(reportData.generalStats.totalIngresos)}
                     </p>
                     <p className="text-xs font-Poppins text-green-600 mt-1">
@@ -205,7 +205,7 @@ const ReportsDashboard = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Tasa de Retención</p>
-                    <p className="text-3xl font-Montserrat font-bold text-purple-600 mt-2">
+                    <p className="text-3xl font-Lato font-bold text-purple-600 mt-2">
                       {reportData.generalStats.tasaRetencion}%
                     </p>
                     <p className="text-xs font-Poppins text-green-600 mt-1">
@@ -222,7 +222,7 @@ const ReportsDashboard = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Satisfacción</p>
-                    <p className="text-3xl font-Montserrat font-bold text-yellow-600 mt-2">
+                    <p className="text-3xl font-Lato font-bold text-yellow-600 mt-2">
                       {reportData.generalStats.satisfaccionPromedio}/5
                     </p>
                     <p className="text-xs font-Poppins text-green-600 mt-1">
@@ -241,7 +241,7 @@ const ReportsDashboard = () => {
               {/* Participantes por Sede */}
               <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-Montserrat font-bold text-gray-800">Participantes por Sede</h3>
+                  <h3 className="text-xl font-Lato font-bold text-gray-800">Participantes por Sede</h3>
                   <button className="text-gray-500 hover:text-gray-700">
                     <i className="fas fa-download"></i>
                   </button>
@@ -252,7 +252,7 @@ const ReportsDashboard = () => {
               {/* Estado de Pagos */}
               <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-Montserrat font-bold text-gray-800">Estado de Mensualidades</h3>
+                  <h3 className="text-xl font-Lato font-bold text-gray-800">Estado de Mensualidades</h3>
                   <button className="text-gray-500 hover:text-gray-700">
                     <i className="fas fa-download"></i>
                   </button>
@@ -265,7 +265,7 @@ const ReportsDashboard = () => {
               {/* Tendencias Mensuales */}
               <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-Montserrat font-bold text-gray-800">Tendencias Financieras</h3>
+                  <h3 className="text-xl font-Lato font-bold text-gray-800">Tendencias Financieras</h3>
                   <button className="text-gray-500 hover:text-gray-700">
                     <i className="fas fa-download"></i>
                   </button>
@@ -276,7 +276,7 @@ const ReportsDashboard = () => {
               {/* Estado de Formularios */}
               <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-Montserrat font-bold text-gray-800">Formularios por Especialidad</h3>
+                  <h3 className="text-xl font-Lato font-bold text-gray-800">Formularios por Especialidad</h3>
                   <button className="text-gray-500 hover:text-gray-700">
                     <i className="fas fa-download"></i>
                   </button>
@@ -289,7 +289,7 @@ const ReportsDashboard = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Financial Summary */}
               <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
-                <h3 className="text-xl font-Montserrat font-bold text-gray-800 mb-6">Resumen Financiero</h3>
+                <h3 className="text-xl font-Lato font-bold text-gray-800 mb-6">Resumen Financiero</h3>
                 <div className="space-y-4">
                   <div className="flex justify-between items-center py-2 border-b border-gray-100">
                     <span className="font-Poppins text-gray-600">Ingresos por Mensualidades</span>
@@ -308,15 +308,15 @@ const ReportsDashboard = () => {
                     <span className="font-Poppins font-semibold text-red-600">-{formatCurrency(15000000)}</span>
                   </div>
                   <div className="flex justify-between items-center py-3 bg-gray-50 rounded-lg px-3">
-                    <span className="font-Montserrat font-bold text-gray-800">Balance Neto</span>
-                    <span className="font-Montserrat font-bold text-green-600">{formatCurrency(2300000)}</span>
+                    <span className="font-Lato font-bold text-gray-800">Balance Neto</span>
+                    <span className="font-Lato font-bold text-green-600">{formatCurrency(2300000)}</span>
                   </div>
                 </div>
               </div>
 
               {/* Performance Metrics */}
               <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
-                <h3 className="text-xl font-Montserrat font-bold text-gray-800 mb-6">Métricas de Desempeño</h3>
+                <h3 className="text-xl font-Lato font-bold text-gray-800 mb-6">Métricas de Desempeño</h3>
                 <div className="space-y-4">
                   <div className="flex justify-between items-center py-2 border-b border-gray-100">
                     <span className="font-Poppins text-gray-600">Tiempo Promedio de Atención</span>
@@ -335,8 +335,8 @@ const ReportsDashboard = () => {
                     <span className="font-Poppins font-semibold text-gray-900">4.2</span>
                   </div>
                   <div className="flex justify-between items-center py-3 bg-gray-50 rounded-lg px-3">
-                    <span className="font-Montserrat font-bold text-gray-800">Eficiencia General</span>
-                    <span className="font-Montserrat font-bold text-green-600">87.5%</span>
+                    <span className="font-Lato font-bold text-gray-800">Eficiencia General</span>
+                    <span className="font-Lato font-bold text-green-600">87.5%</span>
                   </div>
                 </div>
               </div>

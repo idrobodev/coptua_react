@@ -177,7 +177,7 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
               className="w-10 h-10 rounded-full object-cover bg-white p-1 flex-shrink-0"
             />
             <div className={`${isCollapsed && !isMobile ? 'hidden' : 'block'} transition-all duration-300`}>
-              <h2 className="text-lg font-Montserrat font-bold">Corporación</h2>
+              <h2 className="text-lg font-Lato font-bold">Corporación</h2>
               <p className="text-xs font-Poppins opacity-80">Todo por un Alma</p>
             </div>
           </div>

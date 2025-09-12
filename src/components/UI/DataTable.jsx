@@ -98,7 +98,7 @@ const DataTable = ({
               {columns.map((column) => (
                 <th
                   key={column.key}
-                  className={`px-6 py-4 text-left text-xs font-Montserrat font-semibold text-gray-600 uppercase tracking-wider ${
+                  className={`px-6 py-4 text-left text-xs font-Lato font-semibold text-gray-600 uppercase tracking-wider ${
                     sortable && column.sortable !== false ? 'cursor-pointer hover:bg-gray-100' : ''
                   }`}
                   onClick={() => column.sortable !== false && handleSort(column.key)}

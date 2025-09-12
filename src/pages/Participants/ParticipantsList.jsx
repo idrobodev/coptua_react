@@ -136,7 +136,7 @@ const ParticipantsList = () => {
             <div className="px-6 py-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h1 className="text-2xl font-Montserrat font-bold text-gray-800">
+                  <h1 className="text-2xl font-Lato font-bold text-gray-800">
                     Gestión de Participantes
                   </h1>
                   <p className="text-sm font-Poppins text-gray-600 mt-1">
@@ -164,7 +164,7 @@ const ParticipantsList = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Total Participantes</p>
-                    <p className="text-3xl font-Montserrat font-bold text-blue-600 mt-2">
+                    <p className="text-3xl font-Lato font-bold text-blue-600 mt-2">
                       {participants.length}
                     </p>
                   </div>
@@ -178,7 +178,7 @@ const ParticipantsList = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Activos</p>
-                    <p className="text-3xl font-Montserrat font-bold text-green-600 mt-2">
+                    <p className="text-3xl font-Lato font-bold text-green-600 mt-2">
                       {participants.filter(p => p.estado === 'ACTIVO').length}
                     </p>
                   </div>
@@ -192,7 +192,7 @@ const ParticipantsList = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Sede Bello</p>
-                    <p className="text-3xl font-Montserrat font-bold text-purple-600 mt-2">
+                    <p className="text-3xl font-Lato font-bold text-purple-600 mt-2">
                       {participants.filter(p => p.sede === 'Bello').length}
                     </p>
                   </div>
@@ -206,7 +206,7 @@ const ParticipantsList = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Sede Apartadó</p>
-                    <p className="text-3xl font-Montserrat font-bold text-orange-600 mt-2">
+                    <p className="text-3xl font-Lato font-bold text-orange-600 mt-2">
                       {participants.filter(p => p.sede === 'Apartadó').length}
                     </p>
                   </div>

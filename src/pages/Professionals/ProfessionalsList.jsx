@@ -194,7 +194,7 @@ const ProfessionalsList = () => {
             <div className="px-6 py-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h1 className="text-2xl font-Montserrat font-bold text-gray-800">
+                  <h1 className="text-2xl font-Lato font-bold text-gray-800">
                     Gestión de Profesionales
                   </h1>
                   <p className="text-sm font-Poppins text-gray-600 mt-1">
@@ -241,7 +241,7 @@ const ProfessionalsList = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Total Profesionales</p>
-                    <p className="text-3xl font-Montserrat font-bold text-blue-600 mt-2">
+                    <p className="text-3xl font-Lato font-bold text-blue-600 mt-2">
                       {stats.total}
                     </p>
                   </div>
@@ -255,7 +255,7 @@ const ProfessionalsList = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Activos</p>
-                    <p className="text-3xl font-Montserrat font-bold text-green-600 mt-2">
+                    <p className="text-3xl font-Lato font-bold text-green-600 mt-2">
                       {stats.activos}
                     </p>
                   </div>
@@ -269,7 +269,7 @@ const ProfessionalsList = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Sede Bello</p>
-                    <p className="text-3xl font-Montserrat font-bold text-purple-600 mt-2">
+                    <p className="text-3xl font-Lato font-bold text-purple-600 mt-2">
                       {stats.bello}
                     </p>
                   </div>
@@ -283,7 +283,7 @@ const ProfessionalsList = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Sede Apartadó</p>
-                    <p className="text-3xl font-Montserrat font-bold text-orange-600 mt-2">
+                    <p className="text-3xl font-Lato font-bold text-orange-600 mt-2">
                       {stats.apartado}
                     </p>
                   </div>
@@ -296,11 +296,11 @@ const ProfessionalsList = () => {
 
             {/* Especialidades Overview */}
             <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 mb-8">
-              <h3 className="text-xl font-Montserrat font-bold text-gray-800 mb-6">Distribución por Especialidad</h3>
+              <h3 className="text-xl font-Lato font-bold text-gray-800 mb-6">Distribución por Especialidad</h3>
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
                 {especialidades.map(esp => (
                   <div key={esp} className="text-center p-4 bg-gray-50 rounded-xl">
-                    <p className="text-2xl font-Montserrat font-bold text-gray-800">
+                    <p className="text-2xl font-Lato font-bold text-gray-800">
                       {stats.byEspecialidad[esp] || 0}
                     </p>
                     <p className="text-xs font-Poppins text-gray-600 mt-1">

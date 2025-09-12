@@ -110,7 +110,7 @@ const NotificationItem = ({ notification, onRemove }) => {
         </div>
         <div className="ml-3 w-0 flex-1">
           {notification.title && (
-            <p className="text-sm font-Montserrat font-semibold">
+            <p className="text-sm font-Lato font-semibold">
               {notification.title}
             </p>
           )}

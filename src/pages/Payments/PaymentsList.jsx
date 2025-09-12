@@ -208,7 +208,7 @@ const PaymentsList = () => {
             <div className="px-6 py-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h1 className="text-2xl font-Montserrat font-bold text-gray-800">
+                  <h1 className="text-2xl font-Lato font-bold text-gray-800">
                     Gestión de Mensualidades
                   </h1>
                   <p className="text-sm font-Poppins text-gray-600 mt-1">
@@ -246,7 +246,7 @@ const PaymentsList = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Total Mensualidades</p>
-                    <p className="text-3xl font-Montserrat font-bold text-blue-600 mt-2">
+                    <p className="text-3xl font-Lato font-bold text-blue-600 mt-2">
                       {stats.total}
                     </p>
                   </div>
@@ -260,7 +260,7 @@ const PaymentsList = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Pagadas</p>
-                    <p className="text-3xl font-Montserrat font-bold text-green-600 mt-2">
+                    <p className="text-3xl font-Lato font-bold text-green-600 mt-2">
                       {stats.pagadas}
                     </p>
                   </div>
@@ -274,7 +274,7 @@ const PaymentsList = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Pendientes</p>
-                    <p className="text-3xl font-Montserrat font-bold text-yellow-600 mt-2">
+                    <p className="text-3xl font-Lato font-bold text-yellow-600 mt-2">
                       {stats.pendientes}
                     </p>
                   </div>
@@ -288,7 +288,7 @@ const PaymentsList = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Vencidas</p>
-                    <p className="text-3xl font-Montserrat font-bold text-red-600 mt-2">
+                    <p className="text-3xl font-Lato font-bold text-red-600 mt-2">
                       {stats.vencidas}
                     </p>
                   </div>
@@ -302,7 +302,7 @@ const PaymentsList = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Total Recaudado</p>
-                    <p className="text-lg font-Montserrat font-bold text-purple-600 mt-2">
+                    <p className="text-lg font-Lato font-bold text-purple-600 mt-2">
                       {formatCurrency(stats.paidAmount)}
                     </p>
                     <p className="text-xs font-Poppins text-gray-500 mt-1">

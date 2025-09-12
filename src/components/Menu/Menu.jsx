@@ -62,7 +62,7 @@ const Menu = () => {
               />
             </div>
             <div className="hidden md:block">
-              <h1 className="text-xl font-Montserrat font-bold text-gray-800 leading-tight">
+              <h1 className="text-xl font-Lato font-bold text-gray-800 leading-tight">
                 Corporación
                 <span className="block text-lg font-Poppins font-medium text-primary">
                   Todo por un Alma
@@ -70,7 +70,7 @@ const Menu = () => {
               </h1>
             </div>
             <div className="md:hidden">
-              <h1 className="text-lg font-Montserrat font-bold text-gray-800">
+              <h1 className="text-lg font-Lato font-bold text-gray-800">
                 Todo por un Alma
               </h1>
             </div>

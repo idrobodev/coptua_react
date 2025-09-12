@@ -62,7 +62,7 @@ export const ParticipantsBySedeChart = ({ data }) => {
         display: true,
         text: 'Participantes por Sede',
         font: {
-          family: 'Montserrat',
+          family: 'Lato',
           size: 16,
           weight: 'bold',
         },
@@ -126,7 +126,7 @@ export const PaymentStatusChart = ({ data }) => {
         display: true,
         text: 'Estado de Mensualidades',
         font: {
-          family: 'Montserrat',
+          family: 'Lato',
           size: 16,
           weight: 'bold',
         },
@@ -175,7 +175,7 @@ export const MonthlyTrendChart = ({ data }) => {
         display: true,
         text: 'Tendencias Mensuales',
         font: {
-          family: 'Montserrat',
+          family: 'Lato',
           size: 16,
           weight: 'bold',
         },
@@ -239,7 +239,7 @@ export const FormStatusChart = ({ data }) => {
         display: true,
         text: 'Estado de Formularios por Especialidad',
         font: {
-          family: 'Montserrat',
+          family: 'Lato',
           size: 16,
           weight: 'bold',
         },

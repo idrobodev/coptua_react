@@ -267,7 +267,7 @@ const FormsList = () => {
             <div className="px-6 py-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h1 className="text-2xl font-Montserrat font-bold text-gray-800">
+                  <h1 className="text-2xl font-Lato font-bold text-gray-800">
                     Gestión de Formularios
                   </h1>
                   <p className="text-sm font-Poppins text-gray-600 mt-1">
@@ -316,7 +316,7 @@ const FormsList = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Total Formularios</p>
-                    <p className="text-3xl font-Montserrat font-bold text-blue-600 mt-2">
+                    <p className="text-3xl font-Lato font-bold text-blue-600 mt-2">
                       {stats.total}
                     </p>
                   </div>
@@ -330,7 +330,7 @@ const FormsList = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Pendientes</p>
-                    <p className="text-3xl font-Montserrat font-bold text-yellow-600 mt-2">
+                    <p className="text-3xl font-Lato font-bold text-yellow-600 mt-2">
                       {stats.pendientes}
                     </p>
                   </div>
@@ -344,7 +344,7 @@ const FormsList = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">En Proceso</p>
-                    <p className="text-3xl font-Montserrat font-bold text-blue-600 mt-2">
+                    <p className="text-3xl font-Lato font-bold text-blue-600 mt-2">
                       {stats.enProceso}
                     </p>
                   </div>
@@ -358,7 +358,7 @@ const FormsList = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Completados</p>
-                    <p className="text-3xl font-Montserrat font-bold text-green-600 mt-2">
+                    <p className="text-3xl font-Lato font-bold text-green-600 mt-2">
                       {stats.completados}
                     </p>
                   </div>
@@ -371,11 +371,11 @@ const FormsList = () => {
 
             {/* Forms by Type Overview */}
             <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 mb-8">
-              <h3 className="text-xl font-Montserrat font-bold text-gray-800 mb-6">Formularios por Especialidad</h3>
+              <h3 className="text-xl font-Lato font-bold text-gray-800 mb-6">Formularios por Especialidad</h3>
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
                 {Object.values(FORM_TYPES).map(type => (
                   <div key={type} className="text-center p-4 bg-gray-50 rounded-xl">
-                    <p className="text-2xl font-Montserrat font-bold text-gray-800">
+                    <p className="text-2xl font-Lato font-bold text-gray-800">
                       {stats.byType[type] || 0}
                     </p>
                     <p className="text-xs font-Poppins text-gray-600 mt-1">

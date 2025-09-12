@@ -147,7 +147,7 @@ const Dashboard = () => {
                     <i className={`fas ${sidebarCollapsed ? 'fa-angle-double-right' : 'fa-angle-double-left'} text-xl text-gray-700`}></i>
                   </button>
                   <div>
-                    <h1 className="text-2xl font-Montserrat font-bold text-gray-800">
+                    <h1 className="text-2xl font-Lato font-bold text-gray-800">
                       Dashboard
                     </h1>
                     <p className="text-sm font-Poppins text-gray-600">Corporación Todo por un Alma</p>
@@ -251,14 +251,14 @@ const Dashboard = () => {
 
           {/* Widgets de Resumen General */}
           <div className="px-6 py-6">
-            <h2 className="text-2xl font-Montserrat font-bold text-gray-800 mb-6">Resumen General</h2>
+            <h2 className="text-2xl font-Lato font-bold text-gray-800 mb-6">Resumen General</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {/* Participantes Activos */}
               <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300 group">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Participantes Activos</p>
-                    <p className="text-3xl font-Montserrat font-bold text-blue-600 mt-2">{dashboardData?.participantesActivos || 0}</p>
+                    <p className="text-3xl font-Lato font-bold text-blue-600 mt-2">{dashboardData?.participantesActivos || 0}</p>
                     <p className="text-xs font-Poppins text-gray-500 mt-1">Capacidad: {dashboardData?.capacidadTotal || 0}</p>
                   </div>
                   <div className="p-4 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl group-hover:scale-110 transition-transform duration-300">
@@ -283,7 +283,7 @@ const Dashboard = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Mensualidades</p>
-                    <p className="text-3xl font-Montserrat font-bold text-green-600 mt-2">{dashboardData?.mensualidadesPagadas || 0}</p>
+                    <p className="text-3xl font-Lato font-bold text-green-600 mt-2">{dashboardData?.mensualidadesPagadas || 0}</p>
                     <p className="text-xs font-Poppins text-gray-500 mt-1">Pendientes: {dashboardData?.mensualidadesPendientes || 0}</p>
                   </div>
                   <div className="p-4 bg-gradient-to-br from-green-100 to-green-200 rounded-2xl group-hover:scale-110 transition-transform duration-300">
@@ -309,7 +309,7 @@ const Dashboard = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Formularios Pendientes</p>
-                    <p className="text-3xl font-Montserrat font-bold text-yellow-600 mt-2">{chartData.formStatus.reduce((sum, form) => sum + form.pendientes, 0)}</p>
+                    <p className="text-3xl font-Lato font-bold text-yellow-600 mt-2">{chartData.formStatus.reduce((sum, form) => sum + form.pendientes, 0)}</p>
                     <p className="text-xs font-Poppins text-gray-500 mt-1">Requieren atención</p>
                   </div>
                   <div className="p-4 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-2xl group-hover:scale-110 transition-transform duration-300">
@@ -323,7 +323,7 @@ const Dashboard = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Profesionales</p>
-                    <p className="text-3xl font-Montserrat font-bold text-purple-600 mt-2">{dashboardData?.profesionalesActivos || 0}</p>
+                    <p className="text-3xl font-Lato font-bold text-purple-600 mt-2">{dashboardData?.profesionalesActivos || 0}</p>
                     <p className="text-xs font-Poppins text-gray-500 mt-1">En servicio</p>
                   </div>
                   <div className="p-4 bg-gradient-to-br from-purple-100 to-purple-200 rounded-2xl group-hover:scale-110 transition-transform duration-300">
@@ -336,7 +336,7 @@ const Dashboard = () => {
 
           {/* Charts Section */}
           <div className="px-6 py-6">
-            <h2 className="text-2xl font-Montserrat font-bold text-gray-800 mb-6">Estadísticas y Análisis</h2>
+            <h2 className="text-2xl font-Lato font-bold text-gray-800 mb-6">Estadísticas y Análisis</h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
               {/* Participantes por Sede */}
               <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
@@ -364,7 +364,7 @@ const Dashboard = () => {
 
           {/* Botones de Acceso Rápido */}
           <div className="px-6 py-6">
-            <h3 className="text-xl font-Montserrat font-bold text-gray-800 mb-4">Acceso Rápido</h3>
+            <h3 className="text-xl font-Lato font-bold text-gray-800 mb-4">Acceso Rápido</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
               <button className="p-4 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
                 <div className="flex flex-col items-center">
@@ -426,7 +426,7 @@ const Dashboard = () => {
           <div className="px-6 py-6 pb-8">
             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
               <div className="p-6 border-b border-gray-100">
-                <h3 className="text-xl font-Montserrat font-bold text-gray-800">Actividad Reciente</h3>
+                <h3 className="text-xl font-Lato font-bold text-gray-800">Actividad Reciente</h3>
               </div>
               <div className="p-6">
                 <div className="space-y-5">

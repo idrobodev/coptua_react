@@ -238,7 +238,7 @@ const GuardiansList = () => {
             <div className="px-6 py-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h1 className="text-2xl font-Montserrat font-bold text-gray-800">
+                  <h1 className="text-2xl font-Lato font-bold text-gray-800">
                     Gestión de Acudientes
                   </h1>
                   <p className="text-sm font-Poppins text-gray-600 mt-1">
@@ -266,7 +266,7 @@ const GuardiansList = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Total Acudientes</p>
-                    <p className="text-3xl font-Montserrat font-bold text-blue-600 mt-2">
+                    <p className="text-3xl font-Lato font-bold text-blue-600 mt-2">
                       {stats.total}
                     </p>
                   </div>
@@ -280,7 +280,7 @@ const GuardiansList = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Activos</p>
-                    <p className="text-3xl font-Montserrat font-bold text-green-600 mt-2">
+                    <p className="text-3xl font-Lato font-bold text-green-600 mt-2">
                       {stats.activos}
                     </p>
                   </div>
@@ -294,7 +294,7 @@ const GuardiansList = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Participantes a Cargo</p>
-                    <p className="text-3xl font-Montserrat font-bold text-purple-600 mt-2">
+                    <p className="text-3xl font-Lato font-bold text-purple-600 mt-2">
                       {stats.totalParticipants}
                     </p>
                   </div>
@@ -308,7 +308,7 @@ const GuardiansList = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-Poppins font-medium text-gray-600">Promedio por Acudiente</p>
-                    <p className="text-3xl font-Montserrat font-bold text-orange-600 mt-2">
+                    <p className="text-3xl font-Lato font-bold text-orange-600 mt-2">
                       {stats.total > 0 ? (stats.totalParticipants / stats.total).toFixed(1) : 0}
                     </p>
                   </div>
@@ -321,11 +321,11 @@ const GuardiansList = () => {
 
             {/* Parentesco Distribution */}
             <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 mb-8">
-              <h3 className="text-xl font-Montserrat font-bold text-gray-800 mb-6">Distribución por Parentesco</h3>
+              <h3 className="text-xl font-Lato font-bold text-gray-800 mb-6">Distribución por Parentesco</h3>
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
                 {Object.entries(stats.byParentesco).map(([parentesco, count]) => (
                   <div key={parentesco} className="text-center p-4 bg-gray-50 rounded-xl">
-                    <p className="text-2xl font-Montserrat font-bold text-gray-800">
+                    <p className="text-2xl font-Lato font-bold text-gray-800">
                       {count}
                     </p>
                     <p className="text-xs font-Poppins text-gray-600 mt-1">

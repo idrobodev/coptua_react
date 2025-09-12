@@ -21,7 +21,7 @@ const Footer = () => {
               style={{ filter: 'brightness(1) contrast(1.1)', opacity: 1 }}
             />
             <div>
-              <span className="text-2xl font-Montserrat font-bold border-l-4 px-2 border-white">
+              <span className="text-2xl font-Lato font-bold border-l-4 px-2 border-white">
                 Corporación Todo por un Alma
               </span>
             </div>
@@ -60,7 +60,7 @@ const Footer = () => {
         </div>
         
         <div className="">
-          <h1 className="text-2xl font-Montserrat font-bold uppercase border-white border-l-4 px-2">
+          <h1 className="text-2xl font-Lato font-bold uppercase border-white border-l-4 px-2">
             Enlaces Rápidos
           </h1>
           <ul className="py-4 font-Poppins">
@@ -83,7 +83,7 @@ const Footer = () => {
         </div>
         
         <div className="">
-          <h1 className="text-2xl uppercase font-Montserrat font-bold border-white border-l-4 px-2">
+          <h1 className="text-2xl uppercase font-Lato font-bold border-white border-l-4 px-2">
             Información de Contacto
           </h1>
 
@@ -108,7 +108,7 @@ const Footer = () => {
         </div>
 
         <div className="">
-          <h1 className="text-2xl font-Montserrat font-bold border-l-4 px-2 border-white">
+          <h1 className="text-2xl font-Lato font-bold border-l-4 px-2 border-white">
             Cómo Ayudar
           </h1>
           <p className="py-4 font-Poppins">
