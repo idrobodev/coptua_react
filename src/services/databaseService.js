@@ -1,4 +1,4 @@
-import { supabase } from '../supabase/supabaseClient';
+import { supabase, ROLES } from '../supabase/supabaseClient';
 
 // Mock data for development
 const mockData = {

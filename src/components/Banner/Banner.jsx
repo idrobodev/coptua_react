@@ -1,16 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import banner from "../../images/banner.png";
+import bannerVideo from "../../images/banner.webm";
 
 const Banner = () => {
   return (
-    <div
-      className="bg-cover bg-no-repeat bg-center h-screen py-36 bg-fixed"
-      style={{
-        backgroundImage: `url(${banner})`,
-      }}
-    >
-      <div className="container">
+    <div className="relative h-screen py-36 overflow-hidden">
+      {/* Video Background */}
+      <video
+        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
+        <source src={bannerVideo} type="video/webm" />
+        Your browser does not support the video tag.
+      </video>
+      
+      {/* Content Overlay */}
+      <div className="relative z-10 container">
         <h1 className="text-6xl capitalize text-gray-800 font-medium mb-4">
           Transformando vidas desde el amor y la evidencia científica.
         </h1>
