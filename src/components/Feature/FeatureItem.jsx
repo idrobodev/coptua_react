@@ -43,7 +43,7 @@ const FeatureItem = ({ feature }) => {
     <div className="group relative">
       <div className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-8 text-center border border-gray-100 hover:border-primary/20">
         {/* Icono con fondo circular */}
-        <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-primary/10 to-primary/20 rounded-full flex items-center justify-center text-primary group-hover:from-primary group-hover:to-primary/80 group-hover:text-white transition-all duration-500">
+        <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-primary/10 to-primary/20 rounded-full flex items-center justify-center text-primary group-hover:from-primary/90 group-hover:to-primary/60 group-hover:text-[#434194] transition-all duration-500">
           {getIcon(icon)}
         </div>
         
