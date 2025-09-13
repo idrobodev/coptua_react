@@ -2,6 +2,18 @@
     "name": "fundacion-todo-por-un-alma",
     "version": "0.1.0",
     "private": true,
+    "engines": {
+        "node": "18.x",
+        "npm": ">=8.0.0"
+    },
+    "scripts": {
+        "start": "cross-env BROWSER=none PORT=3001 NODE_OPTIONS=--openssl-legacy-provider craco start",
+        "build": "craco build",
+        "test": "craco test",
+        "eject": "react-scripts eject",
+        "prepare": "husky install",
+        "postinstall": "node scripts/setup.js"
+    },
     "dependencies": {
         "@babel/core": "^7.16.0",
         "@craco/craco": "^6.4.0",

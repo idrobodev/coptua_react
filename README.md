@@ -2,6 +2,62 @@
 
 Sistema de gestión integral para la Fundación Todo por un Alma, desarrollado con React y Supabase para administrar participantes, profesionales, mensualidades, formularios especializados y generar reportes estadísticos.
 
+# Fundación Todo por un Alma - Dashboard Administrativo
+
+Sistema de gestión integral para la Fundación Todo por un Alma, desarrollado con React y Supabase para administrar participantes, profesionales, mensualidades, formularios especializados y generar reportes estadísticos.
+
+## 🚀 Guía Rápida de Inicio
+
+### Requisitos Previos
+- Node.js 18.x (recomendado 18.16.0 o superior)
+- npm 8.x o superior
+- Una cuenta en Supabase (para las variables de entorno)
+
+### Instalación
+
+1. **Clonar el repositorio**
+   ```bash
+   git clone [URL_DEL_REPOSITORIO]
+   cd coptua_react
+   ```
+
+2. **Configurar variables de entorno**
+   ```bash
+   # Copiar el archivo de ejemplo
+   cp .env.example .env
+   
+   # Editar el archivo .env con tus credenciales
+   # Necesitarás configurar las variables de Supabase y otras configuraciones
+   ```
+
+3. **Instalar dependencias**
+   ```bash
+   npm install
+   ```
+   
+   Esto ejecutará automáticamente el script de post-instalación que configurará el proyecto.
+
+4. **Iniciar el servidor de desarrollo**
+   ```bash
+   npm start
+   ```
+   
+   La aplicación estará disponible en [http://localhost:3001](http://localhost:3001)
+
+### Variables de Entorno Necesarias
+
+Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
+
+```env
+# Configuración de Supabase
+REACT_APP_SUPABASE_URL=tu_url_de_supabase
+REACT_APP_SUPABASE_ANON_KEY=tu_clave_anon_de_supabase
+
+# Configuración del Sitio
+REACT_APP_SITE_URL=http://localhost:3001
+REACT_APP_API_URL=http://localhost:3001/api
+```
+
 ## 📋 Descripción
 
 Dashboard administrativo moderno y responsive diseñado específicamente para la gestión de fundaciones de atención integral. Incluye módulos completos para el manejo de participantes, profesionales de la salud, acudientes, sistema de pagos mensuales, formularios especializados por área médica y sistema de reportes con visualizaciones interactivas.
