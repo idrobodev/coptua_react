@@ -148,7 +148,7 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
       {/* Sidebar */}
       <aside 
         className={`
-          fixed top-0 left-0 h-full text-gray-700 z-40
+          fixed top-0 left-0 h-full text-gray-700 z-50
           transform transition-all duration-300 ease-in-out shadow-2xl
           ${
             isCollapsed && !isMobile

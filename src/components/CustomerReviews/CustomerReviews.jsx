@@ -1,5 +1,6 @@
 import React from "react";
 import Review from "./Review";
+import GradientText from "../UI/GradientText";
 
 const reviews = [
   {
@@ -27,8 +28,8 @@ const CustomerReviews = () => {
     <div className="container py-16 md:py-24 px-4">
       <div className="text-center max-w-4xl mx-auto mb-16">
         <p className="text-primary font-semibold text-lg mb-2 tracking-wide">TESTIMONIOS</p>
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
-          Historias de Transformación
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <GradientText>Historias de Transformación</GradientText>
         </h1>
         <p className="text-gray-600 text-lg md:text-xl leading-relaxed">
           Conoce las experiencias reales de quienes han encontrado esperanza y transformación 

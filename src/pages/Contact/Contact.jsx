@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
+import SEO from "../../components/SEO/SEO";
+import { supabase } from "../../supabase/supabaseClient";
+
+import GradientText from "../../components/UI/GradientText";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -36,10 +40,28 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí iría la lógica de envío del formulario
-    // TODO: Implementar envío real del formulario
+    try {
+      const { error } = await supabase
+        .from('contact_messages')
+        .insert([{ ...formData, created_at: new Date().toISOString() }]);
+      
+      if (error) throw error;
+      
+      alert('Mensaje enviado con éxito!');
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: '',
+        urgency: 'normal'
+      });
+    } catch (error) {
+      console.error('Error al enviar mensaje:', error);
+      alert('Hubo un error al enviar el mensaje. Por favor intente nuevamente.');
+    }
   };
 
   const socialNetworks = [
@@ -108,16 +130,51 @@ const Contact = () => {
     }
   ];
 
+  const contactStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Corporación Todo por un Alma",
+      "telephone": ["+57-314-570-2708", "+57-321-648-1687", "+57-310-457-7835"],
+      "email": ["fundacion@todoporunalma.org", "info@todoporunalma.org"],
+      "address": [
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "Vereda Potreritos, Finca el Alto",
+          "addressLocality": "Bello",
+          "addressRegion": "Antioquia",
+          "addressCountry": "Colombia"
+        },
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "Calle 102BB #76-34, Barrio 20 de Enero",
+          "addressLocality": "Apartadó",
+          "addressRegion": "Antioquia",
+          "addressCountry": "Colombia"
+        }
+      ]
+    }
+  };
+
   return (
     <div>
+      <SEO 
+        title="Contacto - Todo por un Alma | Centro de Rehabilitación en Bello y Apartadó"
+        description="Contáctanos para información sobre nuestros programas de rehabilitación. Estamos disponibles 24/7 en Bello y Apartadó. Llámanos, escríbenos o visítanos."
+        keywords="contacto, teléfono, dirección, Bello, Apartadó, centro rehabilitación, ayuda inmediata, emergencia, información programas"
+        url="/contact"
+        type="website"
+        structuredData={contactStructuredData}
+      />
       <Breadcrumbs title="Contacto" />
       
       {/* Hero Section */}
       <div className="relative overflow-hidden bg-gradient-to-br from-primary/5 to-[#434194]/10 py-20">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/5"></div>
         <div className="container relative z-10 text-center">
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-primary via-[#434194] to-primary bg-clip-text text-transparent mb-6">
-            Estamos Aquí para Ti
+          <h1 className="text-5xl font-bold mb-6">
+            <GradientText>Estamos Aquí para Ti</GradientText>
           </h1>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
             ¿Tienes alguna pregunta o necesitas ayuda? Estamos aquí para acompañarte en tu proceso de recuperación. 
@@ -137,8 +194,8 @@ const Contact = () => {
       >
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-primary to-[#434194] bg-clip-text text-transparent mb-6">
-              Síguenos en Redes Sociales
+            <h2 className="text-4xl font-bold mb-6">
+              <GradientText>Síguenos en Redes Sociales</GradientText>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Mantente conectado con nosotros y sé parte de nuestra comunidad de esperanza y transformación
@@ -182,8 +239,8 @@ const Contact = () => {
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             {/* Formulario */}
             <div className="bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-[#434194] bg-clip-text text-transparent mb-8">
-                Envíanos un Mensaje
+              <h2 className="text-3xl font-bold mb-8">
+                <GradientText>Envíanos un Mensaje</GradientText>
               </h2>
               
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -287,8 +344,8 @@ const Contact = () => {
             {/* Información de Contacto */}
             <div className="space-y-8">
               <div className="text-center lg:text-left">
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-[#434194] bg-clip-text text-transparent mb-6">
-                  Información de Contacto
+                <h2 className="text-3xl font-bold mb-6">
+                  <GradientText>Información de Contacto</GradientText>
                 </h2>
                 <p className="text-gray-600 text-lg">
                   Estamos disponibles para atenderte las 24 horas del día, los 7 días de la semana.

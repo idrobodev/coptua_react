@@ -3,6 +3,7 @@ import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import mission from "../../images/booking.jpg";
 import story from "../../images/banner.png";
 import happyCl from "../../images/happyCl.jpg";
+import GradientText from "../../components/UI/GradientText";
 
 const Programs = () => {
   const [activeTab, setActiveTab] = useState('internado');
@@ -133,8 +134,8 @@ const Programs = () => {
       <div className="relative overflow-hidden bg-gradient-to-br from-primary/5 to-[#434194]/10 py-20">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/5"></div>
         <div className="container relative z-10 text-center">
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-primary via-[#434194] to-primary bg-clip-text text-transparent mb-6">
-            Programas de Transformación
+\          <h1 className="text-5xl font-bold mb-6">
+            <GradientText>Programas de Transformación</GradientText>
           </h1>
           <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
             Ofrecemos programas integrales de rehabilitación que combinan enfoques científicos validados 
@@ -155,8 +156,8 @@ const Programs = () => {
       >
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-primary to-[#434194] bg-clip-text text-transparent mb-6">
-              Nuestros Programas Especializados
+\            <h2 className="text-4xl font-bold mb-6">
+              <GradientText>Nuestros Programas Especializados</GradientText>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Selecciona un programa para conocer más detalles sobre cómo podemos ayudarte
@@ -247,8 +248,8 @@ const Programs = () => {
       >
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-primary to-[#434194] bg-clip-text text-transparent mb-6">
-              Enfoques Terapéuticos
+\            <h2 className="text-4xl font-bold mb-6">
+              <GradientText>Enfoques Terapéuticos</GradientText>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Combinamos metodologías científicas probadas con principios espirituales sólidos
@@ -297,8 +298,8 @@ const Programs = () => {
       >
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-primary to-[#434194] bg-clip-text text-transparent mb-6">
-              Nuestras Sedes
+\            <h2 className="text-4xl font-bold mb-6">
+              <GradientText>Nuestras Sedes</GradientText>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Contamos con instalaciones especializadas en dos ubicaciones estratégicas de Antioquia

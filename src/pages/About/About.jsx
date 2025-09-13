@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
+import SEO from "../../components/SEO/SEO";
 import mission from "../../images/booking.jpg";
 import story from "../../images/banner.png";
+import GradientText from "../../components/UI/GradientText";
 
 const About = () => {
   const [isVisible, setIsVisible] = useState({});
@@ -84,8 +86,55 @@ const About = () => {
     }
   ];
 
+  const aboutStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Corporación Todo por un Alma",
+      "description": "Centro especializado en tratamiento de adicciones que combina terapia psicológica profesional con guía espiritual basada en la Palabra de Dios.",
+      "foundingDate": "2020",
+      "address": [
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Bello",
+          "addressRegion": "Antioquia",
+          "addressCountry": "Colombia"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Apartadó",
+          "addressRegion": "Antioquia",
+          "addressCountry": "Colombia"
+        }
+      ],
+      "employee": [
+        {
+          "@type": "Person",
+          "name": "Dr. Juan Camilo Machado",
+          "jobTitle": "Director Psicológico - Sede Masculina Bello",
+          "telephone": "3145702708"
+        },
+        {
+          "@type": "Person",
+          "name": "Dra. Mildrey Leonel Melo",
+          "jobTitle": "Directora Psicológica - Sede Femenina Bello",
+          "telephone": "3216481687"
+        }
+      ]
+    }
+  };
+
   return (
     <>
+      <SEO 
+        title="Sobre Nosotros - Todo por un Alma | Centro de Rehabilitación"
+        description="Conoce la historia, valores y equipo profesional de Todo por un Alma. Centro especializado en tratamiento de adicciones con enfoque cristiano en Bello y Apartadó, Colombia."
+        keywords="sobre nosotros, historia, equipo profesional, valores cristianos, centro rehabilitación, Bello, Apartadó, psicólogos, terapeutas, adicciones"
+        url="/about"
+        type="website"
+        structuredData={aboutStructuredData}
+      />
       <Breadcrumbs title="Sobre Nosotros" />
       
       {/* Hero Section */}
@@ -103,8 +152,8 @@ const About = () => {
             </div>
           </div>
           <div className="lg:w-1/2 lg:pl-16">
-            <h1 className="text-5xl font-bold bg-gradient-to-r from-primary via-[#434194] to-primary bg-clip-text text-transparent mb-6">
-              Corporación Todo por un Alma
+            <h1 className="text-5xl font-bold mb-6">
+              <GradientText>Corporación Todo por un Alma</GradientText>
             </h1>
             <p className="text-xl text-gray-700 leading-relaxed mb-8">
               Somos un centro de desintoxicación que combina enfoques psicológicos validados 
@@ -138,8 +187,8 @@ const About = () => {
       >
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-primary to-[#434194] bg-clip-text text-transparent mb-6">
-              Nuestra Historia
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-6">
+              <GradientText>Nuestra Historia</GradientText>
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-primary to-[#434194] mx-auto rounded-full"></div>
           </div>
@@ -158,7 +207,7 @@ const About = () => {
             <div className="lg:w-1/2">
               <div className="space-y-6">
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 border border-primary/10">
-                  <h3 className="text-2xl font-bold text-primary mb-4">Nuestros Inicios</h3>
+                  <h3 className="text-2xl font-bold text-[#434194] mb-4">Nuestros Inicios</h3>
                   <p className="text-gray-700 leading-relaxed">
                     Fundada con la visión de transformar vidas a través del amor de Cristo, nuestra corporación 
                     nació del deseo de ofrecer esperanza a quienes luchan contra las adicciones.
@@ -187,8 +236,8 @@ const About = () => {
       >
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-primary to-[#434194] bg-clip-text text-transparent mb-6">
-              Nuestros Valores
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-6">
+              <GradientText>Nuestros Valores</GradientText>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Los principios que guían cada una de nuestras acciones y decisiones
@@ -228,8 +277,8 @@ const About = () => {
       >
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-primary to-[#434194] bg-clip-text text-transparent mb-6">
-              Nuestro Equipo Profesional
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-6">
+              <GradientText>Nuestro Equipo Profesional</GradientText>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Profesionales altamente capacitados comprometidos con tu recuperación

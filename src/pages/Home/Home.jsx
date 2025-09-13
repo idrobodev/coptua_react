@@ -5,6 +5,9 @@ import CustomerReviews from "../../components/CustomerReviews/CustomerReviews";
 import Feature from "../../components/Feature/Feature";
 import ToursPackage from "../../components/ToursPackage/ToursPackage";
 import HappyCustomers from "./../../components/HappyCustomers/HappyCustomers";
+import TransformationStories from "../../components/TransformationStories/TransformationStories";
+import SEO from "../../components/SEO/SEO";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [tours, setTours] = useState();
@@ -30,32 +33,22 @@ const Home = () => {
     };
   }, []);
   return (
-    <div>
-      <Banner />
-      <Feature />
-      <div className="container">
-        <p className="text-center text-primary font-semibold">NUESTROS SERVICIOS</p>
-        <h1 className="text-center text-5xl font-semibold">Programas Especializados</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-20 py-20">
-          {isLoading ? (
-            <div className="flex items-center justify-center mx-auto">
-              <div className="w-40 h-40 border-t-4 border-b-4 border-green-900 rounded-full animate-spin"></div>
-            </div>
-          ) : tours && tours.length > 0 ? (
-            tours
-              .slice(0, 6)
-              .map((tour) => <ToursPackage key={tour._id} tour={tour} />)
-          ) : (
-            <div className="col-span-full text-center text-gray-600">
-              <p className="mb-3">No hay elementos para mostrar en este momento.</p>
-              <p>Conoce nuestros programas y comunícate con nosotros para más información.</p>
-            </div>
-          )}
-        </div>
+    <>
+      <SEO 
+        title="Todo por un Alma - Centro de Rehabilitación y Desintoxicación en Colombia"
+        description="Centro especializado en tratamiento de adicciones que combina terapia psicológica profesional con guía espiritual basada en la Palabra de Dios. Transformamos vidas en Bello y Apartadó, Colombia."
+        keywords="rehabilitación, desintoxicación, adicciones, centro de rehabilitación, terapia cognitivo conductual, logoterapia, Bello, Apartadó, Colombia, tratamiento adicciones, recuperación, transformación de vidas, centro cristiano"
+        url="/"
+        type="website"
+      />
+      <div>
+        <Banner />
+        <Feature />
+        <TransformationStories />
+        <HappyCustomers />
+        <CustomerReviews />
       </div>
-      <HappyCustomers />
-      <CustomerReviews />
-    </div>
+    </>
   );
 };
 

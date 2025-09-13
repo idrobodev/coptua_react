@@ -10,7 +10,6 @@ import logo from "../../images/logo.png";
 const Dashboard = () => {
   const { currentUser, logout } = useAuth();
   const history = useHistory();
-  const [selectedSede, setSelectedSede] = useState("Todas");
   const [dashboardData, setDashboardData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [sedes, setSedes] = useState([]);
@@ -197,42 +196,9 @@ const Dashboard = () => {
                       <p className="text-sm font-Poppins text-gray-600">Corporación Todo por un Alma</p>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-sm font-Poppins text-gray-600">Sede:</span>
-                    <select 
-                      value={selectedSede} 
-                      onChange={(e) => setSelectedSede(e.target.value)}
-                      className="border border-gray-300 rounded-lg px-3 py-2 text-sm font-Poppins focus:ring-2 focus:ring-primary focus:border-transparent"
-                    >
-                      <option value="Todas">Todas las Sedes</option>
-                      {sedes.map(sede => (
-                        <option key={sede.id} value={sede.nombre}>{sede.nombre}</option>
-                      ))}
-                    </select>
-                  </div>
                 </div>
                 
                 <div className="flex items-center space-x-4">
-                  {/* Buscador Global */}
-                  <div className="relative hidden lg:block">
-                    <input
-                      type="text"
-                      placeholder="Buscar participantes, profesionales..."
-                      className="w-64 px-4 py-2 pl-10 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent font-Poppins"
-                    />
-                    <i className="fas fa-search absolute left-3 top-3 text-gray-400"></i>
-                  </div>
-                  
-                  {/* Notificaciones */}
-                  <div className="relative">
-                    <button className="p-3 text-gray-600 hover:text-primary hover:bg-gray-100 rounded-xl transition-all duration-200 relative">
-                      <i className="fas fa-bell text-xl"></i>
-                      <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-Poppins font-medium">
-                        {alertas.length}
-                      </span>
-                    </button>
-                  </div>
-                  
                   {/* Perfil de Usuario */}
                   <div className="relative" ref={userMenuRef}>
                     <button

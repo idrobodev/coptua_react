@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.png";
+import VisitorCounter from "../VisitorCounter/VisitorCounter";
+import VisitorCounterMobile from "../VisitorCounter/VisitorCounterMobile";
 
 const Footer = () => {
   return (
@@ -143,11 +145,42 @@ const Footer = () => {
         </div>
       </div>
       
-      {/* Línea inferior de copyright */}
-      <div className="border-t border-white border-opacity-30 mt-8 pt-6 text-center text-sm text-white text-opacity-80 relative z-10">
-        <div className="container font-Poppins">
-          <p>© {new Date().getFullYear()} Corporación Todo por un Alma.</p>
-          <p className="mt-2">Transformando vidas desde el amor y la evidencia científica</p>
+      {/* Visitor Counter Section */}
+      <div className="border-t border-white border-opacity-30 mt-8 pt-6 relative z-10">
+        <div className="container">
+          <div className="flex flex-col lg:flex-row items-center justify-between space-y-4 lg:space-y-0">
+            {/* Visitor Counter */}
+            <div className="flex justify-center lg:justify-start">
+              <div className="hidden lg:block">
+                <VisitorCounter />
+              </div>
+              <div className="block lg:hidden">
+                <VisitorCounterMobile />
+              </div>
+            </div>
+            
+            {/* Copyright Info */}
+            <div className="text-center text-sm text-white text-opacity-80 font-Poppins">
+              <p>© {new Date().getFullYear()} Corporación Todo por un Alma.</p>
+              <p className="mt-1">Transformando vidas desde el amor y la evidencia científica</p>
+            </div>
+            
+            {/* Additional Stats */}
+            <div className="flex space-x-6 text-center">
+              <div className="text-white text-opacity-80">
+                <div className="text-lg font-bold font-Lato text-white">2020</div>
+                <div className="text-xs font-Poppins uppercase tracking-wide">Fundación</div>
+              </div>
+              <div className="text-white text-opacity-80">
+                <div className="text-lg font-bold font-Lato text-white">2</div>
+                <div className="text-xs font-Poppins uppercase tracking-wide">Sedes</div>
+              </div>
+              <div className="text-white text-opacity-80">
+                <div className="text-lg font-bold font-Lato text-white">24/7</div>
+                <div className="text-xs font-Poppins uppercase tracking-wide">Atención</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
