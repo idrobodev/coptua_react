@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import { useAuth } from "../../components/Context/AuthContext";
 import Sidebar from "../../components/Dashboard/Sidebar";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
-import { ParticipantsBySedeChart, PaymentStatusChart } from "../../components/Charts/DashboardCharts";
 import { dbService } from "../../services/databaseService";
 import logo from "../../images/logo.png";
 
@@ -14,12 +13,6 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const userMenuRef = useRef(null);
-  const [chartData, setChartData] = useState({
-    participantesBySede: [],
-    paymentStatus: { pagadas: 0, pendientes: 0, vencidas: 0 },
-    monthlyTrend: [],
-    formStatus: []
-  });
 
   // Load dashboard data
   useEffect(() => {
@@ -34,30 +27,6 @@ const Dashboard = () => {
         // Load sedes
         await dbService.getSedes();
         
-        // Load chart data
-        setChartData({
-          participantesBySede: [
-            { sede: 'Bello', activos: 28 },
-            { sede: 'Apartadó', activos: 18 }
-          ],
-          paymentStatus: { pagadas: 38, pendientes: 7, vencidas: 3 },
-          monthlyTrend: [
-            { mes: 'Ene', ingresos: 6800000, nuevos: 5 },
-            { mes: 'Feb', ingresos: 7200000, nuevos: 3 },
-            { mes: 'Mar', ingresos: 6900000, nuevos: 4 },
-            { mes: 'Abr', ingresos: 7500000, nuevos: 6 },
-            { mes: 'May', ingresos: 7800000, nuevos: 2 },
-            { mes: 'Jun', ingresos: 8100000, nuevos: 4 }
-          ],
-          formStatus: [
-            { tipo: 'Médico', pendientes: 5, completados: 15 },
-            { tipo: 'Psicología', pendientes: 3, completados: 12 },
-            { tipo: 'Espiritual', pendientes: 2, completados: 18 },
-            { tipo: 'Enfermería', pendientes: 4, completados: 16 },
-            { tipo: 'Terapéutico', pendientes: 1, completados: 14 },
-            { tipo: 'T. Social', pendientes: 3, completados: 11 }
-          ]
-        });
         
       } catch (error) {
         console.error('Error loading dashboard data:', error);
@@ -359,25 +328,12 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Charts Section */}
-          <div className="px-6 py-4">
-            <h2 className="text-xl font-Lato font-bold text-gray-800 mb-4">Estadísticas y Análisis</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-              {/* Participantes por Sede */}
-              <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-                <div className="h-72">
-                  <ParticipantsBySedeChart data={chartData.participantesBySede} />
-                </div>
-              </div>
-              
-              {/* Estado de Pagos */}
-              <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-                <div className="h-72">
-                  <PaymentStatusChart data={chartData.paymentStatus} />
-                </div>
-              </div>
-            </div>
-            
+          {/* Sección de Bienvenida */}
+          <div className="px-6 py-12 text-center">
+            <h2 className="text-3xl font-Lato font-bold text-gray-800 mb-4">Bienvenido al Panel de Control</h2>
+            <p className="text-gray-600 max-w-3xl mx-auto">
+              Utiliza el menú lateral para navegar entre las diferentes secciones y gestionar la información de la fundación.
+            </p>
           </div>
 
           {/* Botones de Acceso Rápido */}
