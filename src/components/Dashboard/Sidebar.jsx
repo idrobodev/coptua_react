@@ -6,7 +6,6 @@ import logo from "../../images/logo.png";
 const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onToggleCollapse = () => {} }) => {
   const { currentUser, logout } = useAuth();
   const history = useHistory();
-  const [expandedSections, setExpandedSections] = useState({});
   const [isMobile, setIsMobile] = useState(false);
 
   // Check for mobile screen size
@@ -30,12 +29,6 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
     }
   };
 
-  const toggleSection = (section) => {
-    setExpandedSections(prev => ({
-      ...prev,
-      [section]: !prev[section]
-    }));
-  };
 
   const menuItems = [
     {
@@ -49,78 +42,43 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
       id: 'participantes',
       icon: 'fas fa-users',
       label: 'Participantes',
-      link: null,
-      badge: '12',
-      submenu: [
-        { label: 'Lista de Participantes', link: '/participantes' },
-        { label: 'Nuevo Participante', link: '/participantes/nuevo' },
-        { label: 'Calendario', link: '/participantes/calendario' },
-        { label: 'Perfiles', link: '/participantes/perfiles' }
-      ]
+      link: '/participantes',
+      badge: '12'
     },
     {
       id: 'profesionales',
       icon: 'fas fa-user-md',
       label: 'Profesionales',
-      link: null,
-      badge: null,
-      submenu: [
-        { label: 'Directorio', link: '/profesionales' },
-        { label: 'Agenda', link: '/profesionales/agenda' },
-        { label: 'Carga de Trabajo', link: '/profesionales/carga' }
-      ]
+      link: '/profesionales',
+      badge: null
     },
     {
       id: 'financiero',
       icon: 'fas fa-dollar-sign',
       label: 'Módulo Financiero',
-      link: null,
-      badge: '3',
-      submenu: [
-        { label: 'Mensualidades', link: '/financiero/mensualidades' },
-        { label: 'Proyecciones', link: '/financiero/proyecciones' },
-        { label: 'Reportes', link: '/financiero/reportes' },
-        { label: 'Recordatorios', link: '/financiero/recordatorios' }
-      ]
+      link: '/financiero',
+      badge: '3'
     },
     {
       id: 'formularios',
       icon: 'fas fa-clipboard-list',
       label: 'Formularios',
-      link: null,
-      badge: '5',
-      submenu: [
-        { label: 'Pendientes', link: '/formularios/pendientes' },
-        { label: 'Progreso', link: '/formularios/progreso' },
-        { label: 'Alertas', link: '/formularios/alertas' },
-        { label: 'Exportar', link: '/formularios/exportar' }
-      ]
+      link: '/formularios',
+      badge: '5'
     },
     {
       id: 'reportes',
       icon: 'fas fa-chart-bar',
       label: 'Reportes',
-      link: null,
-      badge: null,
-      submenu: [
-        { label: 'Estadísticas', link: '/reportes/estadisticas' },
-        { label: 'Demográficos', link: '/reportes/demograficos' },
-        { label: 'Ejecutivos', link: '/reportes/ejecutivos' },
-        { label: 'Personalizados', link: '/reportes/personalizados' }
-      ]
+      link: '/reportes',
+      badge: null
     },
     {
       id: 'configuracion',
       icon: 'fas fa-cog',
       label: 'Configuración',
-      link: null,
-      badge: null,
-      submenu: [
-        { label: 'Usuarios', link: '/configuracion/usuarios' },
-        { label: 'Permisos', link: '/configuracion/permisos' },
-        { label: 'Sistema', link: '/configuracion/sistema' },
-        { label: 'Auditoría', link: '/configuracion/auditoria' }
-      ]
+      link: '/configuracion',
+      badge: null
     }
   ];
 
@@ -166,13 +124,13 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
         }}
       >
         {/* Header with Logo */}
-        <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100">
-          <div className="flex items-center space-x-3">
+        <div className={`${isCollapsed && !isMobile ? 'p-3' : 'p-6'} border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100 transition-all duration-300`}>
+          <div className={`flex items-center ${isCollapsed && !isMobile ? 'justify-center' : 'space-x-3'}`}>
             <div className="relative">
               <img 
                 src={logo} 
                 alt="Corporación Logo" 
-                className="w-12 h-12 rounded-xl object-cover bg-white p-2 flex-shrink-0 shadow-md"
+                className={`${isCollapsed && !isMobile ? 'w-10 h-10' : 'w-12 h-12'} rounded-xl object-cover bg-white p-2 flex-shrink-0 shadow-md transition-all duration-300`}
               />
               <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white shadow-sm"></div>
             </div>
@@ -187,62 +145,21 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
           <ul className="space-y-1">
             {menuItems.map((item) => (
               <li key={item.id}>
-                {item.link ? (
-                  <Link
-                    to={item.link}
-                    className="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-gray-100 hover:shadow-sm transition-all duration-200 group relative overflow-hidden"
-                    title={isCollapsed ? item.label : ''}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-blue-25/30 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
-                    <i className={`${item.icon} text-lg text-gray-600 group-hover:text-blue-600 group-hover:scale-110 transition-all flex-shrink-0 relative z-10`}></i>
-                    <span className={`font-Poppins font-medium text-gray-700 group-hover:text-gray-900 ${isCollapsed && !isMobile ? 'hidden' : 'block'} transition-all duration-300 relative z-10`}>{item.label}</span>
-                    {item.badge && (
-                      <span className="ml-auto bg-red-500 text-white text-xs px-2 py-1 rounded-full font-bold shadow-sm">
-                        {item.badge}
-                      </span>
-                    )}
-                  </Link>
-                ) : (
-                  <div>
-                    <button
-                      onClick={() => toggleSection(item.id)}
-                      className={`flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'} w-full px-4 py-3 rounded-xl hover:bg-gray-100 hover:shadow-sm transition-all duration-200 group relative overflow-hidden`}
-                      title={isCollapsed ? item.label : ''}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-blue-25/30 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
-                      <div className="flex items-center space-x-3 relative z-10">
-                        <i className={`${item.icon} text-lg text-gray-600 group-hover:text-blue-600 group-hover:scale-110 transition-all flex-shrink-0`}></i>
-                        <span className={`font-Poppins font-medium text-gray-700 group-hover:text-gray-900 ${isCollapsed && !isMobile ? 'hidden' : 'block'} transition-all duration-300`}>{item.label}</span>
-                        {item.badge && !isCollapsed && (
-                          <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full font-bold shadow-sm">
-                            {item.badge}
-                          </span>
-                        )}
-                      </div>
-                      <i className={`fas fa-chevron-down text-gray-500 transition-transform duration-200 relative z-10 ${
-                        expandedSections[item.id] ? 'rotate-180' : ''
-                      } ${isCollapsed && !isMobile ? 'hidden' : 'block'}`}></i>
-                    </button>
-                    
-                    {expandedSections[item.id] && (!isCollapsed || isMobile) && (
-                      <ul className="ml-6 space-y-2 mt-2">
-                        {item.submenu.map((subItem, index) => (
-                          <li key={index}>
-                            <Link
-                              to={subItem.link}
-                              className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-50 hover:shadow-sm transition-all duration-200 text-sm font-Poppins group relative overflow-hidden"
-                              onClick={isMobile ? onToggle : undefined}
-                            >
-                              <div className="absolute inset-0 bg-gradient-to-r from-blue-25/30 to-blue-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
-                              <i className="fas fa-circle text-xs text-gray-400 group-hover:text-blue-500 transition-colors relative z-10"></i>
-                              <span className="relative z-10 text-gray-600 group-hover:text-gray-800">{subItem.label}</span>
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                )}
+                <Link
+                  to={item.link}
+                  className="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-gray-100 hover:shadow-sm transition-all duration-200 group relative overflow-hidden"
+                  title={isCollapsed ? item.label : ''}
+                  onClick={isMobile ? onToggle : undefined}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-blue-25/30 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                  <i className={`${item.icon} text-lg text-gray-600 group-hover:text-blue-600 group-hover:scale-110 transition-all flex-shrink-0 relative z-10`}></i>
+                  <span className={`font-Poppins font-medium text-gray-700 group-hover:text-gray-900 ${isCollapsed && !isMobile ? 'hidden' : 'block'} transition-all duration-300 relative z-10`}>{item.label}</span>
+                  {item.badge && !isCollapsed && (
+                    <span className="ml-auto bg-red-500 text-white text-xs px-2 py-1 rounded-full font-bold shadow-sm">
+                      {item.badge}
+                    </span>
+                  )}
+                </Link>
               </li>
             ))}
           </ul>

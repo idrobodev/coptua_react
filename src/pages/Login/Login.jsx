@@ -70,12 +70,6 @@ const Login = () => {
                   className="border border-gray-400 w-full px-4 py-2"
                   {...register("password", { required: true })}
                 />
-                <Link
-                  to="forget-password"
-                  className="float-right text-secondary"
-                >
-                  ¿Olvidó su contraseña?
-                </Link>
                 {errors.password && (
                   <span className="text-red-600">Este campo es obligatorio</span>
                 )}
@@ -87,12 +81,6 @@ const Login = () => {
               >
                 Iniciar Sesión
               </button>
-              <h1 className="py-4">
-                ¿No tiene una cuenta?
-                <Link className="text-primary px-2" to="/register">
-                  Regístrese ahora
-                </Link>
-              </h1>
             </form>
             <SocialLogin title="Iniciar Sesión" />
           </div>

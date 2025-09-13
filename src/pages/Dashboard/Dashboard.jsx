@@ -132,12 +132,7 @@ const Dashboard = () => {
     }
   };
 
-  const alertas = [
-    { tipo: "urgente", mensaje: "3 mensualidades vencidas", color: "red", icon: "fas fa-exclamation-circle" },
-    { tipo: "atencion", mensaje: "5 formularios atrasados", color: "yellow", icon: "fas fa-clock" },
-    { tipo: "info", mensaje: "2 cumpleaños esta semana", color: "blue", icon: "fas fa-birthday-cake" },
-    { tipo: "info", mensaje: "Reunión de equipo mañana", color: "green", icon: "fas fa-users" }
-  ];
+  const alertas = [];
   
   if (loading) {
     return (
@@ -377,31 +372,24 @@ const Dashboard = () => {
           </div>
 
           {/* Charts Section */}
-          <div className="px-6 py-6">
-            <h2 className="text-2xl font-Lato font-bold text-gray-800 mb-6">Estadísticas y Análisis</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          <div className="px-6 py-4">
+            <h2 className="text-xl font-Lato font-bold text-gray-800 mb-4">Estadísticas y Análisis</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
               {/* Participantes por Sede */}
-              <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
-                <ParticipantsBySedeChart data={chartData.participantesBySede} />
+              <div className="bg-white rounded-xl shadow-md p-9 border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+                <div className="h-72">
+                  <ParticipantsBySedeChart data={chartData.participantesBySede} />
+                </div>
               </div>
               
               {/* Estado de Pagos */}
-              <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
-                <PaymentStatusChart data={chartData.paymentStatus} />
+              <div className="bg-white rounded-xl shadow-md p-9 border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+                <div className="h-72">
+                  <PaymentStatusChart data={chartData.paymentStatus} />
+                </div>
               </div>
             </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Tendencias Mensuales */}
-              <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
-                <MonthlyTrendChart data={chartData.monthlyTrend} />
-              </div>
-              
-              {/* Estado de Formularios */}
-              <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
-                <FormStatusChart data={chartData.formStatus} />
-              </div>
-            </div>
           </div>
 
           {/* Botones de Acceso Rápido */}
@@ -464,42 +452,6 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Actividad Reciente */}
-          <div className="px-6 py-6 pb-8">
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-              <div className="p-6 border-b border-gray-100">
-                <h3 className="text-xl font-Lato font-bold text-gray-800">Actividad Reciente</h3>
-              </div>
-              <div className="p-6">
-                <div className="space-y-5">
-                  <div className="flex items-center space-x-4 p-3 rounded-xl hover:bg-gray-50 transition-colors">
-                    <div className="w-3 h-3 bg-green-500 rounded-full flex-shrink-0"></div>
-                    <div className="flex-1">
-                      <span className="text-sm font-Poppins text-gray-700">Nuevo participante registrado: <span className="font-semibold">María González</span></span>
-                      <div className="text-xs font-Poppins text-gray-400 mt-1">Hace 2 horas</div>
-                    </div>
-                    <i className="fas fa-user-plus text-green-500"></i>
-                  </div>
-                  <div className="flex items-center space-x-4 p-3 rounded-xl hover:bg-gray-50 transition-colors">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full flex-shrink-0"></div>
-                    <div className="flex-1">
-                      <span className="text-sm font-Poppins text-gray-700">Pago registrado: <span className="font-semibold">Juan Pérez - $150,000</span></span>
-                      <div className="text-xs font-Poppins text-gray-400 mt-1">Hace 4 horas</div>
-                    </div>
-                    <i className="fas fa-dollar-sign text-blue-500"></i>
-                  </div>
-                  <div className="flex items-center space-x-4 p-3 rounded-xl hover:bg-gray-50 transition-colors">
-                    <div className="w-3 h-3 bg-yellow-500 rounded-full flex-shrink-0"></div>
-                    <div className="flex-1">
-                      <span className="text-sm font-Poppins text-gray-700">Formulario completado: <span className="font-semibold">Evaluación Psicológica</span></span>
-                      <div className="text-xs font-Poppins text-gray-400 mt-1">Hace 6 horas</div>
-                    </div>
-                    <i className="fas fa-clipboard-check text-yellow-500"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </main>
       </div>
     </div>
