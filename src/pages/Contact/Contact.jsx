@@ -113,8 +113,8 @@ const Contact = () => {
       <Breadcrumbs title="Contacto" />
       
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-white to-[#434194]/5 py-20">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent"></div>
+      <div className="relative overflow-hidden bg-gradient-to-br from-primary/5 to-[#434194]/10 py-20">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/5"></div>
         <div className="container relative z-10 text-center">
           <h1 className="text-5xl font-bold bg-gradient-to-r from-primary via-[#434194] to-primary bg-clip-text text-transparent mb-6">
             Estamos Aquí para Ti
@@ -174,7 +174,7 @@ const Contact = () => {
       <section 
         id="formulario" 
         data-animate
-        className={`py-20 bg-gradient-to-br from-primary/5 via-white to-[#434194]/5 transition-all duration-1000 ${
+        className={`py-20 bg-gradient-to-br from-primary/5 to-[#434194]/8 transition-all duration-1000 ${
           isVisible.formulario ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
@@ -325,7 +325,7 @@ const Contact = () => {
 
       {/* Mapa Mejorado */}
       <section className="relative">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-black/5 z-10"></div>
         <div className="relative z-20 container py-8">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-white drop-shadow-lg">

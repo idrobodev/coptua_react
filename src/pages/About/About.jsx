@@ -89,8 +89,8 @@ const About = () => {
       <Breadcrumbs title="Sobre Nosotros" />
       
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-white to-[#434194]/5">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent"></div>
+      <div className="relative overflow-hidden bg-gradient-to-br from-primary/5 to-[#434194]/10">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/5"></div>
         <div className="container relative z-10 lg:flex py-20 items-center">
           <div className="h-full lg:w-1/2 w-full mb-8 lg:mb-0">
             <div className="relative group">
@@ -181,7 +181,7 @@ const About = () => {
       <section 
         id="valores" 
         data-animate
-        className={`py-20 bg-gradient-to-br from-primary/5 via-white to-[#434194]/5 transition-all duration-1000 ${
+        className={`py-20 bg-gradient-to-br from-primary/5 to-[#434194]/8 transition-all duration-1000 ${
           isVisible.valores ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >

@@ -166,7 +166,7 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
         }}
       >
         {/* Header with Logo */}
-        <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-white">
+        <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100">
           <div className="flex items-center space-x-3">
             <div className="relative">
               <img 
@@ -193,7 +193,7 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
                     className="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-gray-100 hover:shadow-sm transition-all duration-200 group relative overflow-hidden"
                     title={isCollapsed ? item.label : ''}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-blue-25/30 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                     <i className={`${item.icon} text-lg text-gray-600 group-hover:text-blue-600 group-hover:scale-110 transition-all flex-shrink-0 relative z-10`}></i>
                     <span className={`font-Poppins font-medium text-gray-700 group-hover:text-gray-900 ${isCollapsed && !isMobile ? 'hidden' : 'block'} transition-all duration-300 relative z-10`}>{item.label}</span>
                     {item.badge && (
@@ -209,7 +209,7 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
                       className={`flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'} w-full px-4 py-3 rounded-xl hover:bg-gray-100 hover:shadow-sm transition-all duration-200 group relative overflow-hidden`}
                       title={isCollapsed ? item.label : ''}
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-blue-25/30 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                       <div className="flex items-center space-x-3 relative z-10">
                         <i className={`${item.icon} text-lg text-gray-600 group-hover:text-blue-600 group-hover:scale-110 transition-all flex-shrink-0`}></i>
                         <span className={`font-Poppins font-medium text-gray-700 group-hover:text-gray-900 ${isCollapsed && !isMobile ? 'hidden' : 'block'} transition-all duration-300`}>{item.label}</span>
@@ -233,7 +233,7 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
                               className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-50 hover:shadow-sm transition-all duration-200 text-sm font-Poppins group relative overflow-hidden"
                               onClick={isMobile ? onToggle : undefined}
                             >
-                              <div className="absolute inset-0 bg-gradient-to-r from-blue-25/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                              <div className="absolute inset-0 bg-gradient-to-r from-blue-25/30 to-blue-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                               <i className="fas fa-circle text-xs text-gray-400 group-hover:text-blue-500 transition-colors relative z-10"></i>
                               <span className="relative z-10 text-gray-600 group-hover:text-gray-800">{subItem.label}</span>
                             </Link>
@@ -249,7 +249,7 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
         </nav>
 
         {/* Información del Usuario */}
-        <div className="p-4 border-t border-gray-200 mt-auto bg-gradient-to-r from-gray-50 to-white">
+        <div className="p-4 border-t border-gray-200 mt-auto bg-gradient-to-r from-gray-50 to-gray-100">
           <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'space-x-3'} mb-3`}>
             <div className="relative flex-shrink-0">
               {currentUser?.photoURL ? (
@@ -279,7 +279,7 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
             onClick={handleLogout}
             className={`flex items-center ${isCollapsed ? 'justify-center' : ''} w-full px-4 py-2 text-sm text-gray-700 rounded-xl hover:bg-red-50 hover:text-red-600 hover:shadow-sm transition-all duration-200 font-Poppins font-medium group relative overflow-hidden`}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-red-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-red-50/50 to-red-25/30 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
             <i className="fas fa-sign-out-alt mr-3 group-hover:scale-110 transition-transform relative z-10"></i>
             <span className="relative z-10">{!isCollapsed && 'Cerrar Sesión'}</span>
           </button>

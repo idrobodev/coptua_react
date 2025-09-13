@@ -130,8 +130,8 @@ const Programs = () => {
       <Breadcrumbs title="Programas" />
       
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-white to-[#434194]/5 py-20">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent"></div>
+      <div className="relative overflow-hidden bg-gradient-to-br from-primary/5 to-[#434194]/10 py-20">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/5"></div>
         <div className="container relative z-10 text-center">
           <h1 className="text-5xl font-bold bg-gradient-to-r from-primary via-[#434194] to-primary bg-clip-text text-transparent mb-6">
             Programas de Transformación
@@ -149,7 +149,7 @@ const Programs = () => {
       <section 
         id="programas-principales" 
         data-animate
-        className={`py-20 bg-gradient-to-br from-white via-gray-50 to-primary/5 transition-all duration-1000 ${
+        className={`py-20 bg-gradient-to-br from-gray-50 to-primary/8 transition-all duration-1000 ${
           isVisible['programas-principales'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
@@ -241,7 +241,7 @@ const Programs = () => {
       <section 
         id="enfoques" 
         data-animate
-        className={`py-20 bg-gradient-to-br from-primary/5 via-white to-[#434194]/5 transition-all duration-1000 ${
+        className={`py-20 bg-gradient-to-br from-primary/5 to-[#434194]/8 transition-all duration-1000 ${
           isVisible.enfoques ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
@@ -291,7 +291,7 @@ const Programs = () => {
       <section 
         id="sedes" 
         data-animate
-        className={`py-20 bg-gradient-to-br from-white via-gray-50 to-primary/5 transition-all duration-1000 ${
+        className={`py-20 bg-gradient-to-br from-gray-50 to-primary/8 transition-all duration-1000 ${
           isVisible.sedes ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >

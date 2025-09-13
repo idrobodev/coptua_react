@@ -16,7 +16,7 @@ const Review = ({ review }) => {
           loading="lazy"
         />
         
-        <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/95 via-black/60 to-transparent pointer-events-none">
+        <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/95 via-black/60 to-black/20 pointer-events-none">
           <h3 className="text-2xl font-bold text-white drop-shadow-2xl mb-2">{name}</h3>
           <p className="text-white/95 text-lg drop-shadow-lg font-medium">{title}</p>
         </div>
