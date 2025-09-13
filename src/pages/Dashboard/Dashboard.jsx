@@ -160,21 +160,13 @@ const Dashboard = () => {
                 <div className="flex items-center space-x-4">
                   {/* Botón hamburguesa */}
                   <button
-                    onClick={() => { setSidebarOpen(true); try { localStorage.setItem('sidebarOpen', 'true'); } catch (_) {} }}
+                    onClick={toggleSidebarOpen}
                     className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
                     aria-label="Abrir menú"
                   >
                     <i className="fas fa-bars text-xl text-gray-700"></i>
                   </button>
-                  {/* Toggle colapso desktop */}
-                  <button
-                    onClick={toggleSidebarCollapsed}
-                    className="hidden md:inline-flex p-2 rounded-lg hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    aria-label="Colapsar barra lateral"
-                    title={sidebarCollapsed ? 'Expandir menú' : 'Colapsar menú'}
-                  >
-                    <i className={`fas ${sidebarCollapsed ? 'fa-angle-double-right' : 'fa-angle-double-left'} text-xl text-gray-700`}></i>
-                  </button>
+
                   {/* Logo */}
                   <div className="flex items-center space-x-3">
                     <img 

@@ -129,7 +129,7 @@ const UpdateTour = () => {
                 <div className="flex items-center space-x-4">
                   {/* Botón hamburguesa */}
                   <button
-                    onClick={() => { setSidebarOpen(true); try { localStorage.setItem('sidebarOpen', 'true'); } catch (_) {} }}
+                    onClick={toggleSidebarOpen}
                     className="md:hidden p-2 rounded-xl hover:bg-gray-100 transition-colors"
                     aria-label="Abrir menú"
                   >

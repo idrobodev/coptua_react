@@ -106,11 +106,13 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
       
       {/* Sidebar */}
       <aside 
+        data-testid="sidebar"
         className={`
           fixed top-0 left-0 h-full text-gray-700 z-50
           transform transition-all duration-300 ease-in-out shadow-2xl
           ${isCollapsed && !isMobile ? 'w-20 translate-x-0' : isOpen || !isMobile ? 'w-64 translate-x-0' : 'w-64 -translate-x-full'}
           ${isMobile ? 'md:relative md:z-auto' : ''}
+          ${isCollapsed && !isMobile ? 'hover:w-64' : ''}  /* expand on hover */
         `}
         style={{
           background: isCollapsed && !isMobile 
@@ -121,7 +123,18 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
         }}
       >
         {/* Header with Logo */}
-        <div className={`${isCollapsed && !isMobile ? 'p-4' : 'p-6'} border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100 transition-all duration-300`}>
+        <div className={`${isCollapsed && !isMobile ? 'p-4' : 'p-6'} border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100 transition-all duration-300 relative`}>
+          {/* Collapse/Expand toggle desktop */}
+          {!isMobile && (
+            <button
+              onClick={onToggleCollapse}
+              aria-label={isCollapsed ? 'Expandir menú' : 'Colapsar menú'}
+              title={isCollapsed ? 'Expandir menú' : 'Colapsar menú'}
+              className="absolute -right-3 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white border border-gray-200 shadow flex items-center justify-center hover:bg-gray-100 transition-colors"
+            >
+              <i className={`fas ${isCollapsed ? 'fa-angle-double-right' : 'fa-angle-double-left'} text-sm text-gray-600`}></i>
+            </button>
+          )}
           <div className={`flex items-center ${isCollapsed && !isMobile ? 'justify-center' : 'space-x-3'}`}>
             <div className="relative">
               <img 
@@ -151,8 +164,8 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
                   {...(isCollapsed && !isMobile && { 'data-tooltip-target': `tooltip-${item.id}`, 'data-tooltip-placement': 'right' })}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-blue-25/30 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
-                  <i className={`${item.icon} text-lg ${location.pathname.startsWith(item.link) ? 'text-blue-700' : 'text-gray-600 group-hover:text-blue-600'} group-hover:scale-110 transition-all flex-shrink-0 relative z-10`}></i>
-                  <span className={`font-Poppins font-medium ${location.pathname.startsWith(item.link) ? 'text-blue-800' : 'text-gray-700 group-hover:text-gray-900'} ${isCollapsed && !isMobile ? 'hidden' : 'block'} transition-all duration-300 relative z-10`}>{item.label}</span>
+                  <i className={`${item.icon} text-lg ${location.pathname.startsWith(item.link) ? 'text-blue-700' : 'text-gray-600 group-hover:text-blue-600'} group-hover:scale-110 transition-all flex-shrink-0 relative z-10 ${isCollapsed && !isMobile ? 'group-hover:rotate-12' : ''}`}></i>
+                  <span className={`font-Poppins font-medium ${location.pathname.startsWith(item.link) ? 'text-blue-800' : 'text-gray-700 group-hover:text-gray-900'} ${isCollapsed && !isMobile ? 'absolute left-full whitespace-nowrap ml-3 px-2 py-1 bg-gray-900 text-white rounded-lg opacity-0 group-hover:opacity-100 shadow-lg' : 'block'} transition-all duration-300 z-10`}>{item.label}</span>
                   {item.badge && !isCollapsed && (
                     <span className="ml-auto bg-red-500 text-white text-xs px-2 py-1 rounded-full font-bold shadow-sm">
                       {item.badge}
