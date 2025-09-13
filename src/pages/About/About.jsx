@@ -166,7 +166,7 @@ const About = () => {
                 "Programas de Reinserción Social"
               ].map((item, index) => (
                 <div key={index} className="flex items-center group cursor-pointer">
-                  <div className="w-3 h-3 bg-gradient-to-r from-primary to-[#434194] rounded-full mr-4 group-hover:scale-150 transition-transform duration-300"></div>
+                  <div className="w-3 h-3 bg-gradient-to-r from-primary to-secondary rounded-full mr-4 group-hover:scale-150 transition-transform duration-300"></div>
                   <h3 className="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors duration-300">
                     {item}
                   </h3>
