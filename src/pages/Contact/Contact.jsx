@@ -72,13 +72,6 @@ const Contact = () => {
       hoverColor: "hover:from-red-600 hover:to-red-700"
     },
     {
-      name: "LinkedIn",
-      icon: "💼",
-      url: "#",
-      color: "from-blue-700 to-blue-800",
-      hoverColor: "hover:from-blue-800 hover:to-blue-900"
-    },
-    {
       name: "TikTok",
       icon: "🎵",
       url: "#",
