@@ -144,41 +144,41 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
         </button>
       )}
       
-      {/* Toggle Button - Desktop */}
-      {!isMobile && (
-        <button
-          onClick={onToggleCollapse}
-          className="fixed top-4 left-4 z-50 hidden md:block bg-white text-gray-600 p-2 rounded-lg shadow-lg hover:bg-gray-50 transition-colors border border-gray-200"
-          style={{ left: isCollapsed ? '4px' : '260px' }}
-        >
-          <i className={`fas ${isCollapsed ? 'fa-chevron-right' : 'fa-chevron-left'}`}></i>
-        </button>
-      )}
       
       {/* Sidebar */}
-      <aside className={`
-        fixed top-0 left-0 h-full bg-gradient-to-b from-primary to-primary-dark text-white z-40
-        transform transition-all duration-300 ease-in-out shadow-2xl
-        ${
-          isCollapsed && !isMobile
-            ? 'w-16 translate-x-0' 
-            : isOpen || !isMobile
-              ? 'w-64 translate-x-0' 
-              : 'w-64 -translate-x-full'
-        }
-        ${isMobile ? 'md:relative md:z-auto' : ''}
-      `}>
+      <aside 
+        className={`
+          fixed top-0 left-0 h-full text-gray-700 z-40
+          transform transition-all duration-300 ease-in-out shadow-2xl
+          ${
+            isCollapsed && !isMobile
+              ? 'w-16 translate-x-0' 
+              : isOpen || !isMobile
+                ? 'w-64 translate-x-0' 
+                : 'w-64 -translate-x-full'
+          }
+          ${isMobile ? 'md:relative md:z-auto' : ''}
+        `}
+        style={{
+          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 50%, rgba(248, 250, 252, 0.9) 100%)',
+          backdropFilter: 'blur(20px)',
+          borderRight: '1px solid rgba(0, 0, 0, 0.1)'
+        }}
+      >
         {/* Header with Logo */}
-        <div className="p-6 border-b border-white border-opacity-20">
+        <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-white">
           <div className="flex items-center space-x-3">
-            <img 
-              src={logo} 
-              alt="Corporación Logo" 
-              className="w-10 h-10 rounded-full object-cover bg-white p-1 flex-shrink-0"
-            />
+            <div className="relative">
+              <img 
+                src={logo} 
+                alt="Corporación Logo" 
+                className="w-12 h-12 rounded-xl object-cover bg-white p-2 flex-shrink-0 shadow-md"
+              />
+              <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white shadow-sm"></div>
+            </div>
             <div className={`${isCollapsed && !isMobile ? 'hidden' : 'block'} transition-all duration-300`}>
-              <h2 className="text-lg font-Lato font-bold">Corporación</h2>
-              <p className="text-xs font-Poppins opacity-80">Todo por un Alma</p>
+              <h2 className="text-lg font-Lato font-bold text-gray-800">Corporación</h2>
+              <p className="text-xs font-Poppins text-gray-600">Todo por un Alma</p>
             </div>
           </div>
         </div>
@@ -190,24 +190,36 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
                 {item.link ? (
                   <Link
                     to={item.link}
-                    className="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-white hover:bg-opacity-10 transition-all duration-200 group"
+                    className="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-gray-100 hover:shadow-sm transition-all duration-200 group relative overflow-hidden"
                     title={isCollapsed ? item.label : ''}
                   >
-                    <i className={`${item.icon} text-lg group-hover:scale-110 transition-transform flex-shrink-0`}></i>
-                    <span className={`font-Poppins ${isCollapsed && !isMobile ? 'hidden' : 'block'} transition-all duration-300`}>{item.label}</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                    <i className={`${item.icon} text-lg text-gray-600 group-hover:text-blue-600 group-hover:scale-110 transition-all flex-shrink-0 relative z-10`}></i>
+                    <span className={`font-Poppins font-medium text-gray-700 group-hover:text-gray-900 ${isCollapsed && !isMobile ? 'hidden' : 'block'} transition-all duration-300 relative z-10`}>{item.label}</span>
+                    {item.badge && (
+                      <span className="ml-auto bg-red-500 text-white text-xs px-2 py-1 rounded-full font-bold shadow-sm">
+                        {item.badge}
+                      </span>
+                    )}
                   </Link>
                 ) : (
                   <div>
                     <button
                       onClick={() => toggleSection(item.id)}
-                      className={`flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'} w-full px-4 py-3 rounded-xl hover:bg-white hover:bg-opacity-10 transition-all duration-200 group`}
+                      className={`flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'} w-full px-4 py-3 rounded-xl hover:bg-gray-100 hover:shadow-sm transition-all duration-200 group relative overflow-hidden`}
                       title={isCollapsed ? item.label : ''}
                     >
-                      <div className="flex items-center space-x-3">
-                        <i className={`${item.icon} text-lg group-hover:scale-110 transition-transform flex-shrink-0`}></i>
-                        <span className={`font-Poppins ${isCollapsed && !isMobile ? 'hidden' : 'block'} transition-all duration-300`}>{item.label}</span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                      <div className="flex items-center space-x-3 relative z-10">
+                        <i className={`${item.icon} text-lg text-gray-600 group-hover:text-blue-600 group-hover:scale-110 transition-all flex-shrink-0`}></i>
+                        <span className={`font-Poppins font-medium text-gray-700 group-hover:text-gray-900 ${isCollapsed && !isMobile ? 'hidden' : 'block'} transition-all duration-300`}>{item.label}</span>
+                        {item.badge && !isCollapsed && (
+                          <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full font-bold shadow-sm">
+                            {item.badge}
+                          </span>
+                        )}
                       </div>
-                      <i className={`fas fa-chevron-down transition-transform duration-200 ${
+                      <i className={`fas fa-chevron-down text-gray-500 transition-transform duration-200 relative z-10 ${
                         expandedSections[item.id] ? 'rotate-180' : ''
                       } ${isCollapsed && !isMobile ? 'hidden' : 'block'}`}></i>
                     </button>
@@ -218,11 +230,12 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
                           <li key={index}>
                             <Link
                               to={subItem.link}
-                              className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-white hover:bg-opacity-5 transition-colors text-sm font-Poppins"
+                              className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-50 hover:shadow-sm transition-all duration-200 text-sm font-Poppins group relative overflow-hidden"
                               onClick={isMobile ? onToggle : undefined}
                             >
-                              <i className="fas fa-circle text-xs"></i>
-                              {subItem.label}
+                              <div className="absolute inset-0 bg-gradient-to-r from-blue-25/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                              <i className="fas fa-circle text-xs text-gray-400 group-hover:text-blue-500 transition-colors relative z-10"></i>
+                              <span className="relative z-10 text-gray-600 group-hover:text-gray-800">{subItem.label}</span>
                             </Link>
                           </li>
                         ))}
@@ -236,38 +249,39 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
         </nav>
 
         {/* Información del Usuario */}
-        <div className="p-4 border-t border-white border-opacity-20 mt-auto">
+        <div className="p-4 border-t border-gray-200 mt-auto bg-gradient-to-r from-gray-50 to-white">
           <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'space-x-3'} mb-3`}>
-            <div className="relative">
+            <div className="relative flex-shrink-0">
               {currentUser?.photoURL ? (
                 <img
                   src={currentUser.photoURL}
                   alt="Usuario"
-                  className={`rounded-full border-2 border-white shadow-lg ${isCollapsed ? 'w-8 h-8' : 'w-10 h-10'}`}
+                  className={`rounded-full border-2 border-gray-300 shadow-md ${isCollapsed ? 'w-8 h-8' : 'w-10 h-10'}`}
                 />
               ) : (
-                <div className={`rounded-full border-2 border-white shadow-lg bg-white flex items-center justify-center ${isCollapsed ? 'w-8 h-8' : 'w-10 h-10'}`}>
-                  <i className="fas fa-user text-primary text-sm"></i>
+                <div className={`rounded-full border-2 border-gray-300 shadow-md bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center ${isCollapsed ? 'w-8 h-8' : 'w-10 h-10'}`}>
+                  <i className="fas fa-user text-blue-600 text-sm"></i>
                 </div>
               )}
-              <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></div>
+              <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white shadow-sm"></div>
             </div>
             {!isCollapsed && (
-              <div className="flex-1">
-                <p className="text-sm font-Poppins font-medium text-white truncate">
-                  {currentUser?.displayName || currentUser?.email}
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-Poppins font-semibold text-gray-800 truncate">
+                  {currentUser?.displayName || currentUser?.email?.split('@')[0]}
                 </p>
-                <p className="text-xs font-Poppins text-white text-opacity-70">Administrador</p>
+                <p className="text-xs font-Poppins text-gray-600">Administrador</p>
               </div>
             )}
           </div>
           
           <button
             onClick={handleLogout}
-            className={`flex items-center ${isCollapsed ? 'justify-center' : ''} w-full px-4 py-2 text-sm text-white text-opacity-90 rounded-xl hover:bg-red-500 hover:bg-opacity-20 transition-all duration-200 font-Poppins font-medium group`}
+            className={`flex items-center ${isCollapsed ? 'justify-center' : ''} w-full px-4 py-2 text-sm text-gray-700 rounded-xl hover:bg-red-50 hover:text-red-600 hover:shadow-sm transition-all duration-200 font-Poppins font-medium group relative overflow-hidden`}
           >
-            <i className="fas fa-sign-out-alt mr-3 group-hover:scale-110 transition-transform"></i>
-            {!isCollapsed && 'Cerrar Sesión'}
+            <div className="absolute inset-0 bg-gradient-to-r from-red-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+            <i className="fas fa-sign-out-alt mr-3 group-hover:scale-110 transition-transform relative z-10"></i>
+            <span className="relative z-10">{!isCollapsed && 'Cerrar Sesión'}</span>
           </button>
         </div>
       </aside>
