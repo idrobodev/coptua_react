@@ -9,6 +9,11 @@ import AddTour from "./pages/Dashboard/AddTour";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import ManageBooking from "./pages/Dashboard/ManageBooking";
 import MyBooking from "./pages/Dashboard/MyBooking";
+import Professionals from "./pages/Dashboard/Professionals";
+import Finance from "./pages/Dashboard/Finance";
+import Forms from "./pages/Dashboard/Forms";
+import Reports from "./pages/Dashboard/Reports";
+import Configuracion from "./pages/Dashboard/Configuracion";
 import Participantes from "./pages/Dashboard/Participantes";
 import TourList from "./pages/Dashboard/TourList";
 import UpdateTour from "./pages/Dashboard/UpdateTour";
@@ -28,7 +33,12 @@ const AppContent = () => {
                           location.pathname.startsWith('/tour-list') ||
                           location.pathname.startsWith('/my-booking') ||
                           location.pathname.startsWith('/booking-list') ||
-                          location.pathname.startsWith('/update-tour');
+                          location.pathname.startsWith('/update-tour') ||
+                          location.pathname.startsWith('/profesionales') ||
+                          location.pathname.startsWith('/financiero') ||
+                          location.pathname.startsWith('/formularios') ||
+                          location.pathname.startsWith('/reportes') ||
+                          location.pathname.startsWith('/configuracion');
 
   return (
     <>
@@ -76,6 +86,21 @@ const AppContent = () => {
           </PrivateRoute>
           <PrivateRoute path="/update-tour/:id">
             <UpdateTour />
+          </PrivateRoute>
+          <PrivateRoute path="/profesionales">
+            <Professionals />
+          </PrivateRoute>
+          <PrivateRoute path="/financiero">
+            <Finance />
+          </PrivateRoute>
+          <PrivateRoute path="/formularios">
+            <Forms />
+          </PrivateRoute>
+          <PrivateRoute path="/reportes">
+            <Reports />
+          </PrivateRoute>
+          <PrivateRoute path="/configuracion">
+            <Configuracion />
           </PrivateRoute>
           <Route path="*">
             <NotFound />

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import SEO from "../../components/SEO/SEO";
 import mission from "../../images/booking.jpg";
@@ -9,6 +11,13 @@ const About = () => {
   const [isVisible, setIsVisible] = useState({});
 
   useEffect(() => {
+    // Initialize AOS
+    AOS.init({
+      duration: 800,
+      once: true,
+      easing: 'ease-out-cubic'
+    });
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -23,7 +32,10 @@ const About = () => {
     const elements = document.querySelectorAll('[data-animate]');
     elements.forEach((el) => observer.observe(el));
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      AOS.refresh();
+    };
   }, []);
 
   const teamMembers = [
@@ -186,27 +198,76 @@ const About = () => {
         }`}
       >
         <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-6">
-              <GradientText>Nuestra Historia</GradientText>
-            </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-primary to-[#434194] mx-auto rounded-full"></div>
+          <div className="text-center mb-12 overflow-hidden">
+            <div 
+              className="inline-block overflow-hidden"
+              data-aos="fade-up"
+              data-aos-duration="800"
+            >
+              <h2 
+                className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-3 hover:scale-105 transition-transform duration-500 inline-block"
+                data-aos="fade-up"
+                data-aos-duration="800"
+                data-aos-delay="100"
+              >
+                <GradientText>Nuestra Historia</GradientText>
+              </h2>
+            </div>
+            <div 
+              className="overflow-hidden"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="100"
+            >
+              <p 
+                className="text-gray-700 text-lg mb-4 max-w-2xl mx-auto transform hover:scale-[1.02] transition-transform duration-500"
+                data-aos="fade-up"
+                data-aos-duration="800"
+                data-aos-delay="200"
+              >
+                Cada paso de nuestro viaje está marcado por la fe y la transformación de vidas
+              </p>
+            </div>
+            <div 
+              className="w-24 h-1 bg-gradient-to-r from-primary to-[#434194] mx-auto rounded-full"
+              data-aos="fade-right"
+              data-aos-duration="1000"
+              data-aos-delay="200"
+            ></div>
           </div>
           
           <div className="lg:flex items-center gap-16">
-            <div className="lg:w-1/2 mb-8 lg:mb-0">
-              <div className="relative group">
-                <div className="absolute -inset-4 bg-gradient-to-r from-[#434194]/20 to-primary/20 rounded-3xl blur opacity-0 group-hover:opacity-100 transition duration-1000"></div>
+            <div 
+              className="lg:w-2/5 mb-8 lg:mb-0"
+              data-aos="fade-right"
+              data-aos-duration="800"
+              data-aos-delay="200"
+            >
+              <div 
+                className="relative group"
+                data-aos="zoom-in"
+                data-aos-duration="1000"
+                data-aos-delay="300"
+              >
+                <div className="absolute -inset-2 bg-gradient-to-r from-[#434194]/20 to-primary/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:rotate-1"></div>
                 <img 
                   src={mission} 
                   alt="Nuestra Historia" 
-                  className="relative w-full rounded-2xl shadow-xl transform group-hover:scale-105 transition duration-700"
+                  className="relative w-full max-w-md mx-auto rounded-xl shadow-lg transform group-hover:scale-105 transition-all duration-700 hover:shadow-2xl hover:shadow-primary/20"
+                  data-aos="zoom-in"
+                  data-aos-duration="1000"
+                  data-aos-delay="300"
                 />
               </div>
             </div>
             <div className="lg:w-1/2">
               <div className="space-y-6">
-                <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 border border-primary/10">
+                <div 
+                  className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 border border-primary/10 hover:border-primary/30 transform hover:-translate-y-1"
+                  data-aos="fade-left"
+                  data-aos-duration="800"
+                  data-aos-delay="300"
+                >
                   <h3 className="text-2xl font-bold text-[#434194] mb-4">Nuestros Inicios</h3>
                   <p className="text-gray-700 leading-relaxed">
                     Fundada con la visión de transformar vidas a través del amor de Cristo, nuestra corporación 

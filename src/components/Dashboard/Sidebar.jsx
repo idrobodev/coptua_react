@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 import logo from "../../images/logo.png";
 
@@ -7,6 +7,7 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
   const { currentUser, logout } = useAuth();
   const history = useHistory();
   const [isMobile, setIsMobile] = useState(false);
+  const location = useLocation();
 
   // Check for mobile screen size
   React.useEffect(() => {
@@ -55,7 +56,7 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
     {
       id: 'financiero',
       icon: 'fas fa-dollar-sign',
-      label: 'Módulo Financiero',
+      label: 'Mensualidades',
       link: '/financiero',
       badge: '3'
     },
@@ -147,13 +148,14 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
               <li key={item.id}>
                 <Link
                   to={item.link}
-                  className="flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-gray-100 hover:shadow-sm transition-all duration-200 group relative overflow-hidden"
+                  className={`flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-gray-100 hover:shadow-sm transition-all duration-200 group relative overflow-hidden ${location.pathname.startsWith(item.link) ? 'bg-blue-50 text-blue-700 ring-1 ring-blue-100' : ''}`}
                   title={isCollapsed ? item.label : ''}
                   onClick={isMobile ? onToggle : undefined}
+                  aria-current={location.pathname.startsWith(item.link) ? 'page' : undefined}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-blue-25/30 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
-                  <i className={`${item.icon} text-lg text-gray-600 group-hover:text-blue-600 group-hover:scale-110 transition-all flex-shrink-0 relative z-10`}></i>
-                  <span className={`font-Poppins font-medium text-gray-700 group-hover:text-gray-900 ${isCollapsed && !isMobile ? 'hidden' : 'block'} transition-all duration-300 relative z-10`}>{item.label}</span>
+                  <i className={`${item.icon} text-lg ${location.pathname.startsWith(item.link) ? 'text-blue-700' : 'text-gray-600 group-hover:text-blue-600'} group-hover:scale-110 transition-all flex-shrink-0 relative z-10`}></i>
+                  <span className={`font-Poppins font-medium ${location.pathname.startsWith(item.link) ? 'text-blue-800' : 'text-gray-700 group-hover:text-gray-900'} ${isCollapsed && !isMobile ? 'hidden' : 'block'} transition-all duration-300 relative z-10`}>{item.label}</span>
                   {item.badge && !isCollapsed && (
                     <span className="ml-auto bg-red-500 text-white text-xs px-2 py-1 rounded-full font-bold shadow-sm">
                       {item.badge}

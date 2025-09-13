@@ -195,41 +195,59 @@ const Programs = () => {
             </div>
             
             <div className="p-8">
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="grid lg:grid-cols-2 gap-8 items-center">
                 <div>
                   <div className="relative group mb-8">
-                    <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-[#434194]/20 rounded-3xl blur opacity-0 group-hover:opacity-100 transition duration-1000"></div>
-                    <img 
-                      src={programs[activeTab].image} 
-                      alt={programs[activeTab].title}
-                      className="relative w-full rounded-2xl shadow-xl transform group-hover:scale-105 transition duration-700"
-                    />
+                    <div className="absolute -inset-2 bg-gradient-to-r from-primary/20 to-[#434194]/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-1000"></div>
+                    <div className="relative w-full h-64 sm:h-72 md:h-80 lg:h-96 overflow-hidden rounded-2xl shadow-xl">
+                      <img 
+                        src={programs[activeTab].image} 
+                        alt={programs[activeTab].title}
+                        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                      />
+                    </div>
                   </div>
                   
                   {/* Stats */}
-                  <div className="grid grid-cols-3 gap-4">
-                    {Object.entries(programs[activeTab].stats).map(([key, value]) => (
-                      <div key={key} className="text-center bg-gray-50 rounded-xl p-4">
-                        <div className="text-2xl font-bold text-primary">{value}</div>
-                        <div className="text-sm text-gray-600 capitalize">{key.replace('_', ' ')}</div>
-                      </div>
-                    ))}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                    {Object.entries(programs[activeTab].stats).map(([key, value]) => {
+                      // Format the key for display
+                      const formattedKey = key === 'success' ? 'éxito' : 
+                                        key === 'duration' ? 'duración' : 
+                                        key.replace('_', ' ');
+                      
+                      return (
+                        <div 
+                          key={key} 
+                          className="text-center bg-white rounded-xl p-3 sm:p-4 shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100"
+                        >
+                          <div className="text-xl sm:text-2xl font-bold text-primary mb-1">{value}</div>
+                          <div className="text-xs sm:text-sm text-gray-600 font-medium uppercase tracking-wider">
+                            {formattedKey}
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
                 
                 <div>
                   <h4 className="text-2xl font-bold text-gray-800 mb-6">Características del Programa</h4>
-                  <div className="space-y-4">
-                    {programs[activeTab].features.map((feature, index) => (
-                      <div key={index} className="flex items-start group">
-                        <div className="w-6 h-6 bg-gradient-to-r from-primary to-[#434194] rounded-full flex items-center justify-center mr-4 mt-1 group-hover:scale-110 transition-transform duration-300">
-                          <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                          </svg>
+                  <div className="space-y-4 pr-0 lg:pr-4">
+                    <div className="space-y-3 sm:space-y-4">
+                      {programs[activeTab].features.map((feature, index) => (
+                        <div key={index} className="flex items-start group bg-white/50 hover:bg-white/80 p-3 sm:p-4 rounded-xl transition-all duration-300 hover:shadow-sm">
+                          <div className="flex-shrink-0 w-6 h-6 bg-gradient-to-r from-primary to-[#434194] rounded-full flex items-center justify-center mr-3 sm:mr-4 mt-0.5 group-hover:scale-110 transition-transform duration-300">
+                            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                          <p className="text-gray-700 text-sm sm:text-base leading-relaxed group-hover:text-primary transition-colors duration-300">
+                            {feature}
+                          </p>
                         </div>
-                        <p className="text-gray-700 group-hover:text-primary transition-colors duration-300">{feature}</p>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -257,9 +275,9 @@ const Programs = () => {
             <div className="w-24 h-1 bg-gradient-to-r from-primary to-[#434194] mx-auto rounded-full mt-6"></div>
           </div>
           
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 gap-8">
             {therapeuticApproaches.map((approach, index) => (
-              <div key={index} className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
+              <div key={index} className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 flex flex-col h-full">
                 <div className={`bg-gradient-to-r ${approach.color} p-8 text-white`}>
                   <div className="flex items-center">
                     <div className="text-6xl mr-6">{approach.icon}</div>
@@ -270,10 +288,10 @@ const Programs = () => {
                   </div>
                 </div>
                 
-                <div className="p-8">
+                <div className="p-8 flex-1">
                   <div className="space-y-6">
                     {approach.methods.map((method, idx) => (
-                      <div key={idx} className="group border-l-4 border-primary/20 pl-6 hover:border-primary transition-colors duration-300">
+                      <div key={idx} className="group border-l-4 border-primary/20 pl-6 hover:border-primary transition-colors duration-300 h-full">
                         <h4 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-primary transition-colors duration-300">
                           {method.name}
                         </h4>
