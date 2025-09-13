@@ -95,11 +95,11 @@ export const supabase = {
       return { error: null };
     },
     resetPasswordForEmail: async (email) => {
-      console.log('Mock Supabase: Solicitud de restablecimiento de contraseña para', email);
+      // Mock implementation for password reset
       return { data: {}, error: null };
     },
     signInWithOAuth: async ({ provider }) => {
-      console.log('Mock Supabase: OAuth login con', provider);
+      // Mock implementation for OAuth login
       currentUser = {
         id: 'mock-oauth-user',
         email: 'oauth@todoporunalma.org',

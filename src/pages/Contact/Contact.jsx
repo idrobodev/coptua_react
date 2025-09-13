@@ -39,7 +39,7 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Aquí iría la lógica de envío del formulario
-    console.log('Formulario enviado:', formData);
+    // TODO: Implementar envío real del formulario
   };
 
   const socialNetworks = [
@@ -116,14 +116,14 @@ const Contact = () => {
       <div className="relative overflow-hidden bg-gradient-to-br from-primary/5 to-[#434194]/10 py-20">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/5"></div>
         <div className="container relative z-10 text-center">
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-[#21188e] via-[#5b2076] to-[#ea3238] bg-clip-text text-transparent mb-6">
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-primary via-[#434194] to-primary bg-clip-text text-transparent mb-6">
             Estamos Aquí para Ti
           </h1>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
             ¿Tienes alguna pregunta o necesitas ayuda? Estamos aquí para acompañarte en tu proceso de recuperación. 
             Tu bienestar es nuestra prioridad.
           </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#21188e] via-[#5b2076] to-[#ea3238] mx-auto rounded-full mt-8"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-[#434194] mx-auto rounded-full mt-8"></div>
         </div>
       </div>
 
@@ -137,13 +137,13 @@ const Contact = () => {
       >
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-[#21188e] via-[#5b2076] to-[#ea3238] bg-clip-text text-transparent mb-6">
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-primary to-[#434194] bg-clip-text text-transparent mb-6">
               Síguenos en Redes Sociales
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Mantente conectado con nosotros y sé parte de nuestra comunidad de esperanza y transformación
             </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-[#21188e] via-[#5b2076] to-[#ea3238] mx-auto rounded-full mt-6"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-primary to-[#434194] mx-auto rounded-full mt-6"></div>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl mx-auto">
@@ -182,7 +182,7 @@ const Contact = () => {
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             {/* Formulario */}
             <div className="bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-[#21188e] via-[#5b2076] to-[#ea3238] bg-clip-text text-transparent mb-8">
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-[#434194] bg-clip-text text-transparent mb-8">
                 Envíanos un Mensaje
               </h2>
               
@@ -277,7 +277,7 @@ const Contact = () => {
 
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-[#21188e] via-[#5b2076] to-[#ea3238] text-white py-4 px-8 rounded-xl font-bold text-lg hover:from-[#ea3238] hover:via-[#5b2076] hover:to-[#21188e] transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="w-full bg-gradient-to-r from-primary to-[#434194] text-white py-4 px-8 rounded-xl font-bold text-lg hover:from-[#434194] hover:to-primary transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   Enviar Mensaje
                 </button>
@@ -287,7 +287,7 @@ const Contact = () => {
             {/* Información de Contacto */}
             <div className="space-y-8">
               <div className="text-center lg:text-left">
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-[#21188e] via-[#5b2076] to-[#ea3238] bg-clip-text text-transparent mb-6">
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-[#434194] bg-clip-text text-transparent mb-6">
                   Información de Contacto
                 </h2>
                 <p className="text-gray-600 text-lg">
@@ -311,8 +311,8 @@ const Contact = () => {
                 </div>
               ))}
 
-              <div className="bg-gradient-to-r from-[#21188e]/10 via-[#5b2076]/10 to-[#ea3238]/10 rounded-2xl p-6 border border-[#21188e]/20">
-                <h3 className="text-xl font-bold text-[#21188e] mb-3">💡 Consejo Importante</h3>
+              <div className="bg-gradient-to-r from-primary/10 to-[#434194]/10 rounded-2xl p-6 border border-primary/20">
+                <h3 className="text-xl font-bold text-primary mb-3">💡 Consejo Importante</h3>
                 <p className="text-gray-700">
                   Si estás en una situación de emergencia o crisis, no dudes en llamarnos inmediatamente. 
                   Estamos aquí para ayudarte en cualquier momento.

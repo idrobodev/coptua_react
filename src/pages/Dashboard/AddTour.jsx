@@ -34,7 +34,7 @@ const AddTour = () => {
           reset();
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error('Error adding tour:', error));
   };
   return (
     <div className="container ">

@@ -25,7 +25,7 @@ const MyBooking = () => {
           setLoading(false); //stop loading when data is fetched
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error('Error loading bookings:', error));
     setLoading(false);
   }, [id]);
 
@@ -43,7 +43,7 @@ const MyBooking = () => {
             setBooking(remainingBooking);
           }
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.error('Error loading bookings:', error));
     }
   };
 

@@ -214,8 +214,8 @@ const FormsList = () => {
   ];
 
   const handlePrintForm = (formId) => {
-    console.log('Printing form:', formId);
-    // Implementation for printing form
+    // TODO: Implementation for printing form
+    window.print();
   };
 
   const getStats = () => {

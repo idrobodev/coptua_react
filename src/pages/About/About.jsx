@@ -117,7 +117,7 @@ const About = () => {
                 "Programas de Reinserción Social"
               ].map((item, index) => (
                 <div key={index} className="flex items-center group cursor-pointer">
-                  <div className="w-6 h-6 bg-gradient-to-r from-[#21188e] to-[#5b2076] rounded-full flex items-center justify-center mr-4 mt-1 group-hover:scale-110 transition-transform duration-300"></div>
+                  <div className="w-3 h-3 bg-gradient-to-r from-primary to-[#434194] rounded-full mr-4 group-hover:scale-150 transition-transform duration-300"></div>
                   <h3 className="text-lg font-semibold text-gray-800 group-hover:text-primary transition-colors duration-300">
                     {item}
                   </h3>
@@ -138,10 +138,10 @@ const About = () => {
       >
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-[#21188e] via-[#5b2076] to-[#ea3238] bg-clip-text text-transparent mb-6">
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-primary to-[#434194] bg-clip-text text-transparent mb-6">
               Nuestra Historia
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-[#21188e] via-[#5b2076] to-[#ea3238] mx-auto rounded-full"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-primary to-[#434194] mx-auto rounded-full"></div>
           </div>
           
           <div className="lg:flex items-center gap-16">
@@ -187,13 +187,13 @@ const About = () => {
       >
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-[#21188e] via-[#5b2076] to-[#ea3238] bg-clip-text text-transparent mb-6">
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-primary to-[#434194] bg-clip-text text-transparent mb-6">
               Nuestros Valores
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Los principios que guían cada una de nuestras acciones y decisiones
             </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-[#21188e] via-[#5b2076] to-[#ea3238] mx-auto rounded-full mt-6"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-primary to-[#434194] mx-auto rounded-full mt-6"></div>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -228,13 +228,13 @@ const About = () => {
       >
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-[#21188e] via-[#5b2076] to-[#ea3238] bg-clip-text text-transparent mb-6">
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-primary to-[#434194] bg-clip-text text-transparent mb-6">
               Nuestro Equipo Profesional
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Profesionales altamente capacitados comprometidos con tu recuperación
             </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-[#21188e] via-[#5b2076] to-[#ea3238] mx-auto rounded-full mt-6"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-primary to-[#434194] mx-auto rounded-full mt-6"></div>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

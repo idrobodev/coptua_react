@@ -187,8 +187,10 @@ const GuardiansList = () => {
   ];
 
   const handleContactGuardian = (guardian) => {
-    // Implementation for contacting guardian (phone/email)
-    console.log('Contacting guardian:', guardian);
+    // TODO: Implementation for contacting guardian (phone/email)
+    if (guardian.telefono) {
+      window.open(`tel:${guardian.telefono}`);
+    }
   };
 
   const getStats = () => {

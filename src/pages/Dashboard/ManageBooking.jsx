@@ -36,7 +36,7 @@ const ManageBooking = () => {
             setLoading(false); //stop loading when data is fetched
           }
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.error('Error loading bookings:', error));
     }
   };
 
@@ -67,7 +67,7 @@ const ManageBooking = () => {
             setBooking(remainingBooking);
           }
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.error('Error loading bookings:', error));
     }
   };
 

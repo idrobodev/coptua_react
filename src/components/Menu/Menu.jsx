@@ -29,7 +29,7 @@ const Menu = () => {
       history.push("/");
       setToggle(false);
     } catch (error) {
-      console.log(error);
+      console.error('Error during logout:', error);
     }
   };
 

@@ -133,7 +133,7 @@ const Programs = () => {
       <div className="relative overflow-hidden bg-gradient-to-br from-primary/5 to-[#434194]/10 py-20">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/5"></div>
         <div className="container relative z-10 text-center">
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-[#21188e] via-[#5b2076] to-[#ea3238] bg-clip-text text-transparent mb-6">
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-primary via-[#434194] to-primary bg-clip-text text-transparent mb-6">
             Programas de Transformación
           </h1>
           <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
@@ -141,7 +141,7 @@ const Programs = () => {
             con guía espiritual para la transformación completa de vidas. Cada programa está diseñado 
             para atender necesidades específicas en el proceso de recuperación.
           </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#21188e] via-[#5b2076] to-[#ea3238] mx-auto rounded-full mt-8"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-[#434194] mx-auto rounded-full mt-8"></div>
         </div>
       </div>
 
@@ -155,7 +155,7 @@ const Programs = () => {
       >
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-[#21188e] via-[#5b2076] to-[#ea3238] bg-clip-text text-transparent mb-6">
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-primary to-[#434194] bg-clip-text text-transparent mb-6">
               Nuestros Programas Especializados
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -221,7 +221,7 @@ const Programs = () => {
                   <div className="space-y-4">
                     {programs[activeTab].features.map((feature, index) => (
                       <div key={index} className="flex items-start group">
-                        <div className="w-6 h-6 bg-gradient-to-r from-[#21188e] to-[#5b2076] rounded-full flex items-center justify-center mr-4 mt-1 group-hover:scale-110 transition-transform duration-300">
+                        <div className="w-6 h-6 bg-gradient-to-r from-primary to-[#434194] rounded-full flex items-center justify-center mr-4 mt-1 group-hover:scale-110 transition-transform duration-300">
                           <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                           </svg>
@@ -247,13 +247,13 @@ const Programs = () => {
       >
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-[#21188e] via-[#5b2076] to-[#ea3238] bg-clip-text text-transparent mb-6">
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-primary to-[#434194] bg-clip-text text-transparent mb-6">
               Enfoques Terapéuticos
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Combinamos metodologías científicas probadas con principios espirituales sólidos
             </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-[#21188e] via-[#5b2076] to-[#ea3238] mx-auto rounded-full mt-6"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-primary to-[#434194] mx-auto rounded-full mt-6"></div>
           </div>
           
           <div className="grid lg:grid-cols-2 gap-12">
@@ -297,13 +297,13 @@ const Programs = () => {
       >
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-[#21188e] via-[#5b2076] to-[#ea3238] bg-clip-text text-transparent mb-6">
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-primary to-[#434194] bg-clip-text text-transparent mb-6">
               Nuestras Sedes
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Contamos con instalaciones especializadas en dos ubicaciones estratégicas de Antioquia
             </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-[#21188e] via-[#5b2076] to-[#ea3238] mx-auto rounded-full mt-6"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-primary to-[#434194] mx-auto rounded-full mt-6"></div>
           </div>
           
           <div className="grid lg:grid-cols-2 gap-12">

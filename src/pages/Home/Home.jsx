@@ -20,7 +20,7 @@ const Home = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.error('Error loading tours:', error);
       })
       .finally(() => {
         if (isMounted) setLoading(false);

@@ -80,8 +80,8 @@ const ReportsDashboard = () => {
   };
 
   const exportReport = (format) => {
-    console.log(`Exporting report in ${format} format`);
-    // Implementation for exporting reports
+    // TODO: Implementation for exporting reports
+    alert(`Exportando reporte en formato ${format}`);
   };
 
   if (loading) {

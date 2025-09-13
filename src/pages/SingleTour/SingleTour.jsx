@@ -22,11 +22,10 @@ const SingleTour = () => {
       .get(`https://shocking-cheateau-10764.herokuapp.com/tour/${id}`)
       .then((result) => {
         if (result.data) {
-          //   console.log(result.data);
           setData(result.data);
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error('Error loading tour:', error));
   }, [id]);
 
   const status = "pending";
@@ -49,7 +48,7 @@ const SingleTour = () => {
           });
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error('Error creating booking:', error));
   };
 
   return (

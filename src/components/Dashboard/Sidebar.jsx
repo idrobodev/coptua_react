@@ -26,7 +26,7 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
       await logout();
       history.push("/");
     } catch (error) {
-      console.log(error);
+      console.error('Error during logout:', error);
     }
   };
 

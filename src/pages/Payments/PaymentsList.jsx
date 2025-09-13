@@ -152,9 +152,8 @@ const PaymentsList = () => {
 
   const handleMarkAsPaid = async (paymentId) => {
     try {
-      // Implementation for marking payment as paid
-      console.log('Marking payment as paid:', paymentId);
-      // Reload payments after update
+      // TODO: Implementation for marking payment as paid
+      // await dbService.updatePaymentStatus(paymentId, 'PAGADO');
       await loadPayments();
     } catch (error) {
       console.error('Error marking payment as paid:', error);

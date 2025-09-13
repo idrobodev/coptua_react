@@ -17,7 +17,7 @@ const TourList = () => {
           setLoading(false); //stop loading when data is fetched
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error('Error loading tours:', error));
   }, []);
 
   const handleDeleteTour = (id) => {
@@ -32,7 +32,7 @@ const TourList = () => {
             setTours(remainingTour);
           }
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.error('Error loading tours:', error));
     }
   };
 
@@ -57,7 +57,7 @@ const TourList = () => {
             setLoading(false); //stop loading when data is fetched
           }
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.error('Error loading tours:', error));
     }
   };
   return (

@@ -20,12 +20,14 @@ const UpdateTour = () => {
       .get(`https://shocking-cheateau-10764.herokuapp.com/tour/${id}`)
       .then((result) => {
         if (result.data) {
-          //   console.log(result.data);
           setData(result.data);
-          setLoading(false); //stop loading when data is fetched
+          setLoading(false);
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.error('Error loading tour:', error);
+        setLoading(false);
+      });
   }, [id]);
 
   const create_by = currentUser.displayName || currentUser.email;
@@ -46,7 +48,7 @@ const UpdateTour = () => {
           setMessage("Tour Package updated success!");
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error('Error updating tour:', error));
   };
   return (
     <div className="container ">
