@@ -328,14 +328,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Sección de Bienvenida */}
-          <div className="px-6 py-12 text-center">
-            <h2 className="text-3xl font-Lato font-bold text-gray-800 mb-4">Bienvenido al Panel de Control</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
-              Utiliza el menú lateral para navegar entre las diferentes secciones y gestionar la información de la fundación.
-            </p>
-          </div>
-
+         
           {/* Botones de Acceso Rápido */}
           <div className="px-6 py-6">
             <h3 className="text-xl font-Lato font-bold text-gray-800 mb-4">Acceso Rápido</h3>
