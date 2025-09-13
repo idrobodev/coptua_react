@@ -1,37 +1,12 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Banner from "../../components/Banner/Banner";
 import CustomerReviews from "../../components/CustomerReviews/CustomerReviews";
 import Feature from "../../components/Feature/Feature";
-import ToursPackage from "../../components/ToursPackage/ToursPackage";
 import HappyCustomers from "./../../components/HappyCustomers/HappyCustomers";
 import TransformationStories from "../../components/TransformationStories/TransformationStories";
 import SEO from "../../components/SEO/SEO";
-import { Link } from "react-router-dom";
 
 const Home = () => {
-  const [tours, setTours] = useState();
-  const [isLoading, setLoading] = useState(true);
-  useEffect(() => {
-    let isMounted = true;
-    axios
-      .get("https://shocking-cheateau-10764.herokuapp.com/active-tour-list")
-      .then((result) => {
-        if (!isMounted) return;
-        if (Array.isArray(result?.data) && result.data.length > 0) {
-          setTours(result.data);
-        }
-      })
-      .catch((error) => {
-        console.error('Error loading tours:', error);
-      })
-      .finally(() => {
-        if (isMounted) setLoading(false);
-      });
-    return () => {
-      isMounted = false;
-    };
-  }, []);
   return (
     <>
       <SEO 

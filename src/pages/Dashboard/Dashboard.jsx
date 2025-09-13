@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useAuth } from "../../components/Context/AuthContext";
 import Sidebar from "../../components/Dashboard/Sidebar";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
-import { ParticipantsBySedeChart, PaymentStatusChart, MonthlyTrendChart, FormStatusChart } from "../../components/Charts/DashboardCharts";
+import { ParticipantsBySedeChart, PaymentStatusChart } from "../../components/Charts/DashboardCharts";
 import { dbService } from "../../services/databaseService";
 import logo from "../../images/logo.png";
 
@@ -12,7 +12,6 @@ const Dashboard = () => {
   const history = useHistory();
   const [dashboardData, setDashboardData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [sedes, setSedes] = useState([]);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const userMenuRef = useRef(null);
   const [chartData, setChartData] = useState({
@@ -33,8 +32,7 @@ const Dashboard = () => {
         setDashboardData(stats);
         
         // Load sedes
-        const { data: sedesData } = await dbService.getSedes();
-        setSedes(sedesData || []);
+        await dbService.getSedes();
         
         // Load chart data
         setChartData({
