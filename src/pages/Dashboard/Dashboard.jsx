@@ -148,20 +148,20 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-gray-50 font-sans antialiased">
       <div className="flex">
         <Sidebar isOpen={sidebarOpen} onToggle={toggleSidebarOpen} isCollapsed={sidebarCollapsed} onToggleCollapse={toggleSidebarCollapsed} />
 
-        <main className={`flex-1 transition-all duration-300 ${sidebarCollapsed ? 'md:ml-16' : 'md:ml-64'} pt-20`}>
+        <main className={`flex-1 transition-all duration-300 ${sidebarCollapsed ? 'md:ml-20' : 'md:ml-64'} pt-20`}>
           {/* Header Superior */}
-          <header className="fixed top-0 right-0 left-0 z-40 bg-white bg-opacity-95 backdrop-blur-md shadow-lg border-b border-gray-200">
-            <div className={`px-4 md:px-6 py-4 transition-all duration-300 ${sidebarCollapsed ? 'md:ml-16' : 'md:ml-64'}`}>
+          <header className="fixed top-0 right-0 left-0 z-40 bg-white bg-opacity-90 backdrop-blur-lg shadow-md border-b border-gray-200">
+            <div className={`px-6 py-3 transition-all duration-300 ${sidebarCollapsed ? 'md:ml-20' : 'md:ml-64'}`}>
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
                   {/* Botón hamburguesa */}
                   <button
                     onClick={() => { setSidebarOpen(true); try { localStorage.setItem('sidebarOpen', 'true'); } catch (_) {} }}
-                    className="md:hidden p-2 rounded-xl hover:bg-gray-100 transition-colors"
+                    className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
                     aria-label="Abrir menú"
                   >
                     <i className="fas fa-bars text-xl text-gray-700"></i>
@@ -169,7 +169,7 @@ const Dashboard = () => {
                   {/* Toggle colapso desktop */}
                   <button
                     onClick={toggleSidebarCollapsed}
-                    className="hidden md:inline-flex p-2 rounded-xl hover:bg-gray-100 transition-colors"
+                    className="hidden md:inline-flex p-2 rounded-lg hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
                     aria-label="Colapsar barra lateral"
                     title={sidebarCollapsed ? 'Expandir menú' : 'Colapsar menú'}
                   >
@@ -196,10 +196,8 @@ const Dashboard = () => {
                   <div className="relative" ref={userMenuRef}>
                     <button
                       onClick={() => setUserMenuOpen((v) => !v)}
-                      className="flex items-center space-x-3 bg-gray-50 rounded-xl px-3 py-2 hover:bg-gray-100 transition-colors"
-                      aria-haspopup="true"
-                      aria-expanded={userMenuOpen}
-                    >
+                      className="flex items-center space-x-3 bg-gray-100 rounded-full pl-2 pr-3 py-1.5 hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      aria-haspopup="true">
                       <div className="relative">
                         {currentUser?.photoURL ? (
                           <img
@@ -252,12 +250,12 @@ const Dashboard = () => {
           <div className="px-6 py-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-4">
               {alertas.map((alerta, index) => (
-                <div key={index} className={`p-4 rounded-xl border-l-4 ${
+                <div key={index} className={`p-4 rounded-2xl border-l-4 ${
                   alerta.color === 'red' ? 'bg-red-50 border-red-500' :
                   alerta.color === 'yellow' ? 'bg-yellow-50 border-yellow-500' :
                   alerta.color === 'blue' ? 'bg-blue-50 border-blue-500' :
                   'bg-green-50 border-green-500'
-                } shadow-sm hover:shadow-md transition-shadow duration-300`}>
+                } shadow-md hover:shadow-lg transition-shadow duration-300`}>
                   <div className="flex items-center">
                     <div className={`p-2 rounded-full mr-3 ${
                       alerta.color === 'red' ? 'bg-red-100' :
@@ -374,14 +372,14 @@ const Dashboard = () => {
             <h2 className="text-xl font-Lato font-bold text-gray-800 mb-4">Estadísticas y Análisis</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
               {/* Participantes por Sede */}
-              <div className="bg-white rounded-xl shadow-md p-9 border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+              <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
                 <div className="h-72">
                   <ParticipantsBySedeChart data={chartData.participantesBySede} />
                 </div>
               </div>
               
               {/* Estado de Pagos */}
-              <div className="bg-white rounded-xl shadow-md p-9 border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+              <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
                 <div className="h-72">
                   <PaymentStatusChart data={chartData.paymentStatus} />
                 </div>
@@ -394,54 +392,54 @@ const Dashboard = () => {
           <div className="px-6 py-6">
             <h3 className="text-xl font-Lato font-bold text-gray-800 mb-4">Acceso Rápido</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              <button className="p-4 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+              <button className="p-4 bg-white rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
                 <div className="flex flex-col items-center">
-                  <div className="p-3 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl mb-2 group-hover:scale-110 transition-transform duration-300">
+                  <div className="p-3 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl mb-2 group-hover:scale-110 transition-transform duration-300">
                     <i className="fas fa-user-plus text-blue-600 text-xl"></i>
                   </div>
                   <span className="text-xs font-Poppins font-medium text-gray-700">Nuevo Participante</span>
                 </div>
               </button>
               
-              <button className="p-4 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+              <button className="p-4 bg-white rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
                 <div className="flex flex-col items-center">
-                  <div className="p-3 bg-gradient-to-br from-green-100 to-green-200 rounded-xl mb-2 group-hover:scale-110 transition-transform duration-300">
+                  <div className="p-3 bg-gradient-to-br from-green-100 to-green-200 rounded-2xl mb-2 group-hover:scale-110 transition-transform duration-300">
                     <i className="fas fa-dollar-sign text-green-600 text-xl"></i>
                   </div>
                   <span className="text-xs font-Poppins font-medium text-gray-700">Registrar Pago</span>
                 </div>
               </button>
               
-              <button className="p-4 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+              <button className="p-4 bg-white rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
                 <div className="flex flex-col items-center">
-                  <div className="p-3 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-xl mb-2 group-hover:scale-110 transition-transform duration-300">
+                  <div className="p-3 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-2xl mb-2 group-hover:scale-110 transition-transform duration-300">
                     <i className="fas fa-clipboard-list text-yellow-600 text-xl"></i>
                   </div>
                   <span className="text-xs font-Poppins font-medium text-gray-700">Nuevo Formulario</span>
                 </div>
               </button>
               
-              <button className="p-4 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+              <button className="p-4 bg-white rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
                 <div className="flex flex-col items-center">
-                  <div className="p-3 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl mb-2 group-hover:scale-110 transition-transform duration-300">
+                  <div className="p-3 bg-gradient-to-br from-purple-100 to-purple-200 rounded-2xl mb-2 group-hover:scale-110 transition-transform duration-300">
                     <i className="fas fa-user-md text-purple-600 text-xl"></i>
                   </div>
                   <span className="text-xs font-Poppins font-medium text-gray-700">Nuevo Profesional</span>
                 </div>
               </button>
               
-              <button className="p-4 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+              <button className="p-4 bg-white rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
                 <div className="flex flex-col items-center">
-                  <div className="p-3 bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-xl mb-2 group-hover:scale-110 transition-transform duration-300">
+                  <div className="p-3 bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-2xl mb-2 group-hover:scale-110 transition-transform duration-300">
                     <i className="fas fa-chart-bar text-indigo-600 text-xl"></i>
                   </div>
                   <span className="text-xs font-Poppins font-medium text-gray-700">Ver Reportes</span>
                 </div>
               </button>
               
-              <button className="p-4 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+              <button className="p-4 bg-white rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
                 <div className="flex flex-col items-center">
-                  <div className="p-3 bg-gradient-to-br from-pink-100 to-pink-200 rounded-xl mb-2 group-hover:scale-110 transition-transform duration-300">
+                  <div className="p-3 bg-gradient-to-br from-pink-100 to-pink-200 rounded-2xl mb-2 group-hover:scale-110 transition-transform duration-300">
                     <i className="fas fa-users text-pink-600 text-xl"></i>
                   </div>
                   <span className="text-xs font-Poppins font-medium text-gray-700">Gestionar Acudientes</span>

@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter as Router, Route, Switch, useLocation } from "react-router-dom";
 import AuthProvider from "./components/Context/AuthContext";
 import Footer from "./components/Footer/Footer";
