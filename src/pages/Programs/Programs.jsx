@@ -489,28 +489,7 @@ const Programs = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary via-[#434194] to-primary relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="container relative z-10 text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">
-            ¿Listo para Comenzar tu Proceso de Transformación?
-          </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
-            Nuestro equipo de profesionales está esperando para acompañarte en
-            cada paso hacia tu nueva vida. El momento perfecto para empezar es
-            ahora.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-lg">
-              Solicitar Información
-            </button>
-            <button className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-primary transform hover:scale-105 transition-all duration-300">
-              Agendar Cita
-            </button>
-          </div>
-        </div>
-      </section>
+      
     </>
   );
 };

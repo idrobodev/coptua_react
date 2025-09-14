@@ -30,7 +30,7 @@ const features = [
 
 const Feature = () => {
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-gray-100 py-16 -mt-32 relative z-10">
+    <div className="bg-gradient-to-b from-gray-50 to-gray-100 py-16 -mt-20 relative z-0">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 lg:gap-12">
           {features.map((feature) => (
