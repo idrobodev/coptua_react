@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../../components/Context/AuthContext";
 import Sidebar from "../../components/Dashboard/Sidebar";
@@ -14,6 +14,15 @@ const Dashboard = () => {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const userMenuRef = useRef(null);
 
+  // Initialize chartData with default values
+  const [chartData, setChartData] = useState({
+    formStatus: [
+      { tipo: 'Ingreso', pendientes: 0 },
+      { tipo: 'Seguimiento', pendientes: 0 },
+      { tipo: 'Egreso', pendientes: 0 }
+    ]
+  });
+
   // Load dashboard data
   useEffect(() => {
     const loadDashboardData = async () => {
@@ -24,9 +33,16 @@ const Dashboard = () => {
         const { data: stats } = await dbService.getDashboardStats();
         setDashboardData(stats);
         
+        // Update chartData with actual data if available
+        if (stats?.formStatus) {
+          setChartData(prev => ({
+            ...prev,
+            formStatus: stats.formStatus
+          }));
+        }
+        
         // Load sedes
         await dbService.getSedes();
-        
         
       } catch (error) {
         console.error('Error loading dashboard data:', error);
@@ -49,36 +65,77 @@ const Dashboard = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
     try {
       const v = localStorage.getItem('sidebarCollapsed');
-      return v ? JSON.parse(v) : false;
+      return v ? JSON.parse(v) : window.innerWidth < 768 ? true : false; // Default to collapsed on mobile
     } catch (_) {
-      return false;
+      return window.innerWidth < 768 ? true : false;
     }
   });
 
-  const toggleSidebarOpen = () => {
-    const next = !sidebarOpen;
-    setSidebarOpen(next);
-    try { localStorage.setItem('sidebarOpen', JSON.stringify(next)); } catch (_) {}
-  };
+  // Handle window resize for responsive behavior
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.innerWidth < 768;
+      if (isMobile && sidebarOpen) {
+        setSidebarOpen(false);
+      }
+    };
 
-  const toggleSidebarCollapsed = () => {
-    const next = !sidebarCollapsed;
-    setSidebarCollapsed(next);
-    try { localStorage.setItem('sidebarCollapsed', JSON.stringify(next)); } catch (_) {}
-  };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [sidebarOpen]);
 
-  // Close user menu on outside click
+  const toggleSidebarOpen = useCallback((e) => {
+    if (e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+    setSidebarOpen(prev => {
+      const next = !prev;
+      try { localStorage.setItem('sidebarOpen', JSON.stringify(next)); } catch (_) {}
+      return next;
+    });
+  }, []);
+
+  const toggleSidebarCollapsed = useCallback((e) => {
+    if (e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+    setSidebarCollapsed(prev => {
+      const next = !prev;
+      try { localStorage.setItem('sidebarCollapsed', JSON.stringify(next)); } catch (_) {}
+      return next;
+    });
+  }, []);
+
+  // Close user menu on outside click or escape key
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
         setUserMenuOpen(false);
       }
     };
+
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        setUserMenuOpen(false);
+      }
+    };
+
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleEscape);
+    
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscape);
+    };
   }, []);
 
-  const handleLogout = async () => {
+  const handleLogout = useCallback(async (e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     try {
       await logout();
       setUserMenuOpen(false);
@@ -86,7 +143,7 @@ const Dashboard = () => {
     } catch (e) {
       console.error('Error al cerrar sesión', e);
     }
-  };
+  }, [history, logout]);
 
   const handleCopyEmail = async () => {
     try {
