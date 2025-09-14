@@ -219,7 +219,7 @@ const About = () => {
               Profesionales altamente capacitados comprometidos con tu
               recuperación
             </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-primary to-[#434194] mx-auto rounded-full mt-6"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mt-6"></div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -313,7 +313,7 @@ const About = () => {
               </p>
             </div>
             <div
-              className="w-24 h-1 bg-gradient-to-r from-primary to-[#434194] mx-auto rounded-full"
+              className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"
               data-aos="fade-right"
               data-aos-duration="1000"
               data-aos-delay="200"
@@ -396,7 +396,7 @@ const About = () => {
               Los principios que guían cada una de nuestras acciones y
               decisiones
             </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-primary to-[#434194] mx-auto rounded-full mt-6"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mt-6"></div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
