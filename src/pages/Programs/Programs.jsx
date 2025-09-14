@@ -184,7 +184,7 @@ const Programs = () => {
       <div className="relative overflow-hidden bg-gradient-to-br from-primary/5 to-[#434194]/10 py-20">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/5"></div>
         <div className="container relative z-10 text-center">
-          \{" "}
+          {" "}
           <h1 className="text-5xl font-bold mb-6">
             <GradientText>Programas de Transformación</GradientText>
           </h1>
@@ -210,7 +210,7 @@ const Programs = () => {
       >
         <div className="container">
           <div className="text-center mb-16">
-            \{" "}
+            {" "}
             <h2 className="text-4xl font-bold mb-6">
               <GradientText>Nuestras Sedes</GradientText>
             </h2>
@@ -293,7 +293,7 @@ const Programs = () => {
       >
         <div className="container">
           <div className="text-center mb-16">
-            \{" "}
+            {" "}
             <h2 className="text-4xl font-bold mb-6">
               <GradientText>Nuestros Programas Especializados</GradientText>
             </h2>
@@ -435,7 +435,7 @@ const Programs = () => {
       >
         <div className="container">
           <div className="text-center mb-16">
-            \{" "}
+            {" "}
             <h2 className="text-4xl font-bold mb-6">
               <GradientText>Enfoques Terapéuticos</GradientText>
             </h2>
