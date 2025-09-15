@@ -429,26 +429,73 @@ const Contact = () => {
       </section>
 
       {/* Mapa Mejorado */}
-      <section className="relative">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-black/5 z-10"></div>
-        <div className="relative z-20 container py-8">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-white drop-shadow-lg">
-              Nuestras Ubicaciones
+      <section className="relative py-16 bg-gradient-to-b from-gray-50 to-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <GradientText>Nuestras Ubicaciones</GradientText>
             </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Visítanos en cualquiera de nuestras sedes en Bello y Apartadó
+            </p>
+            <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mt-6"></div>
           </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Mapa de Bello */}
+            <div className="bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+              <div className="h-64 relative">
+                <iframe
+                  className="w-full h-full"
+                  frameBorder="0"
+                  style={{ border: 0 }}
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d-75.55773348523147!3d6.326506295411078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e442f1c8f8f8f8f%3A0x8f8f8f8f8f8f8f8f!2sBello%2C%20Antioquia%2C%20Colombia!5e0!3m2!1ses!2sco!4v1633349781164!5m2!1ses!2sco"
+                  allowFullScreen=""
+                  loading="lazy"
+                  title="Ubicación Bello"
+                ></iframe>
+                <div className="absolute bottom-4 left-4 bg-white px-4 py-2 rounded-lg shadow-md">
+                  <span className="text-primary font-semibold">Sede Bello</span>
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Sede Bello</h3>
+                <p className="text-gray-600 mb-4">Dirección: Calle 50 # 50-50, Bello, Antioquia</p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Atención 24/7</span>
+                  <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">Parqueadero disponible</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Mapa de Apartadó */}
+            <div className="bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+              <div className="h-64 relative">
+                <iframe
+                  className="w-full h-full"
+                  frameBorder="0"
+                  style={{ border: 0 }}
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.012258376609!2d-76.6547226852319!3d6.2018707954113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e442f1c8f8f8f8f%3A0x8f8f8f8f8f8f8f8f!2sApartad%C3%B3%2C%20Antioquia%2C%20Colombia!5e0!3m2!1ses!2sco!4v1633349781164!5m2!1ses!2sco"
+                  allowFullScreen=""
+                  loading="lazy"
+                  title="Ubicación Apartadó"
+                ></iframe>
+                <div className="absolute bottom-4 left-4 bg-white px-4 py-2 rounded-lg shadow-md">
+                  <span className="text-primary font-semibold">Sede Apartadó</span>
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Sede Apartadó</h3>
+                <p className="text-gray-600 mb-4">Carrera 100 # 50-50, Apartadó, Antioquia</p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Atención 24/7</span>
+                  <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">Zona de espera</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
-        <iframe
-          className="w-full h-96 filter brightness-90"
-          width="100%"
-          height="100%"
-          frameBorder="0"
-          marginHeight="0"
-          marginWidth="0"
-          title="Ubicaciones Todo por un Alma"
-          scrolling="no"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1014199.5!2d-75.5!3d6.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4428dfb80fad07%3A0x4c4c9c0f9b9b9b9b!2sAntioquia%2C%20Colombia!5e0!3m2!1ses!2sco!4v1633349781164!5m2!1ses!2sco"
-        ></iframe>
       </section>
     </div>
   );
