@@ -277,13 +277,14 @@ const Programs = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                     {Object.entries(programs[activeTab].stats).map(
                       ([key, value]) => {
+                        // Skip the 'success' stat
+                        if (key === "success") return null;
+                        
                         // Format the key for display
                         const formattedKey =
-                          key === "success"
-                            ? "éxito"
-                            : key === "duration"
-                              ? "duración"
-                              : key.replace("_", " ");
+                          key === "duration"
+                            ? "duración"
+                            : key.replace("_", " ");
 
                         return (
                           <div
