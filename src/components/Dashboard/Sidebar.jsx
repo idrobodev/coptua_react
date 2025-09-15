@@ -44,7 +44,7 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
       icon: 'fas fa-users',
       label: 'Participantes',
       link: '/participantes',
-      badge: '12'
+      badge: null
     },
     {
       id: 'profesionales',
@@ -58,14 +58,14 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
       icon: 'fas fa-dollar-sign',
       label: 'Mensualidades',
       link: '/financiero',
-      badge: '3'
+      badge: null
     },
     {
       id: 'formularios',
       icon: 'fas fa-clipboard-list',
       label: 'Formularios',
       link: '/formularios',
-      badge: '5'
+      badge: null
     },
     {
       id: 'reportes',

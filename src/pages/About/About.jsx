@@ -5,6 +5,8 @@ import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import SEO from "../../components/SEO/SEO";
 import mission from "../../images/booking.jpg";
 import story from "../../images/banner.png";
+import belloImage from "../../images/review/1.jpg";
+import apartadoImage from "../../images/review/2.jpg";
 import GradientText from "../../components/UI/GradientText";
 
 // Icons for locations
@@ -13,6 +15,7 @@ import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock } from "react-icons/fa";
 const About = () => {
   const [isVisible, setIsVisible] = useState({
     sedes: false,
+    galeria: false,
     // Add other sections as needed
   });
   
@@ -93,25 +96,25 @@ const About = () => {
       name: "Dr. Juan Camilo Machado",
       role: "Director Psicológico - Sede Masculina Bello",
       specialty: "Especialista en Adicciones y Terapia Cognitivo-Conductual",
-      phone: "3145702708",
+      email: "juan.machado@todoporunalma.org",
     },
     {
       name: "Dra. Mildrey Leonel Melo",
       role: "Directora Psicológica - Sede Femenina Bello",
       specialty: "Especialista en Terapia Familiar y Logoterapia",
-      phone: "3216481687",
+      email: "mildrey.melo@todoporunalma.org",
     },
     {
       name: "Martín Muñoz Pino",
       role: "Terapeuta Principal - Sede Masculina Apartadó",
       specialty: "Especialista en Reinserción Social",
-      phone: "3104577835",
+      email: "martin.munoz@todoporunalma.org",
     },
     {
       name: "Dra. Luz Yasmin Estrada",
       role: "Psicóloga - Sede Femenina Apartadó",
       specialty: "Especialista en Trauma y Recuperación",
-      phone: "3104577835",
+      email: "luz.estrada@todoporunalma.org",
     },
   ];
 
@@ -249,85 +252,77 @@ const About = () => {
           </div>
         </div>
       </div>
-      {/* Sedes Dinámicas */}
+      {/* Nuestras Sedes con Galería */}
       <section
         id="sedes"
         data-animate
         className={`py-20 bg-gradient-to-br from-gray-50 to-primary/8 transition-all duration-1000 ${
-          isVisible.sedes
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-10"
+          isVisible.sedes ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
       >
         <div className="container">
-          <div className="text-center mb-16">
-            {" "}
-            <h2 className="text-4xl font-bold mb-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
               <GradientText>Nuestras Sedes</GradientText>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Contamos con instalaciones especializadas en dos ubicaciones
-              estratégicas de Antioquia
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Conoce nuestras sedes en Bello y Apartadó, diseñadas para brindar el mejor ambiente para la recuperación
             </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-primary to-[#434194] mx-auto rounded-full mt-6"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mt-6"></div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            {locations.map((location, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-500"
-              >
-                <div
-                  className={`bg-gradient-to-r ${location.color} p-8 text-white`}
-                >
-                  <div className="flex items-center mb-4">
-                    <div className="text-5xl mr-4">{location.icon}</div>
-                    <div>
-                      <h3 className="text-2xl font-bold">{location.city}</h3>
-                      <p className="opacity-90">{location.address}</p>
-                    </div>
-                  </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Sede Bello */}
+            <div className="group relative overflow-hidden rounded-3xl shadow-xl border border-gray-100 bg-white">
+              <img
+                src={belloImage}
+                alt="Sede de Bello"
+                className="w-full h-72 object-cover transform group-hover:scale-105 transition duration-700"
+              />
+              <div className="p-6">
+                <div className="flex items-center mb-2 text-gray-800">
+                  <FaMapMarkerAlt className="mr-2 text-primary" />
+                  <span className="text-sm font-medium">Bello, Antioquia</span>
                 </div>
-
-                <div className="p-8">
-                  <div className="space-y-6">
-                    {location.facilities.map((facility, idx) => (
-                      <div
-                        key={idx}
-                        className="bg-gray-50 rounded-2xl p-6 hover:bg-primary/5 transition-colors duration-300"
-                      >
-                        <div className="flex items-start justify-between mb-4">
-                          <div>
-                            <h4 className="text-lg font-bold text-primary mb-1">
-                              {facility.type}
-                            </h4>
-                            <p className="text-gray-600 text-sm">
-                              {facility.title}
-                            </p>
-                          </div>
-                          <div className="text-right">
-                            <div className="flex items-center text-sm text-gray-500">
-                              <svg
-                                className="w-4 h-4 mr-1"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                              >
-                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                              </svg>
-                              {facility.phone}
-                            </div>
-                          </div>
-                        </div>
-                        <p className="font-semibold text-gray-800">
-                          {facility.director}
-                        </p>
-                      </div>
-                    ))}
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Sede Bello</h3>
+                <p className="text-gray-600 mb-4">Carrera 50 # 52 - 21</p>
+                <div className="space-y-3 mt-4">
+                  <div className="flex items-center text-sm text-gray-600">
+                    <FaPhone className="mr-2 text-primary" />
+                    <span>+57 310 457 7835</span>
                   </div>
+                  <p className="text-sm font-medium text-gray-700">
+                    Dr. Juan Pérez - Director Médico
+                  </p>
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* Sede Apartadó */}
+            <div className="group relative overflow-hidden rounded-3xl shadow-xl border border-gray-100 bg-white">
+              <img
+                src={apartadoImage}
+                alt="Sede de Apartadó"
+                className="w-full h-72 object-cover transform group-hover:scale-105 transition duration-700"
+              />
+              <div className="p-6">
+                <div className="flex items-center mb-2 text-gray-800">
+                  <FaMapMarkerAlt className="mr-2 text-primary" />
+                  <span className="text-sm font-medium">Apartadó, Antioquia</span>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Sede Apartadó</h3>
+                <p className="text-gray-600 mb-4">Calle 10 # 15 - 30</p>
+                <div className="space-y-3 mt-4">
+                  <div className="flex items-center text-sm text-gray-600">
+                    <FaPhone className="mr-2 text-primary" />
+                    <span>+57 310 457 7837</span>
+                  </div>
+                  <p className="text-sm font-medium text-gray-700">
+                    Dr. Carlos Rojas - Director Sede
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -366,6 +361,7 @@ const About = () => {
                       className="w-10 h-10 text-primary group-hover:text-white transition-colors duration-500"
                       fill="currentColor"
                       viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
                         fillRule="evenodd"
@@ -375,24 +371,27 @@ const About = () => {
                     </svg>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-primary transition-colors duration-300">
-                      {member.name}
-                    </h3>
-                    <p className="text-primary font-semibold mb-2">
-                      {member.role}
-                    </p>
-                    <p className="text-gray-600 text-sm mb-3">
-                      {member.specialty}
-                    </p>
-                    <div className="flex items-center text-sm text-gray-500">
+                    <h3 className="text-xl font-bold text-gray-900">{member.name}</h3>
+                    <p className="text-primary font-medium">{member.role}</p>
+                    <p className="text-gray-600 mt-1">{member.specialty}</p>
+                    <div className="flex items-center text-gray-600 mt-2">
                       <svg
-                        className="w-4 h-4 mr-2"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
+                        className="w-4 h-4 mr-2 text-primary"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
-                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        />
                       </svg>
-                      {member.phone}
+                      <a href={`mailto:${member.email}`} className="hover:text-primary transition-colors text-sm">
+                        {member.email}
+                      </a>
                     </div>
                   </div>
                 </div>
