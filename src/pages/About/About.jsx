@@ -7,8 +7,58 @@ import mission from "../../images/booking.jpg";
 import story from "../../images/banner.png";
 import GradientText from "../../components/UI/GradientText";
 
+// Icons for locations
+import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock } from "react-icons/fa";
+
 const About = () => {
-  const [isVisible, setIsVisible] = useState({});
+  const [isVisible, setIsVisible] = useState({
+    sedes: false,
+    // Add other sections as needed
+  });
+  
+  // Locations data
+  const locations = [
+    {
+      city: "Bello (Antioquia)",
+      icon: "🏔️",
+      address: "Carrera 50 # 52 - 21, Bello, Antioquia",
+      color: "from-blue-600 to-blue-400",
+      facilities: [
+        {
+          type: "Centro de Rehabilitación",
+          title: "Sede Principal",
+          phone: "+57 310 457 7835",
+          director: "Dr. Juan Pérez - Director Médico"
+        },
+        {
+          type: "Atención Psicológica",
+          title: "Consultorios Especializados",
+          phone: "+57 310 457 7836",
+          director: "Dra. María Gómez - Psicóloga Clínica"
+        }
+      ]
+    },
+    {
+      city: "Apartadó (Urabá)",
+      icon: "🌴",
+      address: "Calle 10 # 15 - 30, Apartadó, Antioquia",
+      color: "from-green-600 to-green-400",
+      facilities: [
+        {
+          type: "Centro de Rehabilitación",
+          title: "Sede Urabá",
+          phone: "+57 310 457 7837",
+          director: "Dr. Carlos Rojas - Director Sede"
+        },
+        {
+          type: "Atención Comunitaria",
+          title: "Programas Preventivos",
+          phone: "+57 310 457 7838",
+          director: "Lic. Ana Torres - Coordinadora Comunitaria"
+        }
+      ]
+    }
+  ];
 
   useEffect(() => {
     // Initialize AOS
@@ -199,6 +249,88 @@ const About = () => {
           </div>
         </div>
       </div>
+      {/* Sedes Dinámicas */}
+      <section
+        id="sedes"
+        data-animate
+        className={`py-20 bg-gradient-to-br from-gray-50 to-primary/8 transition-all duration-1000 ${
+          isVisible.sedes
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-10"
+        }`}
+      >
+        <div className="container">
+          <div className="text-center mb-16">
+            {" "}
+            <h2 className="text-4xl font-bold mb-6">
+              <GradientText>Nuestras Sedes</GradientText>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Contamos con instalaciones especializadas en dos ubicaciones
+              estratégicas de Antioquia
+            </p>
+            <div className="w-24 h-1 bg-gradient-to-r from-primary to-[#434194] mx-auto rounded-full mt-6"></div>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12">
+            {locations.map((location, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-500"
+              >
+                <div
+                  className={`bg-gradient-to-r ${location.color} p-8 text-white`}
+                >
+                  <div className="flex items-center mb-4">
+                    <div className="text-5xl mr-4">{location.icon}</div>
+                    <div>
+                      <h3 className="text-2xl font-bold">{location.city}</h3>
+                      <p className="opacity-90">{location.address}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-8">
+                  <div className="space-y-6">
+                    {location.facilities.map((facility, idx) => (
+                      <div
+                        key={idx}
+                        className="bg-gray-50 rounded-2xl p-6 hover:bg-primary/5 transition-colors duration-300"
+                      >
+                        <div className="flex items-start justify-between mb-4">
+                          <div>
+                            <h4 className="text-lg font-bold text-primary mb-1">
+                              {facility.type}
+                            </h4>
+                            <p className="text-gray-600 text-sm">
+                              {facility.title}
+                            </p>
+                          </div>
+                          <div className="text-right">
+                            <div className="flex items-center text-sm text-gray-500">
+                              <svg
+                                className="w-4 h-4 mr-1"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                              </svg>
+                              {facility.phone}
+                            </div>
+                          </div>
+                        </div>
+                        <p className="font-semibold text-gray-800">
+                          {facility.director}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Nuestro Equipo Section */}
       <section
