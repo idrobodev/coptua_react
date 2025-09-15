@@ -24,6 +24,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import Programs from "./pages/Programs/Programs";
 import Register from "./pages/Register/Register";
 import SingleTour from "./pages/SingleTour/SingleTour";
+import Donate from "./pages/Donate/Donate";
 
 // Component to conditionally render header and footer
 const AppContent = () => {
@@ -60,6 +61,9 @@ const AppContent = () => {
           </PrivateRoute>
           <Route path="/contact">
             <Contact />
+          </Route>
+          <Route path="/donate">
+            <Donate />
           </Route>
           <Route path="/login">
             <Login />
