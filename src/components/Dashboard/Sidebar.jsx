@@ -75,6 +75,13 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
       badge: null
     },
     {
+      id: 'formatos',
+      icon: 'fas fa-file-alt',
+      label: 'Formatos',
+      link: '/formatos',
+      badge: null
+    },
+    {
       id: 'configuracion',
       icon: 'fas fa-cog',
       label: 'Configuración',

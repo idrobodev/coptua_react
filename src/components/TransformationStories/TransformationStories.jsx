@@ -174,7 +174,7 @@ const TransformationStories = () => {
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Cada historia es única, cada transformación es un milagro. Descubre cómo acompañamos a las personas en su camino hacia una nueva vida.
           </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-[#434194] mx-auto rounded-full mt-8"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-primary  to-secondary mx-auto rounded-full mt-8"></div>
         </div>
 
         {/* Carrusel (4 visibles en desktop) */}

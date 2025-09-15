@@ -21,7 +21,7 @@ const Review = ({ review }) => {
           {/* Texto sobre el video */}
           <div className="pointer-events-none absolute inset-x-0 bottom-0 p-6 sm:p-7 md:p-8 bg-black/60">
             <h3 className="text-xl sm:text-2xl font-bold text-white drop-shadow-2xl mb-1.5 sm:mb-2">{name}</h3>
-            <p className="text-white/95 text-base sm:text-lg drop-shadow-lg font-medium">{title}</p>
+            <p className="text-white/95 text-white sm:text-lg drop-shadow-lg font-medium">{title}</p>
           </div>
 
           {/* Badge */}

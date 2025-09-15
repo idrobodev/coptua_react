@@ -69,7 +69,7 @@ const HappyCustomers = () => {
             <h1 className="text-5xl md:text-6xl py-6 font-Lato font-bold text-white drop-shadow-2xl tracking-tight">
               Nuestro <span className="text-white font-extrabold">Impacto</span> 2025
             </h1>
-            <p className="text-xl md:text-2xl text-white/95 mb-16 font-Poppins font-light max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-white mb-16 font-Poppins font-light max-w-3xl mx-auto leading-relaxed">
               Transformando vidas desde el amor y la evidencia científica
             </p>
             
@@ -80,7 +80,7 @@ const HappyCustomers = () => {
                     <CounterAnimation target="300" suffix="+" />
                   </h1>
                   <div className="w-16 h-1 bg-white/80 mx-auto mb-4 rounded-full"></div>
-                  <p className="text-white/95 text-lg md:text-xl font-Poppins font-medium leading-snug">
+                  <p className="text-white text-lg md:text-xl font-Poppins font-medium leading-snug">
                     Personas Atendidas
                   </p>
                 </div>
@@ -92,7 +92,7 @@ const HappyCustomers = () => {
                     <CounterAnimation target="200" suffix="+" />
                   </h1>
                   <div className="w-16 h-1 bg-white/80 mx-auto mb-4 rounded-full"></div>
-                  <p className="text-white/95 text-lg md:text-xl font-Poppins font-medium leading-snug">
+                  <p className="text-white text-lg md:text-xl font-Poppins font-medium leading-snug">
                     Familias Acompañadas
                   </p>
                 </div>

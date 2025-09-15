@@ -371,7 +371,7 @@ const Contact = () => {
 
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-primary to-[#434194] text-white py-4 px-8 rounded-xl font-bold text-lg hover:from-[#434194] hover:to-primary transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="w-full bg-gradient-to-r from-primary to-secondary text-white py-4 px-8 rounded-xl font-bold text-lg hover:from-[#434194] hover:to-primary transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   Enviar Mensaje
                 </button>
@@ -414,7 +414,7 @@ const Contact = () => {
               ))}
 
               <div className="bg-gradient-to-r from-primary/10 to-[#434194]/10 rounded-2xl p-6 border border-primary/20">
-                <h3 className="text-xl font-bold text-primary mb-3">
+                <h3 className="text-xl font-bold text-gray-800 mb-3">
                   💡 Consejo Importante
                 </h3>
                 <p className="text-gray-700">
