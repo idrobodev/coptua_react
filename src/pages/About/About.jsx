@@ -6,7 +6,7 @@ import SEO from "../../components/SEO/SEO";
 import mission from "../../images/booking.jpg";
 import story from "../../images/banner.png";
 import belloImage from "../../images/review/1.jpg";
-import apartadoImage from "../../images/review/2.jpg";
+import apartadoImage from "../../images/sedes/apartado.jpeg";
 import GradientText from "../../components/UI/GradientText";
 
 // Icons for locations
