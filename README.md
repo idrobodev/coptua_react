@@ -1,322 +1,69 @@
-# Fundación Todo por un Alma - Dashboard Administrativo
+# Guía rápida para ejecutar el proyecto localmente
 
-Sistema de gestión integral para la Fundación Todo por un Alma, desarrollado con React y Supabase para administrar participantes, profesionales, mensualidades, formularios especializados y generar reportes estadísticos.
+Este documento describe, paso a paso, lo que se hizo para dejar el proyecto funcionando de forma estable en tu máquina y cómo puedes repetirlo cuando lo necesites.
 
-# Fundación Todo por un Alma - Dashboard Administrativo
+## Requisitos
+- Node.js 18.x (probado con 18.18.2)
+- npm 9/10
 
-Sistema de gestión integral para la Fundación Todo por un Alma, desarrollado con React y Supabase para administrar participantes, profesionales, mensualidades, formularios especializados y generar reportes estadísticos.
+> Nota: En entornos con Node 17+ Webpack puede requerir la opción `--openssl-legacy-provider` para compilar. Ya quedó configurado en el script de build.
 
-## 🚀 Guía Rápida de Inicio
+## 1) Instalar dependencias
+En una terminal ubicada en la carpeta del proyecto:
 
-### Requisitos Previos
-- Node.js 18.x (recomendado 18.16.0 o superior)
-- npm 8.x o superior
-- Una cuenta en Supabase (para las variables de entorno)
-
-### Instalación
-
-1. **Clonar el repositorio**
-   ```bash
-   git clone [URL_DEL_REPOSITORIO]
-   cd coptua_react
-   ```
-
-2. **Configurar variables de entorno**
-   ```bash
-   # Copiar el archivo de ejemplo
-   cp .env.example .env
-   
-   # Editar el archivo .env con tus credenciales
-   # Necesitarás configurar las variables de Supabase y otras configuraciones
-   ```
-
-3. **Instalar dependencias**
-   ```bash
-   npm install
-   ```
-   
-   Esto ejecutará automáticamente el script de post-instalación que configurará el proyecto.
-
-4. **Iniciar el servidor de desarrollo**
-   ```bash
-   npm start
-   ```
-   
-   La aplicación estará disponible en [http://localhost:3001](http://localhost:3001)
-
-### Variables de Entorno Necesarias
-
-Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
-
-```env
-# Configuración de Supabase
-REACT_APP_SUPABASE_URL=tu_url_de_supabase
-REACT_APP_SUPABASE_ANON_KEY=tu_clave_anon_de_supabase
-
-# Configuración del Sitio
-REACT_APP_SITE_URL=http://localhost:3001
-REACT_APP_API_URL=http://localhost:3001/api
-```
-
-## 📋 Descripción
-
-Dashboard administrativo moderno y responsive diseñado específicamente para la gestión de fundaciones de atención integral. Incluye módulos completos para el manejo de participantes, profesionales de la salud, acudientes, sistema de pagos mensuales, formularios especializados por área médica y sistema de reportes con visualizaciones interactivas.
-
-## ✨ Características Principales
-
-### 🏥 Gestión Integral
-- **Participantes**: Registro, perfiles, seguimiento y administración completa
-- **Profesionales**: Gestión por sede y especialidad (Medicina, Psicología, Enfermería, etc.)
-- **Acudientes**: Administración de responsables y contactos de emergencia
-- **Mensualidades**: Sistema de facturación y seguimiento de pagos
-- **Formularios**: 8 especialidades médicas con formularios específicos
-
-### 📊 Dashboard y Reportes
-- Dashboard principal con métricas en tiempo real
-- Gráficos interactivos con Chart.js
-- Reportes financieros y estadísticos
-- Análisis de tendencias mensuales
-- Exportación a PDF y Excel
-
-### 🔐 Seguridad y Roles
-- Autenticación con Supabase
-- Sistema de roles: ADMINISTRADOR, PROFESIONAL, CONSULTA
-- Rutas protegidas por permisos
-- Gestión de usuarios y permisos
-
-### 🎨 Interfaz Moderna
-- Diseño responsive para todos los dispositivos
-- Sidebar dinámico con toggle (colapsar/expandir)
-- Tema coherente con identidad cristiana de la fundación
-- Animaciones suaves y transiciones
-- Tipografías Poppins y Montserrat
-
-## 🚀 Tecnologías Utilizadas
-
-### Frontend
-- **React 17+** - Biblioteca principal
-- **React Router Dom** - Navegación y rutas
-- **Tailwind CSS** - Framework de estilos
-- **Chart.js + React-Chartjs-2** - Gráficos y visualizaciones
-- **React Hook Form + Yup** - Formularios y validación
-- **Font Awesome** - Iconografía
-
-### Backend y Base de Datos
-- **Supabase** - Backend as a Service
-- **PostgreSQL** - Base de datos relacional
-- **Supabase Auth** - Autenticación y autorización
-- **Supabase Realtime** - Actualizaciones en tiempo real
-
-### Herramientas de Desarrollo
-- **CRACO** - Configuración de Create React App
-- **Date-fns** - Manejo de fechas
-- **UUID** - Generación de identificadores únicos
-
-## 📦 Instalación
-
-### Prerrequisitos
-- Node.js 14+ 
-- npm o yarn
-- Cuenta de Supabase (opcional para desarrollo)
-
-### Pasos de Instalación
-
-1. **Clonar el repositorio**
-```bash
-git clone git@github.com:idrobodev/coptua_react.git
-cd coptua_react
-```
-
-2. **Instalar dependencias**
 ```bash
 npm install
 ```
 
-3. **Configurar variables de entorno**
+Si tu instalación local se corrompe (p. ej., cambios bruscos de versiones), puedes forzar una reinstalación limpia:
+
 ```bash
-# Crear archivo .env en la raíz del proyecto
-cp .env.example .env
-
-# Editar .env con tus credenciales de Supabase
-REACT_APP_SUPABASE_URL=tu_supabase_url
-REACT_APP_SUPABASE_ANON_KEY=tu_supabase_anon_key
+rm -rf node_modules package-lock.json && npm install
 ```
 
-4. **Iniciar servidor de desarrollo**
-```bash
-npm start
-```
+## 2) Compilar en modo producción (recomendado)
+El script de build ya incluye la compatibilidad necesaria para Node 18 usando `NODE_OPTIONS=--openssl-legacy-provider`.
 
-El proyecto estará disponible en `http://localhost:3001`
-
-## 🏗️ Estructura del Proyecto
-
-```
-src/
-├── components/           # Componentes reutilizables
-│   ├── Auth/            # Componentes de autenticación
-│   ├── Charts/          # Gráficos y visualizaciones
-│   ├── Context/         # Contextos de React
-│   ├── Dashboard/       # Componentes del dashboard
-│   ├── Footer/          # Pie de página
-│   ├── Header/          # Encabezado
-│   ├── Menu/            # Navegación principal
-│   └── UI/              # Componentes de interfaz
-├── images/              # Recursos gráficos
-├── pages/               # Páginas principales
-│   ├── Dashboard/       # Dashboard principal
-│   ├── Forms/           # Gestión de formularios
-│   ├── Guardians/       # Gestión de acudientes
-│   ├── Participants/    # Gestión de participantes
-│   ├── Payments/        # Sistema de pagos
-│   ├── Professionals/   # Gestión de profesionales
-│   └── Reports/         # Reportes y estadísticas
-├── services/            # Servicios y API
-└── supabase/           # Configuración de Supabase
-```
-
-## 🎯 Uso del Sistema
-
-### Acceso al Dashboard
-1. Iniciar sesión con credenciales válidas
-2. Navegar por el sidebar dinámico
-3. Acceder a módulos según permisos de usuario
-
-### Gestión de Participantes
-- Registro de nuevos participantes
-- Edición de perfiles existentes
-- Seguimiento de estado y progreso
-- Asignación de profesionales
-
-### Sistema de Pagos
-- Registro de mensualidades
-- Seguimiento de estados (Pagada, Pendiente, Vencida)
-- Generación de reportes financieros
-- Notificaciones de vencimientos
-
-### Formularios Especializados
-- Formulario Médico
-- Evaluación Psicológica
-- Formulario Espiritual
-- Evaluación de Enfermería
-- Formulario Terapéutico
-- Trabajo Social
-- Fonoaudiología
-- Nutrición
-
-## 📱 Funcionalidades del Sidebar
-
-### Responsive Design
-- **Desktop**: Sidebar colapsable con botón toggle
-- **Mobile**: Sidebar overlay con botón hamburguesa
-- **Tablet**: Adaptación automática según tamaño de pantalla
-
-### Navegación Intuitiva
-- Menú jerárquico con submenús
-- Iconografía consistente
-- Estados activos y hover
-- Tooltips en modo colapsado
-
-## 🔧 Configuración Avanzada
-
-### Personalización de Temas
-```javascript
-// tailwind.config.js
-module.exports = {
-  theme: {
-    extend: {
-      colors: {
-        primary: '#676CB8',
-        'primary-dark': '#5A5F9D'
-      },
-      fontFamily: {
-        'Poppins': ['Poppins', 'sans-serif'],
-        'Montserrat': ['Montserrat', 'sans-serif']
-      }
-    }
-  }
-}
-```
-
-### Configuración de Supabase
-```javascript
-// supabase/supabaseClient.js
-export const supabase = createClient(
-  process.env.REACT_APP_SUPABASE_URL,
-  process.env.REACT_APP_SUPABASE_ANON_KEY
-)
-```
-
-## 📊 Base de Datos
-
-### Tablas Principales
-- `fundacion` - Información de la fundación
-- `sedes` - Sedes de atención
-- `usuarios` - Usuarios del sistema
-- `participantes` - Participantes registrados
-- `profesionales` - Equipo profesional
-- `acudientes` - Responsables de participantes
-- `mensualidades` - Pagos mensuales
-- `formularios` - Formularios especializados
-
-## 🚀 Despliegue
-
-### Desarrollo
-```bash
-npm start
-```
-
-### Producción
 ```bash
 npm run build
-npm run serve
 ```
 
-### Variables de Entorno Requeridas
+Al finalizar verás los archivos generados en la carpeta `build/`.
+
+## 3) Servir el build estático
+La forma más estable de ejecutar la app localmente es servir la carpeta `build` con un servidor estático:
+
+```bash
+npx serve -s build -l 3001
 ```
-REACT_APP_SUPABASE_URL=
-REACT_APP_SUPABASE_ANON_KEY=
+
+- Si el CLI pregunta si deseas instalar `serve`, responde `y` (sí) o ejecútalo con `yes | npx serve -s build -l 3001` para auto-confirmar.
+- Luego abre en el navegador: http://localhost:3001/
+
+## 4) (Opcional) Ejecutar el servidor de desarrollo
+Si quieres hot reload y el entorno de desarrollo:
+
+```bash
+npm start
 ```
 
-## 🤝 Contribución
+- Si encuentras problemas relacionados con OpenSSL o dependencias, te recomiendo usar por ahora el flujo estable de “build + serve” anterior. Si necesitas que dejemos `npm start` 100% operativo en tu entorno, avísame y lo ajustamos.
 
-1. Fork del proyecto
-2. Crear rama de feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit de cambios (`git commit -m 'Agregar nueva funcionalidad'`)
-4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
-5. Abrir Pull Request
+## Variables de entorno
+- Revisa `.env.example` para ver variables disponibles.
+- Si usas integraciones como Supabase, copia `.env.example` a `.env` y completa los valores necesarios.
 
-## 📄 Licencia
+## Problemas conocidos y soluciones
+- Error `ERR_OSSL_EVP_UNSUPPORTED` durante `npm run build` en Node 18+:
+  - Ya está resuelto en `package.json` usando `NODE_OPTIONS=--openssl-legacy-provider` en el script de build.
+- Vulnerabilidades reportadas por `npm install`:
+  - Son avisos de auditoría de dependencias transitorias. Puedes ejecutar `npm audit` para más detalles. No impiden compilar ni servir el build.
 
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+## Scripts útiles
+- `npm start` — Inicia el servidor de desarrollo (hot reload).
+- `npm run build` — Compila la app para producción (ya configurado para Node 18).
 
-## 👥 Equipo de Desarrollo
-
-- **Desarrollo Frontend**: React + Tailwind CSS
-- **Backend**: Supabase + PostgreSQL
-- **Diseño UX/UI**: Interfaz moderna y accesible
-- **Integración**: APIs y servicios en tiempo real
-
-## 📞 Soporte
-
-Para soporte técnico o consultas:
-- Email: soporte@fundaciontodoporunalma.org
-- Documentación: [Wiki del proyecto]
-- Issues: [GitHub Issues]
-
-## 🔄 Changelog
-
-### v1.0.0 (2024-01-12)
-- ✅ Sistema completo de dashboard
-- ✅ Gestión integral de participantes
-- ✅ Sistema de pagos y facturación
-- ✅ Formularios especializados
-- ✅ Reportes y estadísticas
-- ✅ Sidebar responsive con toggle
-- ✅ Autenticación y roles
-- ✅ Integración con Supabase
-
----
-
-**Fundación Todo por un Alma** - Sistema de Gestión Administrativa
-*Desarrollado con ❤️ para servir a la comunidad*
+## Notas finales
+- Si el puerto 3001 está ocupado, puedes cambiarlo: `npx serve -s build -l 3002`.
+- Si no puedes acceder a `localhost`, verifica firewall/proxy o prueba `http://127.0.0.1:3001/`.
+- Ante cualquier duda, comparte los logs de la terminal para ayudarte a diagnosticar.
