@@ -47,31 +47,10 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
       badge: null
     },
     {
-      id: 'profesionales',
-      icon: 'fas fa-user-md',
-      label: 'Profesionales',
-      link: '/profesionales',
-      badge: null
-    },
-    {
       id: 'financiero',
       icon: 'fas fa-dollar-sign',
       label: 'Mensualidades',
       link: '/financiero',
-      badge: null
-    },
-    {
-      id: 'formularios',
-      icon: 'fas fa-clipboard-list',
-      label: 'Formularios',
-      link: '/formularios',
-      badge: null
-    },
-    {
-      id: 'reportes',
-      icon: 'fas fa-chart-bar',
-      label: 'Reportes',
-      link: '/reportes',
       badge: null
     },
     {

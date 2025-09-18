@@ -51,7 +51,6 @@ npm start
 
 ## Variables de entorno
 - Revisa `.env.example` para ver variables disponibles.
-- Si usas integraciones como Supabase, copia `.env.example` a `.env` y completa los valores necesarios.
 
 ## Problemas conocidos y soluciones
 - Error `ERR_OSSL_EVP_UNSUPPORTED` durante `npm run build` en Node 18+:

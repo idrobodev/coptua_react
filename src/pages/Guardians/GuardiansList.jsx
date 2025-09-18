@@ -18,46 +18,10 @@ const GuardiansList = () => {
   const loadGuardians = async () => {
     try {
       setLoading(true);
-      // Mock data for guardians - in real implementation, this would come from Supabase
-      const mockGuardians = [
-        {
-          id: 1,
-          documento: '43123456',
-          nombreCompleto: 'Ana María González',
-          telefono: '3001234567',
-          email: 'ana.gonzalez@email.com',
-          direccion: 'Calle 45 #23-12, Bello',
-          parentesco: 'MADRE',
-          participantes: ['María González', 'Pedro González'],
-          estado: 'ACTIVO',
-          fechaRegistro: '2024-01-15'
-        },
-        {
-          id: 2,
-          documento: '71234567',
-          nombreCompleto: 'Carlos Rodríguez Pérez',
-          telefono: '3109876543',
-          email: 'carlos.rodriguez@email.com',
-          direccion: 'Carrera 30 #15-45, Apartadó',
-          parentesco: 'PADRE',
-          participantes: ['Luis Rodríguez'],
-          estado: 'ACTIVO',
-          fechaRegistro: '2024-01-10'
-        },
-        {
-          id: 3,
-          documento: '52987654',
-          nombreCompleto: 'Isabel Martínez López',
-          telefono: '3205551234',
-          email: 'isabel.martinez@email.com',
-          direccion: 'Avenida 80 #12-34, Bello',
-          parentesco: 'ABUELA',
-          participantes: ['Laura Martínez'],
-          estado: 'ACTIVO',
-          fechaRegistro: '2024-01-20'
-        }
-      ];
-      setGuardians(mockGuardians);
+      // TODO: Implementar carga de guardianes desde la base de datos
+      // const { data } = await dbService.getGuardians();
+      // setGuardians(data || []);
+      setGuardians([]);
     } catch (error) {
       console.error('Error loading guardians:', error);
     } finally {

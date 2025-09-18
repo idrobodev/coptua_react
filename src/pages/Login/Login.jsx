@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { useHistory, useLocation } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import { useAuth } from "../../components/Context/AuthContext";
-import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const Login = () => {
   const [error, setError] = useState("");
@@ -35,7 +34,7 @@ const Login = () => {
   return (
     <>
       <Breadcrumbs title="Iniciar Sesión" />
-      <div className="container">
+      <div className="container mx-auto px-4">
         <div
           className="flex gap-8 items-center justify-center "
           style={{ minHeight: "65vh" }}
@@ -82,7 +81,6 @@ const Login = () => {
                 Iniciar Sesión
               </button>
             </form>
-            <SocialLogin title="Iniciar Sesión" />
           </div>
         </div>
       </div>

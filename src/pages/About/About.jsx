@@ -10,58 +10,18 @@ import apartadoImage from "../../images/sedes/apartado.jpeg";
 import GradientText from "../../components/UI/GradientText";
 
 // Icons for locations
-import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock } from "react-icons/fa";
+import { FaMapMarkerAlt, FaPhone } from "react-icons/fa";
 
 const About = () => {
   const [isVisible, setIsVisible] = useState({
     sedes: false,
     galeria: false,
+    mision: false,
+    valores: false,
+    equipo: false,
     // Add other sections as needed
   });
   
-  // Locations data
-  const locations = [
-    {
-      city: "Bello (Antioquia)",
-      icon: "🏔️",
-      address: "Carrera 50 # 52 - 21, Bello, Antioquia",
-      color: "from-blue-600 to-blue-400",
-      facilities: [
-        {
-          type: "Centro de Rehabilitación",
-          title: "Sede Principal",
-          phone: "+57 310 457 7835",
-          director: "Dr. Juan Pérez - Director Médico"
-        },
-        {
-          type: "Atención Psicológica",
-          title: "Consultorios Especializados",
-          phone: "+57 310 457 7836",
-          director: "Dra. María Gómez - Psicóloga Clínica"
-        }
-      ]
-    },
-    {
-      city: "Apartadó (Urabá)",
-      icon: "🌴",
-      address: "Calle 10 # 15 - 30, Apartadó, Antioquia",
-      color: "from-green-600 to-green-400",
-      facilities: [
-        {
-          type: "Centro de Rehabilitación",
-          title: "Sede Urabá",
-          phone: "+57 310 457 7837",
-          director: "Dr. Carlos Rojas - Director Sede"
-        },
-        {
-          type: "Atención Comunitaria",
-          title: "Programas Preventivos",
-          phone: "+57 310 457 7838",
-          director: "Lic. Ana Torres - Coordinadora Comunitaria"
-        }
-      ]
-    }
-  ];
 
   useEffect(() => {
     // Initialize AOS

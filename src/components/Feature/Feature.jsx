@@ -12,7 +12,7 @@ const features = [
     key: "SSF4",
     icon: "fas fa-users",
     title: "Atención por Género",
-    detail: "Espacios separados para hombres y mujeres con profesionales especializados en cada sede.",
+    detail: "Espacios separados para hombres y mujeres en cada sede.",
   },
   {
     key: "GH54",

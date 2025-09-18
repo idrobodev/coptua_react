@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { auth } from "../../supabase/supabase.config";
+import { supabase } from "../../supabase/supabaseClient";
+import { dbService, ROLES } from "../../services/databaseService";
 const AuthContext = createContext();
 
 // Make useAuth
@@ -8,54 +9,80 @@ export const useAuth = () => useContext(AuthContext);
 // Provider
 
 const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // sign up using email password
-  const signUp = (email, password) => {
-    return auth.signUp(email, password);
-  };
+  useEffect(() => {
+    // Check active session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setCurrentUser(session?.user ?? null);
+      setLoading(false);
+    });
 
-  // User Logout
-  const logout = () => {
-    return auth.signOut();
-  };
+    // Listen for auth changes
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(async (event, session) => {
+      setLoading(true);
+      if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+        const user = session?.user;
+        if (user) {
+          // Fetch user role from DB
+          const { data: dbUser } = await dbService.getCurrentUser();
+          setCurrentUser({ ...user, rol: dbUser?.rol || ROLES.CONSULTA });
+        } else {
+          setCurrentUser(null);
+        }
+      } else if (event === 'SIGNED_OUT') {
+        setCurrentUser(null);
+      }
+      setLoading(false);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
 
   // User login using email password
-  const login = (email, password) => {
-    return auth.signInWithPassword(email, password);
+  const login = async (email, password) => {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) throw error;
+
+    // Fetch user role
+    const { data: dbUser } = await dbService.getCurrentUser();
+    const userWithRole = { ...data.user, rol: dbUser?.rol || ROLES.CONSULTA };
+    setCurrentUser(userWithRole);
+    return { user: userWithRole };
   };
 
-  // google SignUp
-  const googleSignUp = () => {
-    return auth.signInWithGoogle();
+  // User logout
+  const logout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) throw error;
+    setCurrentUser(null);
+    return { success: true };
   };
+
 
   // forget Password
-  const forgetPassword = (email) => {
-    return auth.resetPasswordForEmail(email);
+  const forgetPassword = async (email) => {
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: window.location.origin + '/reset-password',
+    });
+    if (error) throw error;
+    return { success: true };
   };
 
-  // Get Current Login user
-  useEffect(() => {
-    try {
-      const { data } = auth.onAuthStateChange((_event, session) => {
-        setCurrentUser(session?.user || null);
-        setLoading(false);
-      });
-      return () => data.subscription.unsubscribe();
-    } catch (e) {
-      setLoading(false);
-    }
-  }, []);
 
   // Context values
   const value = {
-    signUp,
     currentUser,
     logout,
     login,
-    googleSignUp,
     forgetPassword,
     loading,
   };

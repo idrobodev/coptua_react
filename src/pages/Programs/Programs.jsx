@@ -35,7 +35,6 @@ const Programs = () => {
       color: "from-blue-500 to-blue-700",
       image: mission,
       features: [
-        "Desintoxicación médica supervisada por profesionales",
         "Terapia intensiva individual y grupal diaria",
         "Duración personalizada: 12 - 15 meses según necesidades",
         "Acompañamiento espiritual y psicológico 24/7",
@@ -133,48 +132,6 @@ const Programs = () => {
     },
   ];
 
-  const locations = [
-    {
-      city: "Bello (Antioquia)",
-      icon: "🏔️",
-      color: "from-red-500 to-orange-500",
-      address: "Vereda Potreritos, Finca el Alto",
-      facilities: [
-        {
-          type: "Sede Masculina",
-          director: "Juan Camilo Machado Bernal",
-          title: "Psicólogo Especialista",
-          phone: "3145702708",
-        },
-        {
-          type: "Sede Femenina",
-          director: "Mildrey Leonel Melo",
-          title: "Psicóloga Especialista",
-          phone: "3216481687",
-        },
-      ],
-    },
-    {
-      city: "Apartadó",
-      icon: "🌴",
-      color: "from-blue-500 to-cyan-500",
-      address: "Calle 102BB #76-34, Barrio 20 de Enero",
-      facilities: [
-        {
-          type: "Sede Masculina",
-          director: "Martín Muñoz Pino",
-          title: "Terapeuta Principal",
-          phone: "3104577835",
-        },
-        {
-          type: "Sede Femenina",
-          director: "Luz Yasmin Estrada Fabra",
-          title: "Psicóloga Especialista",
-          phone: "3104577835",
-        },
-      ],
-    },
-  ];
 
   return (
     <>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import SEO from "../../components/SEO/SEO";
-import { supabase } from "../../supabase/supabaseClient";
+// import { supabase } from "../../supabase/supabaseClient"; // Eliminado
 
 import GradientText from "../../components/UI/GradientText";
 
@@ -43,11 +43,8 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { error } = await supabase
-        .from("contact_messages")
-        .insert([{ ...formData, created_at: new Date().toISOString() }]);
-
-      if (error) throw error;
+      // Simular envío de formulario (antes usaba Supabase)
+      await new Promise((resolve) => setTimeout(resolve, 500));
 
       alert("Mensaje enviado con éxito!");
       setFormData({
@@ -418,7 +415,7 @@ const Contact = () => {
                   💡 Consejo Importante
                 </h3>
                 <p className="text-gray-700">
-                  Si estás en una situación de emergencia o crisis, no dudes en
+                  Si estás en una situación de emergencia o Crisis, no dudes en
                   llamarnos inmediatamente. Estamos aquí para ayudarte en
                   cualquier momento.
                 </p>

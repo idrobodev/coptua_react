@@ -1,6 +1,6 @@
 # Configuración de Supabase
 
-Este proyecto ha sido migrado de Firebase a Supabase. Sigue estos pasos para configurar Supabase correctamente.
+Este proyecto utiliza Supabase. Sigue estos pasos para configurarlo correctamente.
 
 ## 🚀 Configuración Inicial
 
@@ -28,11 +28,13 @@ Este proyecto ha sido migrado de Firebase a Supabase. Sigue estos pasos para con
 cp .env.example .env
 ```
 
-2. Edita el archivo `.env` con tus credenciales:
+2. Edita el archivo `.env` con tus credenciales de Supabase (agrega estas líneas al final del archivo):
 ```env
 REACT_APP_SUPABASE_URL=https://tu-proyecto-id.supabase.co
 REACT_APP_SUPABASE_ANON_KEY=tu-clave-anon-aqui
 ```
+
+**Nota**: Si tu proyecto ya tiene SUPABASE_KEY, puedes usar REACT_APP_SUPABASE_ANON_KEY = ${SUPABASE_KEY} para compatibilidad.
 
 ## 📁 Estructura de Archivos
 
@@ -79,29 +81,54 @@ npm run build
 
 ## 📋 Configuración de Base de Datos
 
-### Tablas Recomendadas
+### 1. Ejecutar Script SQL en Supabase
 
-```sql
--- Tabla de perfiles de usuario
-CREATE TABLE profiles (
-  id UUID REFERENCES auth.users ON DELETE CASCADE,
-  full_name TEXT,
-  avatar_url TEXT,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  PRIMARY KEY (id)
-);
+1. Ve a tu proyecto Supabase > SQL Editor
+2. Copia y pega el contenido completo del archivo `scripts/setup_supabase.sql`
+3. Haz clic en "Run" para ejecutar el script
+4. Verifica que no haya errores y que las tablas se hayan creado correctamente en Table Editor
 
--- Habilitar RLS
-ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
+### 2. Configurar Google OAuth (Opcional)
 
--- Política para que los usuarios solo vean su propio perfil
-CREATE POLICY "Users can view own profile" ON profiles
-  FOR SELECT USING (auth.uid() = id);
+1. Ve a Authentication > Providers en tu dashboard de Supabase
+2. Habilita Google
+3. Ingresa tu Client ID y Secret de Google Cloud Console
+4. Agrega `http://localhost:3000/auth/callback` a Site URL y Redirect URLs
 
-CREATE POLICY "Users can update own profile" ON profiles
-  FOR UPDATE USING (auth.uid() = id);
+### 3. Verificar Variables de Entorno
+
+Asegúrate de que tu `.env` incluya:
+```env
+REACT_APP_SUPABASE_URL=https://tu-proyecto-id.supabase.co
+REACT_APP_SUPABASE_ANON_KEY=tu-clave-anon-aqui
 ```
+
+### Tablas Creadas por el Script
+
+El script `setup_supabase.sql` crea las siguientes tablas con RLS habilitado:
+
+- **fundacion**: Información de la corporación
+- **sedes**: Sedes de la fundación
+- **usuarios**: Perfiles de usuarios con roles
+- **participantes**: Información de participantes
+- **profesional**: Profesionales de la salud
+- **mensualidades**: Pagos mensuales
+
+### Políticas RLS Implementadas
+
+- Administradores: Acceso completo a todas las tablas
+- Usuarios: Acceso limitado a su sede y datos propios
+- Profesionales: Acceso a su sede asignada
+
+### Datos de Prueba
+
+El script incluye datos de prueba para:
+- 1 fundación
+- 2 sedes (Bello y Apartadó)
+- 1 usuario admin
+- 2 participantes
+- 2 profesionales
+- 2 mensualidades (1 pagada, 1 pendiente)
 
 ## 🔐 Configuración de Autenticación
 
