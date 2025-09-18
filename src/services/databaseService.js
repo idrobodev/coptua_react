@@ -2,8 +2,8 @@ import { supabase } from '../supabase/supabaseClient';
 
 // Definición de roles del sistema
 export const ROLES = {
-  ADMINISTRADOR: 'ADMINISTRADOR',
-  CONSULTA: 'CONSULTA'
+  CONSULTA: 1,
+  ADMINISTRADOR: 2
 };
 
 class DatabaseService {
