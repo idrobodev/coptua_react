@@ -16,7 +16,7 @@ class StorageService {
     }
 
     const fullPath = path ? `${path}/${file.name}` : file.name;
-    const { data, error } = await supabase.storage
+    const { error } = await supabase.storage
       .from('documents')
       .upload(fullPath, file, {
         cacheControl: '3600',
@@ -24,7 +24,49 @@ class StorageService {
       });
 
     if (error) throw error;
-    return data;
+
+    // Obtener URL pública y registrar metadatos en tabla 'archivos'
+    const { data: urlData } = await supabase.storage
+      .from('documents')
+      .getPublicUrl(fullPath);
+
+    const publicUrl = urlData?.publicUrl || null;
+
+    // Crear registro en tabla 'archivos' si existe
+    try {
+      await supabase.from('archivos').insert({
+        nombre: file.name,
+        ruta: fullPath,
+        url: publicUrl,
+        mime_type: file.type || null,
+        tamaño: file.size || null,
+        carpeta: path || null,
+        created_at: new Date().toISOString()
+      });
+    } catch (e) {
+      console.warn('Tabla "archivos" no existe o inserción falló. Continúa sin registrar metadatos.', e?.message);
+    }
+
+    return { path: fullPath, publicUrl };
+  }
+
+  async deleteFile(fullPath) {
+    if (!(await this.isAdmin())) {
+      throw new Error('Permission denied: Admin access required');
+    }
+
+    const { error } = await supabase.storage
+      .from('documents')
+      .remove([fullPath]);
+
+    if (error) throw error;
+
+    // Eliminar metadatos en tabla 'archivos' si existe
+    try {
+      await supabase.from('archivos').delete().eq('ruta', fullPath);
+    } catch (e) {
+      console.warn('No se pudo eliminar metadatos de tabla "archivos" (puede no existir):', e?.message);
+    }
   }
 
   async listFiles(path = '') {
@@ -44,18 +86,6 @@ class StorageService {
     files = files.filter(item => item.name !== '_placeholder');
 
     return { files, folders };
-  }
-
-  async deleteFile(fullPath) {
-    if (!(await this.isAdmin())) {
-      throw new Error('Permission denied: Admin access required');
-    }
-
-    const { error } = await supabase.storage
-      .from('documents')
-      .remove([fullPath]);
-
-    if (error) throw error;
   }
 
   async deleteFolder(path) {

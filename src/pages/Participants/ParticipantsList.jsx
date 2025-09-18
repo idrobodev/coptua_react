@@ -18,7 +18,7 @@ const ParticipantsList = () => {
   const loadParticipants = async () => {
     try {
       setLoading(true);
-      const { data } = await dbService.getParticipants();
+      const { data } = await dbService.getParticipantes();
       setParticipants(data || []);
     } catch (error) {
       console.error('Error loading participants:', error);

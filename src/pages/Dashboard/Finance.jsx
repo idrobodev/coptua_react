@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import DashboardLayout from "../../components/Dashboard/DashboardLayout";
 import { dbService } from "../../services/databaseService";
 import useDebouncedSearch from "../../hooks/useDebouncedSearch";
@@ -19,7 +19,7 @@ const Finance = () => {
   const [editingId, setEditingId] = useState(null);
   const [formData, setFormData] = useState({ participant_id: '', mes: '', año: new Date().getFullYear(), valor: '', status: 'PAGADO' });
 
-  const months = [
+  const months = useMemo(() => [
     { value: 1, label: 'Enero' },
     { value: 2, label: 'Febrero' },
     { value: 3, label: 'Marzo' },
@@ -32,14 +32,14 @@ const Finance = () => {
     { value: 10, label: 'Octubre' },
     { value: 11, label: 'Noviembre' },
     { value: 12, label: 'Diciembre' }
-  ];
+  ], []);
 
   const years = Array.from({ length: 11 }, (_, i) => 2020 + i);
 
-  const getMonthLabel = (mes) => {
+  const getMonthLabel = useCallback((mes) => {
     const month = months.find(m => m.value === mes);
     return month ? month.label : mes.toString();
-  };
+  }, [months]);
 
   const getToggleStatus = (status) => {
     return status === 'PAGADO' ? 'PENDIENTE' : 'PAGADO';

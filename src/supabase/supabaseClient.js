@@ -122,3 +122,11 @@ export const getConfigStatus = () => {
 };
 
 export default supabase;
+
+export const TABLES = {
+  FUNDACION: 'fundacion',
+  SEDES: 'sedes',
+  USUARIOS: 'usuarios',
+  PARTICIPANTES: 'participantes',
+  MENSUALIDADES: 'mensualidades'
+};
