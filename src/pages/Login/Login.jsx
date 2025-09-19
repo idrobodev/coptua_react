@@ -3,10 +3,12 @@ import { useForm } from "react-hook-form";
 import { useHistory, useLocation } from "react-router-dom";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import { useAuth } from "../../components/Context/AuthContext";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 const Login = () => {
   const [error, setError] = useState("");
-  const [, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const { login } = useAuth();
 
   const history = useHistory();
@@ -68,25 +70,36 @@ const Login = () => {
 
                 <div className="mb-2">
                   <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">Contraseña</label>
-                  <input
-                    id="password"
-                    type="password"
-                    autoComplete="current-password"
-                    placeholder="Ingresa tu contraseña"
-                    className="block w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-gray-900 placeholder-gray-400 shadow-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/30"
-                    aria-invalid={!!errors.password}
-                    {...register("password", { required: true })}
-                  />
+                  <div className="relative">
+                    <input
+                      id="password"
+                      type={showPassword ? "text" : "password"}
+                      autoComplete="current-password"
+                      placeholder="Ingresa tu contraseña"
+                      className="block w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 pr-10 text-gray-900 placeholder-gray-400 shadow-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/30"
+                      aria-invalid={!!errors.password}
+                      {...register("password", { required: true })}
+                    />
+                    <button
+                      type="button"
+                      aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute inset-y-0 right-0 grid place-items-center px-3 text-gray-500 hover:text-gray-700 transition-colors"
+                    >
+                      {showPassword ? <FiEyeOff size={18} /> : <FiEye size={18} />}
+                    </button>
+                  </div>
                   {errors.password && (
                     <span className="mt-1 block text-xs text-red-600">Este campo es obligatorio</span>
                   )}
                 </div>
 
                 <button
-                  className="mt-6 w-full rounded-lg bg-primary py-2.5 px-4 font-medium text-white shadow-md transition hover:brightness-105 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                  className="mt-6 w-full rounded-lg bg-primary py-2.5 px-4 font-medium text-white shadow-md transition hover:brightness-105 focus:outline-none focus:ring-2 focus:ring-primary/40 disabled:cursor-not-allowed disabled:opacity-60"
                   type="submit"
+                  disabled={loading}
                 >
-                  Iniciar Sesión
+                  {loading ? "Ingresando..." : "Iniciar Sesión"}
                 </button>
               </form>
             </div>
