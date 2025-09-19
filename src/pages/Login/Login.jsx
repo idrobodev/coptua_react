@@ -34,53 +34,62 @@ const Login = () => {
   return (
     <>
       <Breadcrumbs title="Iniciar Sesión" />
-      <div className="container mx-auto px-4">
-        <div
-          className="flex gap-8 items-center justify-center "
-          style={{ minHeight: "65vh" }}
-        >
-          <div
-            className="inline-block border-2 border-gray-200 p-8 rounded-md shadow-lg"
-            style={{ width: "450px" }}
-          >
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <h2 className="text-2xl font-Poppins text-center">
-                Iniciar Sesión
-              </h2>
-              {error && <span className="text-red-600 py-2">{error}</span>}
+      <div className="min-h-[70vh] bg-gradient-to-b from-gray-50 to-white">
+        <div className="container mx-auto px-4 py-10 flex items-center justify-center">
+          <div className="w-full max-w-md">
+            <div className="bg-white/95 backdrop-blur-sm border border-gray-100 shadow-xl rounded-2xl p-8">
+              <form onSubmit={handleSubmit(onSubmit)} noValidate>
+                <div className="text-center mb-6">
+                  <h2 className="text-2xl font-semibold tracking-tight text-gray-800">Iniciar Sesión</h2>
+                  <p className="text-sm text-gray-500 mt-1">Accede con tu correo y contraseña</p>
+                </div>
 
-              <div className="mt-4 mb-4">
-                <label htmlFor="email">Email</label>
-                <input
-                  className="border border-gray-400 w-full px-4 py-2"
-                  placeholder="Ingrese su correo electrónico"
-                  {...register("email", { required: true })}
-                />
-                {errors.email && (
-                  <span className="text-red-600">Este campo es obligatorio</span>
+                {error && (
+                  <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-2 text-sm text-red-700">
+                    {error}
+                  </div>
                 )}
-              </div>
 
-              <div className="mt-4 mb-4">
-                <label htmlFor="password">Contraseña</label>
-                <input
-                  type="password"
-                  placeholder="Ingrese su contraseña"
-                  className="border border-gray-400 w-full px-4 py-2"
-                  {...register("password", { required: true })}
-                />
-                {errors.password && (
-                  <span className="text-red-600">Este campo es obligatorio</span>
-                )}
-              </div>
+                <div className="mb-4">
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Correo electrónico</label>
+                  <input
+                    id="email"
+                    type="email"
+                    autoComplete="email"
+                    className="block w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-gray-900 placeholder-gray-400 shadow-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/30"
+                    placeholder="tu@correo.com"
+                    aria-invalid={!!errors.email}
+                    {...register("email", { required: true })}
+                  />
+                  {errors.email && (
+                    <span className="mt-1 block text-xs text-red-600">Este campo es obligatorio</span>
+                  )}
+                </div>
 
-              <button
-                className="w-full bg-primary text-white mt-4 mb-4  py-2 px-4 rounded-md"
-                type="submit"
-              >
-                Iniciar Sesión
-              </button>
-            </form>
+                <div className="mb-2">
+                  <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">Contraseña</label>
+                  <input
+                    id="password"
+                    type="password"
+                    autoComplete="current-password"
+                    placeholder="Ingresa tu contraseña"
+                    className="block w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-gray-900 placeholder-gray-400 shadow-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/30"
+                    aria-invalid={!!errors.password}
+                    {...register("password", { required: true })}
+                  />
+                  {errors.password && (
+                    <span className="mt-1 block text-xs text-red-600">Este campo es obligatorio</span>
+                  )}
+                </div>
+
+                <button
+                  className="mt-6 w-full rounded-lg bg-primary py-2.5 px-4 font-medium text-white shadow-md transition hover:brightness-105 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                  type="submit"
+                >
+                  Iniciar Sesión
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
