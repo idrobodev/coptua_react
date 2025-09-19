@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import SEO from "../../components/SEO/SEO";
-// import { supabase } from "../../supabase/supabaseClient"; // Eliminado
 
 import GradientText from "../../components/UI/GradientText";
 
@@ -43,7 +42,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Simular envío de formulario (antes usaba Supabase)
+      // Simular envío de formulario (integrar con API de contacto)
       await new Promise((resolve) => setTimeout(resolve, 500));
 
       alert("Mensaje enviado con éxito!");

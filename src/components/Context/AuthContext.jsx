@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { supabase } from "../../supabase/supabaseClient";
-import { dbService, ROLES } from "../../services/databaseService";
+import { apiService, ROLES } from "../../services/apiService";
 const AuthContext = createContext();
 
 // Make useAuth
@@ -13,55 +12,37 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check active session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setCurrentUser(session?.user ?? null);
-      setLoading(false);
-    });
-
-    // Listen for auth changes
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (event, session) => {
+    // Check if user is logged in on app start
+    const initializeAuth = async () => {
       setLoading(true);
-      if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
-        const user = session?.user;
-        if (user) {
-          // Fetch user role from DB
-          const { data: dbUser } = await dbService.getCurrentUser();
-          setCurrentUser({ ...user, rol: dbUser?.rol || ROLES.CONSULTA });
-        } else {
-          setCurrentUser(null);
-        }
-      } else if (event === 'SIGNED_OUT') {
+      try {
+        const { data: user } = await apiService.getCurrentUser();
+        setCurrentUser(user);
+      } catch (error) {
+        console.error('Error initializing auth:', error);
         setCurrentUser(null);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
-    });
+    };
 
-    return () => subscription.unsubscribe();
+    initializeAuth();
   }, []);
 
 
   // User login using email password
   const login = async (email, password) => {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    const { data, error } = await apiService.login(email, password);
 
     if (error) throw error;
 
-    // Fetch user role
-    const { data: dbUser } = await dbService.getCurrentUser();
-    const userWithRole = { ...data.user, rol: dbUser?.rol || ROLES.CONSULTA };
-    setCurrentUser(userWithRole);
-    return { user: userWithRole };
+    setCurrentUser(data.user);
+    return { user: data.user };
   };
 
   // User logout
   const logout = async () => {
-    const { error } = await supabase.auth.signOut();
+    const { error } = await apiService.logout();
     if (error) throw error;
     setCurrentUser(null);
     return { success: true };
@@ -70,9 +51,7 @@ const AuthProvider = ({ children }) => {
 
   // forget Password
   const forgetPassword = async (email) => {
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: window.location.origin + '/reset-password',
-    });
+    const { error } = await apiService.resetPassword(email);
     if (error) throw error;
     return { success: true };
   };

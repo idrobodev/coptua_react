@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Sidebar from '../../components/Dashboard/Sidebar';
+import DashboardLayout from '../../components/Dashboard/DashboardLayout';
 import DataTable from '../../components/UI/DataTable';
-import LoadingSpinner from '../../components/UI/LoadingSpinner';
 import { dbService } from '../../services/databaseService';
 
 const GuardiansList = () => {
   const [guardians, setGuardians] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   useEffect(() => {
     loadGuardians();
@@ -29,8 +26,6 @@ const GuardiansList = () => {
     }
   };
 
-  const toggleSidebarOpen = () => setSidebarOpen(!sidebarOpen);
-  const toggleSidebarCollapsed = () => setSidebarCollapsed(!sidebarCollapsed);
 
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('es-CO', {
@@ -175,63 +170,37 @@ const GuardiansList = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-        <div className="flex">
-          <Sidebar isOpen={sidebarOpen} onToggle={toggleSidebarOpen} isCollapsed={sidebarCollapsed} onToggleCollapse={toggleSidebarCollapsed} />
-          <main className={`flex-1 transition-all duration-300 ${sidebarCollapsed ? 'md:ml-16' : 'md:ml-64'} pt-20`}>
-            <div className="flex items-center justify-center h-screen">
-              <LoadingSpinner size="xl" text="Cargando acudientes..." />
-            </div>
-          </main>
-        </div>
-      </div>
+      <DashboardLayout 
+        title="Gestión de Acudientes" 
+        subtitle="Administra los acudientes responsables de los participantes" 
+        loading={true} 
+        loadingText="Cargando acudientes..." 
+      />
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      <div className="flex">
-        <Sidebar 
-          isOpen={sidebarOpen} 
-          onToggle={toggleSidebarOpen} 
-          isCollapsed={sidebarCollapsed} 
-          onToggleCollapse={toggleSidebarCollapsed} 
-        />
-        
-        <main className={`flex-1 transition-all duration-300 ${sidebarCollapsed ? 'md:ml-16' : 'md:ml-64'} pt-20`}>
-          {/* Header */}
-          <header className="bg-white shadow-sm border-b border-gray-200 sticky top-16 z-10">
-            <div className="px-6 py-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h1 className="text-2xl font-Lato font-bold text-gray-800">
-                    Gestión de Acudientes
-                  </h1>
-                  <p className="text-sm font-Poppins text-gray-600 mt-1">
-                    Administra los acudientes responsables de los participantes
-                  </p>
-                </div>
-                <div className="flex items-center space-x-4">
-                  <Link
-                    to="/dashboard/guardians/new"
-                    className="bg-primary text-white px-4 py-2 rounded-xl font-Poppins font-medium hover:bg-primary-dark transition-colors duration-200 flex items-center space-x-2"
-                  >
-                    <i className="fas fa-plus"></i>
-                    <span>Nuevo Acudiente</span>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </header>
-
-          {/* Content */}
-          <div className="p-6">
-            {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-Poppins font-medium text-gray-600">Total Acudientes</p>
+    <DashboardLayout 
+      title="Gestión de Acudientes" 
+      subtitle="Administra los acudientes responsables de los participantes"
+      extraActions={
+        <Link
+          to="/dashboard/guardians/new"
+          className="bg-primary text-white px-4 py-2 rounded-xl font-Poppins font-medium hover:bg-primary-dark transition-colors duration-200 flex items-center space-x-2"
+        >
+          <i className="fas fa-plus"></i>
+          <span>Nuevo Acudiente</span>
+        </Link>
+      }
+    >
+      {/* Content */}
+      <div className="p-6">
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-Poppins font-medium text-gray-600">Total Acudientes</p>
                     <p className="text-3xl font-Lato font-bold text-blue-600 mt-2">
                       {stats.total}
                     </p>
@@ -315,10 +284,8 @@ const GuardiansList = () => {
               }}
               className="mb-8"
             />
-          </div>
-        </main>
       </div>
-    </div>
+    </DashboardLayout>
   );
 };
 

@@ -168,54 +168,6 @@ const Participantes = () => {
         </div>
       </div>
 
-          {/* Filtros */}
-          <div className="bg-white shadow-sm border-b border-gray-200 px-6 py-4">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Sede</label>
-                <select
-                  value={filtros.sede}
-                  onChange={(e) => setFiltros({...filtros, sede: e.target.value})}
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                  <option value="Todas">Todas las Sedes</option>
-                  <option value="Bello">Bello</option>
-                  <option value="Apartadó">Apartadó</option>
-                </select>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Estado</label>
-                <select
-                  value={filtros.estado}
-                  onChange={(e) => setFiltros({...filtros, estado: e.target.value})}
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                  <option value="Todos">Todos los Estados</option>
-                  <option value="Activo">Activo</option>
-                      <option value="Inactivo">Inactivo</option>
-                </select>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Búsqueda</label>
-                <input
-                  type="text"
-                  placeholder="Nombre, teléfono..."
-                  value={filtros.busqueda}
-                  onChange={(e) => setFiltros({...filtros, busqueda: e.target.value})}
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
-              
-              <div className="flex items-end">
-                <button className="w-full bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition-colors">
-                  <i className="fas fa-search mr-2"></i>
-                  Filtrar
-                </button>
-              </div>
-            </div>
-          </div>
 
       {/* Estadísticas Rápidas */}
       <div className="px-6 py-4">

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../../components/Context/AuthContext";
-import { supabase } from "../../supabase/supabaseClient";
+import { apiService } from "../../services/apiService";
 import { dbService } from "../../services/databaseService";
 import DashboardLayout from "../../components/Dashboard/DashboardLayout";
 
@@ -28,16 +28,10 @@ const Configuracion = () => {
     try {
       const nombreInput = document.getElementById('nombre');
       const nombre = nombreInput?.value.trim();
-      if (nombre && nombre !== currentUser.user_metadata?.full_name && nombre !== currentUser.nombre) {
-        // Update Supabase auth metadata
-        const { error: authError } = await supabase.auth.updateUser({
-          data: { full_name: nombre }
-        });
-        if (authError) throw authError;
-
-        // Update usuarios table
-        const { error: dbError } = await dbService.update('usuarios', currentUser.id, { nombre });
-        if (dbError) throw dbError;
+      if (nombre && nombre !== currentUser.nombre) {
+        // Update user profile via API
+        const { data, error } = await apiService.updateProfile({ nombre });
+        if (error) throw new Error(error.message);
 
         setSuccess('Perfil actualizado correctamente');
       } else {

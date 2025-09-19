@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { useSidebarContext } from "../../components/Context/SidebarContext";
-import DashboardHeader from "../../components/Dashboard/DashboardHeader";
-import Sidebar from "../../components/Dashboard/Sidebar";
-import LoadingSpinner from "../../components/UI/LoadingSpinner";
+import DashboardLayout from "../../components/Dashboard/DashboardLayout";
 import { dbService } from "../../services/databaseService";
 
 const Dashboard = () => {
@@ -49,32 +46,19 @@ const Dashboard = () => {
     loadDashboardData();
   }, []);
 
-  const { sidebarOpen, sidebarCollapsed, toggleSidebarOpen, toggleSidebarCollapsed } = useSidebarContext();
-
-  const marginClass = sidebarCollapsed ? 'md:ml-20' : 'md:ml-64';
-
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-        <div className="flex">
-          <Sidebar isOpen={sidebarOpen} onToggle={toggleSidebarOpen} isCollapsed={sidebarCollapsed} onToggleCollapse={toggleSidebarCollapsed} />
-          <main className={`flex-1 transition-all duration-300 ${marginClass} pt-20`}>
-            <div className="flex items-center justify-center h-screen">
-              <LoadingSpinner size="xl" text="Cargando dashboard..." />
-            </div>
-          </main>
-        </div>
-      </div>
+      <DashboardLayout 
+        title="Dashboard" 
+        subtitle="Corporación Todo por un Alma" 
+        loading={true} 
+        loadingText="Cargando dashboard..." 
+      />
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans antialiased">
-      <div className="flex">
-        <Sidebar isOpen={sidebarOpen} onToggle={toggleSidebarOpen} isCollapsed={sidebarCollapsed} onToggleCollapse={toggleSidebarCollapsed} />
-
-        <main className={`flex-1 transition-all duration-300 ${marginClass} pt-20`}>
-          <DashboardHeader title="Dashboard" subtitle="Corporación Todo por un Alma" />
+    <DashboardLayout title="Dashboard" subtitle="Corporación Todo por un Alma">
 
 
           {/* Widgets de Resumen General */}
@@ -168,9 +152,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-        </main>
-      </div>
-    </div>
+    </DashboardLayout>
   );
 };
 
