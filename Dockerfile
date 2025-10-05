@@ -19,6 +19,7 @@ COPY . .
 ENV NODE_ENV=production
 ENV CI=true
 ENV FAST_REFRESH=false
+ENV GENERATE_SOURCEMAP=false
 
 # Copy environment file if it exists (for Dokploy)
 RUN if [ -f .env.dokploy ]; then cp .env.dokploy .env.production; fi

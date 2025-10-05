@@ -50,6 +50,14 @@ module.exports = {
   // This section handles source maps, caching, bundle analysis, and optimization
   webpack: {
     configure: (webpackConfig, { env }) => {
+      // Disable React Refresh in production
+      if (env === 'production') {
+        // Remove React Refresh webpack plugin from production build
+        webpackConfig.plugins = webpackConfig.plugins.filter(plugin => {
+          return !(plugin.constructor && plugin.constructor.name === 'ReactRefreshPlugin');
+        });
+      }
+
       // Hot reload optimizations for development
       if (env === 'development') {
         // Configure source maps for better debugging without performance impact
@@ -219,15 +227,25 @@ module.exports = {
     loaderOptions: (babelLoaderOptions, { env }) => {
       // Filter out react-refresh/babel plugin in production to prevent runtime error
       if (env === 'production') {
-        babelLoaderOptions.plugins = babelLoaderOptions.plugins.filter(plugin => {
-          if (typeof plugin === 'string') {
-            return plugin !== 'react-refresh/babel';
-          }
-          if (Array.isArray(plugin)) {
-            return plugin[0] !== 'react-refresh/babel';
-          }
-          return true;
-        });
+        if (babelLoaderOptions.plugins) {
+          babelLoaderOptions.plugins = babelLoaderOptions.plugins.filter(plugin => {
+            // Handle string plugins
+            if (typeof plugin === 'string') {
+              return !plugin.includes('react-refresh');
+            }
+            // Handle array plugins [pluginName, options]
+            if (Array.isArray(plugin) && plugin.length > 0) {
+              const pluginName = typeof plugin[0] === 'string' ? plugin[0] : '';
+              return !pluginName.includes('react-refresh');
+            }
+            // Handle plugin objects
+            if (plugin && typeof plugin === 'object') {
+              const pluginKey = plugin.key || '';
+              return !pluginKey.includes('react-refresh');
+            }
+            return true;
+          });
+        }
       }
       return babelLoaderOptions;
     },
