@@ -15,11 +15,15 @@ RUN npm ci --only=production=false --silent
 # Copy source code
 COPY . .
 
+# Set environment variables for build
+ENV NODE_ENV=production
+ENV CI=true
+
 # Copy environment file if it exists (for Dokploy)
 RUN if [ -f .env.dokploy ]; then cp .env.dokploy .env.production; fi
 
 # Build the application
-RUN npm run build
+RUN ["npm", "run", "build"]
 
 # Production stage
 FROM nginx:1.25-alpine
