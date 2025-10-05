@@ -214,9 +214,15 @@ module.exports = {
       // Custom Babel plugins can be added here
       // Currently empty - using CRA's default Babel configuration with Fast Refresh
     ].filter(Boolean),
-    
-    // Note: We do NOT modify loaderOptions to preserve CRA's React Refresh setup
-    // CRA automatically configures react-refresh/babel plugin when FAST_REFRESH=true
-    // Removing or filtering this plugin would break Fast Refresh functionality
+
+    loaderOptions: (babelLoaderOptions, { env }) => {
+      // Filter out react-refresh/babel plugin in production to prevent runtime error
+      if (env === 'production') {
+        babelLoaderOptions.plugins = babelLoaderOptions.plugins.filter(plugin =>
+          !Array.isArray(plugin) || plugin[0] !== 'react-refresh/babel'
+        );
+      }
+      return babelLoaderOptions;
+    },
   },
 };
