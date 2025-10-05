@@ -3,7 +3,6 @@ export { default as useDebouncedSearch } from './useDebouncedSearch';
 export { default as useFileManager } from './useFileManager';
 export { default as useFinanceData } from './useFinanceData';
 export { default as useModal } from './useModal';
-export { default as useOptimizedCallback } from './useOptimizedCallback';
 export { default as usePagination } from './usePagination';
 export { default as usePerformanceMonitoring } from './usePerformanceMonitoring';
 export { default as useRenderTracker } from './useRenderTracker';
