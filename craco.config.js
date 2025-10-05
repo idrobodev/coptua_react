@@ -218,9 +218,15 @@ module.exports = {
     loaderOptions: (babelLoaderOptions, { env }) => {
       // Filter out react-refresh/babel plugin in production to prevent runtime error
       if (env === 'production') {
-        babelLoaderOptions.plugins = babelLoaderOptions.plugins.filter(plugin =>
-          !Array.isArray(plugin) || plugin[0] !== 'react-refresh/babel'
-        );
+        babelLoaderOptions.plugins = babelLoaderOptions.plugins.filter(plugin => {
+          if (typeof plugin === 'string') {
+            return plugin !== 'react-refresh/babel';
+          }
+          if (Array.isArray(plugin)) {
+            return plugin[0] !== 'react-refresh/babel';
+          }
+          return true;
+        });
       }
       return babelLoaderOptions;
     },
