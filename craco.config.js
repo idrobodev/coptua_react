@@ -56,6 +56,19 @@ module.exports = {
         webpackConfig.plugins = webpackConfig.plugins.filter(plugin => {
           return !(plugin.constructor && plugin.constructor.name === 'ReactRefreshPlugin');
         });
+
+        // Add alias to prevent react-refresh from being bundled
+        webpackConfig.resolve.alias = {
+          ...webpackConfig.resolve.alias,
+          'react-refresh/runtime': false,
+          '@pmmmwh/react-refresh-webpack-plugin': false,
+        };
+
+        // Exclude react-refresh from being processed
+        webpackConfig.externals = {
+          ...webpackConfig.externals,
+          'react-refresh/runtime': 'undefined',
+        };
       }
 
       // Hot reload optimizations for development
@@ -219,34 +232,23 @@ module.exports = {
   // Note: We rely on CRA's built-in React Refresh configuration
   // The react-refresh/babel plugin is automatically included by react-scripts
   babel: {
-    plugins: [
-      // Custom Babel plugins can be added here
-      // Currently empty - using CRA's default Babel configuration with Fast Refresh
-    ].filter(Boolean),
-
     loaderOptions: (babelLoaderOptions, { env }) => {
-      // Filter out react-refresh/babel plugin in production to prevent runtime error
-      if (env === 'production') {
-        if (babelLoaderOptions.plugins) {
-          babelLoaderOptions.plugins = babelLoaderOptions.plugins.filter(plugin => {
-            // Handle string plugins
-            if (typeof plugin === 'string') {
-              return !plugin.includes('react-refresh');
-            }
-            // Handle array plugins [pluginName, options]
-            if (Array.isArray(plugin) && plugin.length > 0) {
-              const pluginName = typeof plugin[0] === 'string' ? plugin[0] : '';
-              return !pluginName.includes('react-refresh');
-            }
-            // Handle plugin objects
-            if (plugin && typeof plugin === 'object') {
-              const pluginKey = plugin.key || '';
-              return !pluginKey.includes('react-refresh');
-            }
-            return true;
-          });
-        }
+      // Only modify Babel config in production to remove React Refresh
+      if (env === 'production' && babelLoaderOptions.plugins) {
+        babelLoaderOptions.plugins = babelLoaderOptions.plugins.filter(plugin => {
+          // Handle string plugins
+          if (typeof plugin === 'string') {
+            return plugin !== 'react-refresh/babel';
+          }
+          // Handle array plugins [pluginName, options]
+          if (Array.isArray(plugin) && plugin.length > 0) {
+            const pluginName = typeof plugin[0] === 'string' ? plugin[0] : '';
+            return pluginName !== 'react-refresh/babel';
+          }
+          return true;
+        });
       }
+      // In development, return unmodified options to preserve React Refresh
       return babelLoaderOptions;
     },
   },
