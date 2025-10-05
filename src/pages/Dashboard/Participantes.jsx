@@ -540,20 +540,14 @@ const ParticipanteViewModal = ({ isOpen, onClose, participante, onCrearAcudiente
   const [acudientes, setAcudientes] = useState([]);
   const [loadingAcudientes, setLoadingAcudientes] = useState(false);
 
-  useEffect(() => {
-    if (isOpen && participante) {
-      loadAcudientes();
-    }
-  }, [isOpen, participante]);
-
-  const loadAcudientes = async () => {
+  const loadAcudientes = useCallback(async () => {
     if (!participante?.id && !participante?.id_participante) return;
-    
+
     try {
       setLoadingAcudientes(true);
       const participanteId = participante.id || participante.id_participante;
       const result = await dbService.getAcudientesByParticipante(participanteId);
-      
+
       if (result.data && Array.isArray(result.data)) {
         setAcudientes(result.data);
       } else {
@@ -565,7 +559,13 @@ const ParticipanteViewModal = ({ isOpen, onClose, participante, onCrearAcudiente
     } finally {
       setLoadingAcudientes(false);
     }
-  };
+  }, [participante]);
+
+  useEffect(() => {
+    if (isOpen && participante) {
+      loadAcudientes();
+    }
+  }, [isOpen, participante, loadAcudientes]);
 
   if (!participante) return null;
 

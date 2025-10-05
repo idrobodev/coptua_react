@@ -24,31 +24,31 @@ export default function useOptimizedCallback(callback, dependencies = [], option
     if (!depsRef.current || depsRef.current.length !== dependencies.length) {
       return true;
     }
-    
+
     if (deepCompare) {
       return !deepEqual(depsRef.current, dependencies);
     }
-    
+
     // Shallow comparison
     return dependencies.some((dep, index) => dep !== depsRef.current[index]);
-  }, dependencies);
+  }, [dependencies, deepCompare]);
   
   // Create memoized callback only when dependencies change
   const memoizedCallback = useMemo(() => {
     if (depsChanged || !memoizedCallbackRef.current) {
       depsRef.current = dependencies;
-      
+
       const optimizedCallback = (...args) => {
         // Always call the latest callback to avoid stale closures
         return callbackRef.current(...args);
       };
-      
+
       memoizedCallbackRef.current = optimizedCallback;
       return optimizedCallback;
     }
-    
+
     return memoizedCallbackRef.current;
-  }, [depsChanged]);
+  }, [depsChanged, dependencies]);
   
   return memoizedCallback;
 }
@@ -113,5 +113,5 @@ export function useStableCallback(callback, dependencies = []) {
   // Use React's useCallback with stable wrapper
   return useCallback((...args) => {
     return callbackRef.current(...args);
-  }, dependencies);
+  }, [dependencies]);
 }
