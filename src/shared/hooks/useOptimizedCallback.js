@@ -111,7 +111,8 @@ export function useStableCallback(callback, dependencies = []) {
   callbackRef.current = callback;
   
   // Use React's useCallback with stable wrapper
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   return useCallback((...args) => {
     return callbackRef.current(...args);
-  }, [dependencies]);
+  }, dependencies);
 }
