@@ -15,7 +15,8 @@ Esta guía explica cómo desplegar el frontend React en Dokploy.
 
 1. Ve a tu panel de Dokploy
 2. Crea un nuevo proyecto
-3. Selecciona "Docker Compose" o "Dockerfile"
+3. **IMPORTANTE**: Selecciona "Dockerfile" (NO selecciones "Node.js" o "npm")
+4. Si ya creaste el proyecto como Node.js, elimínalo y créalo de nuevo como Dockerfile
 
 ### 2. Configurar Variables de Entorno
 
@@ -62,9 +63,21 @@ Esto levantará el servicio en `http://localhost:3001`
 
 ## Troubleshooting
 
+### ❌ Error: webpack-dev-server en producción
+**Síntoma**: Ves errores como `$RefreshSig$ is not defined` o `webpack-dev-server` en la consola del navegador.
+
+**Causa**: Dokploy está ejecutando `npm start` en lugar de usar el Dockerfile.
+
+**Solución**:
+1. En Dokploy, ve a la configuración de tu aplicación
+2. Cambia el "Build Type" de "Node.js" a "Dockerfile"
+3. Asegúrate de que el Dockerfile path sea `./Dockerfile`
+4. Redespliega la aplicación
+
 ### Build falla
 - Verifica que todos los archivos estén incluidos en el contexto de build
 - Revisa los logs de build en Dokploy
+- Asegúrate de que NODE_ENV=production esté configurado
 
 ### API no conecta
 - Verifica las URLs de las APIs en las variables de entorno

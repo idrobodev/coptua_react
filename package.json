@@ -8,7 +8,7 @@
     },
     "scripts": {
         "start": "cross-env BROWSER=none PORT=3001 FAST_REFRESH=true craco start",
-        "build": "cross-env FAST_REFRESH=false craco build",
+        "build": "cross-env NODE_ENV=production FAST_REFRESH=false craco build",
         "test": "craco test",
         "eject": "react-scripts eject",
         "analyze": "node scripts/bundle-analysis.js",
