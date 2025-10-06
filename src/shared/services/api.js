@@ -340,37 +340,70 @@ class ApiService {
   // ==================== AUTENTICACIÓN ====================
 
   async login(email, password) {
+    console.log('🔐 Starting login request...');
+    console.log('📧 Email:', email);
+    console.log('🌐 Auth API URL:', AUTH_API_BASE_URL);
+    console.log('🔗 Full login URL:', AUTH_API_BASE_URL + '/auth/login');
+
+    const startTime = Date.now();
+
     try {
+      console.log('📤 Sending login request...');
       const response = await authClient.post('/auth/login', { email, password });
+      const responseTime = Date.now() - startTime;
+      console.log('✅ Login request completed in', responseTime, 'ms');
+      console.log('📊 Response status:', response.status);
+
       const { data: responseData, error: responseError } = response.data;
+      console.log('📦 Response data:', responseData);
 
       if (responseError) {
+        console.error('❌ Server error in response:', responseError);
         const error = new Error(responseError.message || 'Error en el servidor');
         error.serverError = responseError;
         throw error;
       }
 
       if (!responseData) {
+        console.error('❌ Invalid server response: no data');
         throw new Error('Respuesta del servidor inválida');
       }
 
       const { token, user } = responseData;
+      console.log('🔑 Token received:', !!token);
+      console.log('👤 User received:', !!user);
 
       if (!token || !user) {
+        console.error('❌ Incomplete server response - missing token or user');
         throw new Error('Respuesta del servidor incompleta');
       }
 
+      console.log('💾 Storing auth data in localStorage...');
       localStorage.setItem('authToken', token);
       localStorage.setItem('currentUser', JSON.stringify(user));
 
+      console.log('🎉 Login successful!');
       return { data: { user, token }, error: null };
     } catch (error) {
+      const responseTime = Date.now() - startTime;
+      console.error('💥 Login failed after', responseTime, 'ms');
+      console.error('❌ Error details:', error);
+
       if (error.response) {
+        console.error('📊 HTTP Error Response:');
+        console.error('   Status:', error.response.status);
+        console.error('   Status Text:', error.response.statusText);
+        console.error('   Headers:', error.response.headers);
+        console.error('   Data:', error.response.data);
         const serverMessage = error.response.data?.error?.message || error.response.data?.message;
         throw new Error(serverMessage || 'Error del servidor');
       } else if (error.request) {
+        console.error('🌐 Network Error - No response received:');
+        console.error('   Request config:', error.config);
+        console.error('   Timeout was set to:', error.config?.timeout, 'ms');
         throw new Error('No se pudo conectar con el servidor. Verifica que el backend esté corriendo.');
       } else {
+        console.error('⚠️ Unexpected error:', error.message);
         throw error;
       }
     }

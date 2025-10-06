@@ -59,17 +59,28 @@ const AuthProvider = ({ children }) => {
 
 
   const login = useCallback(async (email, password) => {
+    console.log('🚀 AuthContext: Starting login process...');
+    console.log('👤 Attempting login for email:', email);
+
     try {
+      console.log('🔗 Calling api.login...');
       const { data, error } = await api.login(email, password);
 
       if (error) {
+        console.error('❌ API login returned error:', error);
         throw error;
       }
-      
+
+      console.log('✅ API login successful, user:', data.user.email);
+      console.log('🔄 Setting current user in context...');
       setCurrentUser(data.user);
+      console.log('🎯 AuthContext login completed successfully');
       return { user: data.user };
     } catch (error) {
-      console.error('Error durante login:', error);
+      console.error('💥 AuthContext login failed:', error);
+      console.error('📋 Error type:', error.type || 'unknown');
+      console.error('🌐 Is network error:', error.isNetworkError);
+      console.error('🔒 Is CORS error:', error.isCorsError);
       throw error;
     }
   }, []);
