@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { useAuth, useSidebarContext } from "shared/contexts";
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/logos/logo.png";
 
 /**
  * DashboardHeader - Componente reutilizable para el header del dashboard

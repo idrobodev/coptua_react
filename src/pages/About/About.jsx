@@ -3,10 +3,10 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Breadcrumbs from "features/dashboard/Breadcrumbs";
 import SEO from "features/landing/SEO";
-import mission from "assets/images/booking.jpg";
-import story from "assets/images/banner.png";
-import belloImage from "assets/images/review/1.jpg";
-import apartadoImage from "assets/images/sedes/apartado.jpeg";
+import mission from "assets/images/general/booking.jpg";
+import story from "assets/images/banners/banner.png";
+import belloImage from "assets/images/reviews/1.jpg";
+import apartadoImage from "assets/images/locations/apartado.jpeg";
 import { GradientText } from "components/UI";
 
 // Icons for locations

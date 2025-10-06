@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Breadcrumbs from "features/dashboard/Breadcrumbs";
-import mission from "assets/images/booking.jpg";
-import story from "assets/images/banner.png";
-import happyCl from "assets/images/happyCl.jpg";
+import mission from "assets/images/general/booking.jpg";
+import story from "assets/images/banners/banner.png";
+import happyCl from "assets/images/general/happyCl.jpg";
 import { GradientText } from "components/UI";
 
 const Programs = () => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { useAuth } from "shared/contexts";
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/logos/logo.png";
 
 const Menu = () => {
   const [menuOpen, setMenuOpen] = useState(false);
