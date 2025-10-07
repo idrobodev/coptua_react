@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
 // Import images
-import happyImg from 'assets/images/general/happyCl.jpg';
-import bookingImg from 'assets/images/general/booking.jpg';
-import review1 from 'assets/images/reviews/1.jpg';
-import review2 from 'assets/images/reviews/2.jpg';
-import review3 from 'assets/images/reviews/3.jpg';
+import carruselUno from 'assets/images/carrusel_home/carrusel_uno.jpeg';
+import carruselDos from 'assets/images/carrusel_home/carrusel_dos.jpeg';
+import carruselTres from 'assets/images/carrusel_home/carrusel_tres.jpeg';
+import carruselCuatro from 'assets/images/carrusel_home/carrusel_cuatro.jpeg';
+import carruselCinco from 'assets/images/carrusel_home/carrusel_cinco.jpeg';
+import carruselSeis from 'assets/images/carrusel_home/carrusel_seis.jpeg';
+import carruselSiete from 'assets/images/carrusel_home/carrusel_siete.jpeg';
+import carruselOcho from 'assets/images/carrusel_home/carrusel_ocho.JPG';
 
 const TransformationStories = () => {
   // Estado de carrusel y visibilidad
@@ -16,43 +19,59 @@ const TransformationStories = () => {
   const stories = [
     {
       id: 1,
-      image: happyImg,
+      image: carruselUno,
       title: 'Renovación de Esperanza',
-      description:
-        'Cada día es una nueva oportunidad para transformar vidas y renovar la esperanza en quienes más lo necesitan.',
+      description: 'Nueva oportunidad diaria para transformar vidas.',
       highlight: 'Esperanza',
     },
     {
       id: 2,
-      image: bookingImg,
+      image: carruselDos,
       title: 'Camino hacia la Sanidad',
-      description:
-        'Acompañamos a cada persona en su proceso único de recuperación, brindando apoyo integral y personalizado.',
+      description: 'Acompañamiento único y personalizado en la recuperación.',
       highlight: 'Sanidad',
     },
     {
       id: 3,
-      image: review1,
+      image: carruselTres,
       title: 'Fortaleza Interior',
-      description:
-        'Desarrollamos la fortaleza interior necesaria para superar cualquier adversidad y construir un futuro sólido.',
+      description: 'Desarrollamos fortaleza para superar adversidades.',
       highlight: 'Fortaleza',
     },
     {
       id: 4,
-      image: review2,
+      image: carruselCuatro,
       title: 'Comunidad de Apoyo',
-      description:
-        'Creamos una comunidad donde cada persona se siente valorada, comprendida y apoyada en su proceso.',
+      description: 'Comunidad donde todos se sienten valorados.',
       highlight: 'Comunidad',
     },
     {
       id: 5,
-      image: review3,
+      image: carruselCinco,
       title: 'Nueva Vida',
-      description:
-        'Celebramos cada logro, cada paso adelante, cada momento de crecimiento en el camino hacia una nueva vida.',
+      description: 'Celebramos cada logro hacia una nueva vida.',
       highlight: 'Vida Nueva',
+    },
+    {
+      id: 6,
+      image: carruselSeis,
+      title: 'Transformación Completa',
+      description: 'Del sufrimiento a la libertad total.',
+      highlight: 'Transformación',
+    },
+    {
+      id: 7,
+      image: carruselSiete,
+      title: 'Apoyo Familiar',
+      description: 'Apoyo integral para individuos y familias.',
+      highlight: 'Familia',
+    },
+    {
+      id: 8,
+      image: carruselOcho,
+      title: 'Esperanza Renovada',
+      description: 'La fe renueva la esperanza en cualquier situación.',
+      highlight: 'Fe',
     },
   ];
 
@@ -203,12 +222,12 @@ const TransformationStories = () => {
                           </div>
 
                           {/* Overlay de texto al hover */}
-                          <div className="absolute inset-0 flex items-end p-4">
+                          <div className="absolute inset-0 flex items-end p-3">
                             <div className="text-white drop-shadow-sm">
-                              <h3 className="text-lg md:text-xl font-bold leading-tight">
+                              <h3 className="text-base md:text-lg font-bold leading-tight">
                                 {story.title}
                               </h3>
-                              <p className="mt-1 text-sm text-white/90 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                              <p className="mt-1 text-xs md:text-sm text-white/90 opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
                                 {story.description}
                               </p>
                             </div>
