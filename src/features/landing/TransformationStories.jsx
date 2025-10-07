@@ -159,23 +159,6 @@ const TransformationStories = () => {
       className="py-20 bg-gradient-to-br from-gray-50 via-white to-primary/5 overflow-hidden"
     >
       <div className="container mx-auto px-4">
-        {/* Encabezado */}
-        <div
-          className={`text-center mb-16 transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          <p className="text-primary font-semibold text-lg mb-4 tracking-wide">
-            HISTORIAS DE TRANSFORMACIÓN
-          </p>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <GradientText>Vidas que Inspiran</GradientText>
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Cada historia es única, cada transformación es un milagro. Descubre cómo acompañamos a las personas en su camino hacia una nueva vida.
-          </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary  to-secondary mx-auto rounded-full mt-8"></div>
-        </div>
 
         {/* Carrusel (4 visibles en desktop) */}
         <div
