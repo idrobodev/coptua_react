@@ -24,18 +24,17 @@ const reviews = [
 ];
 
 const CustomerReviews = () => {
-  // Optimize bfcache by pausing YouTube iframes on page unload
+  // Optimize bfcache by removing YouTube iframes on page hide
   useEffect(() => {
-    const handleUnload = () => {
+    const handlePageHide = () => {
       const iframes = document.querySelectorAll('iframe[src*="youtube.com"]');
       iframes.forEach(iframe => {
-        // Send pause command to YouTube API
-        iframe.contentWindow?.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+        iframe.remove();
       });
     };
 
-    window.addEventListener('beforeunload', handleUnload);
-    return () => window.removeEventListener('beforeunload', handleUnload);
+    window.addEventListener('pagehide', handlePageHide);
+    return () => window.removeEventListener('pagehide', handlePageHide);
   }, []);
 
   return (
