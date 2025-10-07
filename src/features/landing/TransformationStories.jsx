@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { GradientText } from 'components/UI';
 
 // Import images
 import happyImg from 'assets/images/general/happyCl.jpg';
