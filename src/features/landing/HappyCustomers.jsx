@@ -64,35 +64,35 @@ const HappyCustomers = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-[#21188e]/50 via-[#5b2076]/50 to-[#ea3238]/50"></div>
         <div className="absolute inset-0 bg-black/30"></div>
         
-        <div className="container relative py-20 text-center">
+        <div className="container relative py-12 md:py-16 lg:py-20 text-center">
           <div className="max-w-5xl mx-auto">
-            <h1 className="text-5xl md:text-6xl py-6 font-Lato font-bold text-white drop-shadow-2xl tracking-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl py-4 md:py-6 font-Lato font-bold text-white drop-shadow-2xl tracking-tight">
               Nuestro <span className="text-white font-extrabold">Impacto</span> {new Date().getFullYear()}
             </h1>
-            <p className="text-xl md:text-2xl text-white mb-16 font-Poppins font-light max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl lg:text-2xl text-white mb-12 md:mb-16 font-Poppins font-light max-w-3xl mx-auto leading-relaxed px-4 md:px-0">
               Transformando vidas desde el amor y la evidencia científica
             </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-2xl mx-auto">
-              <div className="group bg-white/15 backdrop-blur-md rounded-3xl p-8 hover:bg-white/20 transition-all duration-500 hover:scale-105 hover:-translate-y-2 shadow-2xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 max-w-2xl mx-auto px-4 md:px-0">
+              <div className="group bg-white/15 backdrop-blur-md rounded-3xl p-6 md:p-8 hover:bg-white/20 transition-all duration-500 hover:scale-105 hover:-translate-y-2 shadow-2xl">
                 <div className="relative">
-                  <h1 className="text-5xl md:text-6xl font-Lato font-black text-white mb-3 drop-shadow-xl tracking-tight">
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-Lato font-black text-white mb-2 md:mb-3 drop-shadow-xl tracking-tight">
                     <CounterAnimation target="300" suffix="+" />
                   </h1>
-                  <div className="w-16 h-1 bg-white/80 mx-auto mb-4 rounded-full"></div>
-                  <p className="text-white text-lg md:text-xl font-Poppins font-medium leading-snug">
+                  <div className="w-12 h-1 md:w-16 md:h-1 bg-white/80 mx-auto mb-3 md:mb-4 rounded-full"></div>
+                  <p className="text-white text-base md:text-lg xl:text-xl font-Poppins font-medium leading-snug">
                     Personas Atendidas
                   </p>
                 </div>
               </div>
 
-              <div className="group bg-white/15 backdrop-blur-md rounded-3xl p-8 hover:bg-white/20 transition-all duration-500 hover:scale-105 hover:-translate-y-2 shadow-2xl">
+              <div className="group bg-white/15 backdrop-blur-md rounded-3xl p-6 md:p-8 hover:bg-white/20 transition-all duration-500 hover:scale-105 hover:-translate-y-2 shadow-2xl">
                 <div className="relative">
-                  <h1 className="text-5xl md:text-6xl font-Lato font-black text-white mb-3 drop-shadow-xl tracking-tight">
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-Lato font-black text-white mb-2 md:mb-3 drop-shadow-xl tracking-tight">
                     <CounterAnimation target="200" suffix="+" />
                   </h1>
-                  <div className="w-16 h-1 bg-white/80 mx-auto mb-4 rounded-full"></div>
-                  <p className="text-white text-lg md:text-xl font-Poppins font-medium leading-snug">
+                  <div className="w-12 h-1 md:w-16 md:h-1 bg-white/80 mx-auto mb-3 md:mb-4 rounded-full"></div>
+                  <p className="text-white text-base md:text-lg xl:text-xl font-Poppins font-medium leading-snug">
                     Familias Acompañadas
                   </p>
                 </div>
