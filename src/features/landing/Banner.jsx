@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import bannerVideo from "assets/images/banners/banner.webm";
-import bannerImage from "assets/images/banners/banner.png";
 
 const Banner = () => {
   return (
@@ -14,7 +13,6 @@ const Banner = () => {
         muted
         playsInline
         preload="metadata"
-        poster={bannerImage}
         style={{
           objectPosition: 'center',
           minHeight: '100%',
