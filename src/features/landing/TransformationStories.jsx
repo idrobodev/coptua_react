@@ -20,58 +20,34 @@ const TransformationStories = () => {
     {
       id: 1,
       image: carruselUno,
-      title: 'Renovación de Esperanza',
-      description: 'Nueva oportunidad diaria para transformar vidas.',
-      highlight: 'Esperanza',
     },
     {
       id: 2,
       image: carruselDos,
-      title: 'Camino hacia la Sanidad',
-      description: 'Acompañamiento único y personalizado en la recuperación.',
-      highlight: 'Sanidad',
     },
     {
       id: 3,
       image: carruselTres,
-      title: 'Fortaleza Interior',
-      description: 'Desarrollamos fortaleza para superar adversidades.',
-      highlight: 'Fortaleza',
     },
     {
       id: 4,
       image: carruselCuatro,
-      title: 'Comunidad de Apoyo',
-      description: 'Comunidad donde todos se sienten valorados.',
-      highlight: 'Comunidad',
     },
     {
       id: 5,
       image: carruselCinco,
-      title: 'Nueva Vida',
-      description: 'Celebramos cada logro hacia una nueva vida.',
-      highlight: 'Vida Nueva',
     },
     {
       id: 6,
       image: carruselSeis,
-      title: 'Transformación Completa',
-      description: 'Del sufrimiento a la libertad total.',
-      highlight: 'Transformación',
     },
     {
       id: 7,
       image: carruselSiete,
-      title: 'Apoyo Familiar',
-      description: 'Apoyo integral para individuos y familias.',
-      highlight: 'Familia',
     },
     {
       id: 8,
       image: carruselOcho,
-      title: 'Esperanza Renovada',
-      description: 'La fe renueva la esperanza en cualquier situación.',
-      highlight: 'Fe',
     },
   ];
 
@@ -215,27 +191,7 @@ const TransformationStories = () => {
                             height="500"
                             fetchPriority={index === 0 ? "high" : "auto"}
                           />
-                          {/* Overlay para legibilidad */}
-                          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-black/50 pointer-events-none"></div>
 
-                          {/* Etiqueta highlight */}
-                          <div className="absolute top-3 left-3">
-                            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary/80 text-white shadow-md">
-                              {story.highlight}
-                            </span>
-                          </div>
-
-                          {/* Overlay de texto al hover */}
-                          <div className="absolute inset-0 flex items-end p-3">
-                            <div className="text-white drop-shadow-sm">
-                              <h3 className="text-base md:text-lg font-bold leading-tight">
-                                {story.title}
-                              </h3>
-                              <p className="mt-1 text-xs md:text-sm text-white/90 opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                                {story.description}
-                              </p>
-                            </div>
-                          </div>
                         </div>
                       </div>
                     </div>
