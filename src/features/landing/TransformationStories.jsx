@@ -183,7 +183,7 @@ const TransformationStories = () => {
                         >
                           <img
                             src={story.image}
-                            alt={`Historia de transformación: ${story.title}`}
+                            alt="Historia de transformación"
                             className="absolute inset-0 w-full h-full object-cover"
                             loading="lazy"
                             decoding="async"
