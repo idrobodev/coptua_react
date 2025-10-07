@@ -13,7 +13,6 @@ const Banner = () => {
         muted
         playsInline
         preload="metadata"
-        fetchPriority="high"
         style={{
           objectPosition: 'center',
           minHeight: '100%',
