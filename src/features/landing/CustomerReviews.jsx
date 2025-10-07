@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Review from "./Review";
 import { GradientText } from "components/UI";
 
@@ -24,6 +24,20 @@ const reviews = [
 ];
 
 const CustomerReviews = () => {
+  // Optimize bfcache by pausing YouTube iframes on page unload
+  useEffect(() => {
+    const handleUnload = () => {
+      const iframes = document.querySelectorAll('iframe[src*="youtube.com"]');
+      iframes.forEach(iframe => {
+        // Send pause command to YouTube API
+        iframe.contentWindow?.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+      });
+    };
+
+    window.addEventListener('beforeunload', handleUnload);
+    return () => window.removeEventListener('beforeunload', handleUnload);
+  }, []);
+
   return (
     <section className="py-8 md:py-12 lg:py-16 xl:py-24 bg-gradient-to-br from-gray-50 via-white to-primary/5">
       <div className="container px-4">

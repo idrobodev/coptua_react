@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 
 // Import images
 import carruselUno from 'assets/images/carrusel_home/carrusel_uno.jpeg';
@@ -135,41 +135,41 @@ const TransformationStories = () => {
     return () => observer.disconnect();
   }, []);
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => {
       const maxIndex = Math.max(0, stories.length - itemsPerView);
       if (prev >= maxIndex) return 0;
       return prev + 1;
     });
-  };
+  }, [stories.length, itemsPerView]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setCurrentSlide((prev) => {
       const maxIndex = Math.max(0, stories.length - itemsPerView);
       if (prev <= 0) return maxIndex;
       return prev - 1;
     });
-  };
+  }, [stories.length, itemsPerView]);
 
-  const pageCount = Math.max(1, Math.ceil(stories.length / itemsPerView));
-  const activePage = Math.floor(currentSlide / itemsPerView);
+  const pageCount = useMemo(() => Math.max(1, Math.ceil(stories.length / itemsPerView)), [stories.length, itemsPerView]);
+  const activePage = useMemo(() => Math.floor(currentSlide / itemsPerView), [currentSlide, itemsPerView]);
 
-  const goToPage = (pageIdx) => {
+  const goToPage = useCallback((pageIdx) => {
     const target = pageIdx * itemsPerView;
     setCurrentSlide(Math.min(target, Math.max(0, stories.length - itemsPerView)));
-  };
+  }, [stories.length, itemsPerView]);
 
   // Helper: padding-top en % según relación de aspecto deseada
   // Todas las imágenes usan formato 4:5
-  const aspectRatio = '4:5';
-  const ratioToPadding = (ratio) => {
+  const aspectRatio = useMemo(() => '4:5', []);
+  const ratioToPadding = useCallback((ratio) => {
     const [w, h] = ratio.split(':').map(Number);
     if (!w || !h) return '125%'; // fallback 4:5
     return `${(h / w) * 100}%`;
-  };
+  }, []);
 
   // Transform del track basado en el slide actual
-  const trackTranslatePercent = currentSlide * (100 / itemsPerView);
+  const trackTranslatePercent = useMemo(() => currentSlide * (100 / itemsPerView), [currentSlide, itemsPerView]);
 
   return (
     <section

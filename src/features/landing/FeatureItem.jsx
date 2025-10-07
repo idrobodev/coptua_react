@@ -1,6 +1,6 @@
 import React from "react";
 
-const FeatureItem = ({ feature }) => {
+const FeatureItem = React.memo(({ feature }) => {
   const { title, icon, detail } = feature;
   
   // Mapeo de iconos FontAwesome a SVG
@@ -62,6 +62,8 @@ const FeatureItem = ({ feature }) => {
       </div>
     </div>
   );
-};
+});
+
+FeatureItem.displayName = 'FeatureItem';
 
 export default FeatureItem;
