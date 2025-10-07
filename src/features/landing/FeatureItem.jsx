@@ -40,25 +40,25 @@ const FeatureItem = ({ feature }) => {
   };
 
   return (
-    <div className="group relative">
-      <div className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-6 md:p-8 text-center border border-gray-100 hover:border-primary/20">
+    <div className="group relative h-full">
+      <div className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-6 md:p-8 text-center border border-gray-100 hover:border-primary/20 h-full flex flex-col">
         {/* Icono con fondo circular */}
-        <div className="w-20 h-20 md:w-22 md:h-22 lg:w-24 lg:h-24 mx-auto mb-4 md:mb-6 bg-gradient-to-br from-primary/10 to-primary/20 rounded-full flex items-center justify-center text-primary group-hover:from-primary/90 group-hover:to-primary/60 group-hover:text-[#434194] transition-all duration-500">
+        <div className="flex-shrink-0 w-20 h-20 md:w-22 md:h-22 lg:w-24 lg:h-24 mx-auto mb-4 md:mb-6 bg-gradient-to-br from-primary/10 to-primary/20 rounded-full flex items-center justify-center text-primary group-hover:from-primary/90 group-hover:to-primary/60 group-hover:text-[#434194] transition-all duration-500">
           {getIcon(icon)}
         </div>
 
         {/* Título */}
-        <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-3 md:mb-4 group-hover:text-primary transition-colors duration-300">
+        <h3 className="flex-shrink-0 text-lg md:text-xl font-bold text-gray-800 mb-3 md:mb-4 group-hover:text-primary transition-colors duration-300">
           {title}
         </h3>
 
         {/* Descripción */}
-        <p className="text-gray-600 text-sm md:text-sm leading-relaxed px-2 md:px-0">
+        <p className="flex-1 text-gray-600 text-sm md:text-sm leading-relaxed px-2 md:px-0">
           {detail}
         </p>
-        
+
         {/* Decoración */}
-        <div className="absolute top-4 right-4 w-2 h-2 bg-primary/20 rounded-full group-hover:bg-primary transition-colors duration-300"></div>
+        <div className="flex-shrink-0 absolute top-4 right-4 w-2 h-2 bg-primary/20 rounded-full group-hover:bg-primary transition-colors duration-300"></div>
       </div>
     </div>
   );
