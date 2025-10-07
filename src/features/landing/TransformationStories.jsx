@@ -211,6 +211,9 @@ const TransformationStories = () => {
                             className="absolute inset-0 w-full h-full object-cover"
                             loading="lazy"
                             decoding="async"
+                            width="400"
+                            height="500"
+                            fetchPriority={index === 0 ? "high" : "auto"}
                           />
                           {/* Overlay para legibilidad */}
                           <div className="absolute inset-x-0 bottom-0 h-1/3 bg-black/50 pointer-events-none"></div>
