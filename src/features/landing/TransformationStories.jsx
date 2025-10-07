@@ -207,9 +207,10 @@ const TransformationStories = () => {
                         >
                           <img
                             src={story.image}
-                            alt={story.title}
+                            alt={`Historia de transformación: ${story.title}`}
                             className="absolute inset-0 w-full h-full object-cover"
                             loading="lazy"
+                            decoding="async"
                           />
                           {/* Overlay para legibilidad */}
                           <div className="absolute inset-x-0 bottom-0 h-1/3 bg-black/50 pointer-events-none"></div>
@@ -243,20 +244,20 @@ const TransformationStories = () => {
             {/* Flechas de navegación */}
             <button
               onClick={prevSlide}
-              aria-label="Anterior"
-              className="absolute -left-3 sm:-left-4 top-1/2 -translate-y-1/2 bg-white text-gray-800 hover:bg-gray-100 p-2.5 rounded-full shadow-lg ring-1 ring-black/5 transition-all duration-200 hover:scale-105"
+              aria-label="Ver historias anteriores de transformación"
+              className="absolute -left-3 sm:-left-4 top-1/2 -translate-y-1/2 bg-white text-gray-800 hover:bg-gray-100 p-2.5 rounded-full shadow-lg ring-1 ring-black/5 transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary/50"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
 
             <button
               onClick={nextSlide}
-              aria-label="Siguiente"
-              className="absolute -right-3 sm:-right-4 top-1/2 -translate-y-1/2 bg-white text-gray-800 hover:bg-gray-100 p-2.5 rounded-full shadow-lg ring-1 ring-black/5 transition-all duration-200 hover:scale-105"
+              aria-label="Ver siguientes historias de transformación"
+              className="absolute -right-3 sm:-right-4 top-1/2 -translate-y-1/2 bg-white text-gray-800 hover:bg-gray-100 p-2.5 rounded-full shadow-lg ring-1 ring-black/5 transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary/50"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>

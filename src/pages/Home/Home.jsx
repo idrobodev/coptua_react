@@ -1,10 +1,13 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import Banner from "features/landing/Banner";
-import CustomerReviews from "features/landing/CustomerReviews";
-import Feature from "features/landing/Feature";
-import HappyCustomers from "features/landing/HappyCustomers";
-import TransformationStories from "features/landing/TransformationStories";
 import SEO from "features/landing/SEO";
+import LoadingSkeleton from "components/UI/LoadingSkeleton";
+
+// Lazy load components below the fold for better performance
+const TransformationStories = lazy(() => import("features/landing/TransformationStories"));
+const HappyCustomers = lazy(() => import("features/landing/HappyCustomers"));
+const CustomerReviews = lazy(() => import("features/landing/CustomerReviews"));
+const Feature = lazy(() => import("features/landing/Feature"));
 
 const Home = () => {
   return (
@@ -18,10 +21,18 @@ const Home = () => {
       />
       <div>
         <Banner />
-        <TransformationStories />
-        <HappyCustomers />
-        <CustomerReviews />
-        <Feature />
+        <Suspense fallback={<LoadingSkeleton height="h-96" className="mx-auto max-w-7xl" />}>
+          <TransformationStories />
+        </Suspense>
+        <Suspense fallback={<LoadingSkeleton height="h-80" className="mx-auto max-w-5xl" />}>
+          <HappyCustomers />
+        </Suspense>
+        <Suspense fallback={<LoadingSkeleton height="h-96" className="mx-auto max-w-7xl" />}>
+          <CustomerReviews />
+        </Suspense>
+        <Suspense fallback={<LoadingSkeleton height="h-64" className="mx-auto max-w-7xl" />}>
+          <Feature />
+        </Suspense>
       </div>
     </>
   );

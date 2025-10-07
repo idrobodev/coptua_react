@@ -12,6 +12,7 @@ const Banner = () => {
         loop
         muted
         playsInline
+        preload="metadata"
         style={{
           objectPosition: 'center',
           minHeight: '100%',
@@ -41,6 +42,7 @@ const Banner = () => {
             <Link
               to="/contact"
               className="inline-block bg-primary hover:bg-primary/90 text-white font-semibold px-5 md:px-6 lg:px-8 py-2.5 md:py-3 lg:py-4 rounded-lg text-sm md:text-base lg:text-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2"
+              aria-label="Contactar al centro de rehabilitación Todo por un Alma"
             >
               CONTÁCTANOS
             </Link>
