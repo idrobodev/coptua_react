@@ -14,6 +14,7 @@ import NotFound from "pages/NotFound/NotFound";
 import Programs from "pages/Programs/Programs";
 import Donate from "pages/Donate/Donate";
 import { PerformanceDebugOverlay, LoadingSpinner } from "components/UI";
+import DebugEnv from "components/DebugEnv";
 
 // Lazy load dashboard components for better performance
 const Dashboard = React.lazy(() => import("pages/Dashboard/Dashboard"));
@@ -122,6 +123,7 @@ function App() {
           <Router>
             <AppContent />
             <PerformanceDebugOverlay />
+            <DebugEnv />
           </Router>
         </AuthProvider>
       </div>

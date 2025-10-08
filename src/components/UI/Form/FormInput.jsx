@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 /**
@@ -31,10 +31,18 @@ const FormInput = ({
   className = '',
   ...rest
 }) => {
+  const [showPassword, setShowPassword] = useState(false);
+
   const handleChange = (e) => {
     const newValue = type === 'number' ? parseFloat(e.target.value) || '' : e.target.value;
     onChange(newValue);
   };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const inputType = type === 'password' && showPassword ? 'text' : type;
 
   const inputClasses = `
     w-full
@@ -72,19 +80,30 @@ const FormInput = ({
             <i className={`${icon} text-gray-400`}></i>
           </div>
         )}
-        
+
         <input
           id={name}
           name={name}
-          type={type}
+          type={inputType}
           value={value}
           onChange={handleChange}
           placeholder={placeholder}
           required={required}
           disabled={disabled}
-          className={inputClasses}
+          className={`${inputClasses} ${type === 'password' ? 'pr-10' : ''}`}
           {...rest}
         />
+
+        {type === 'password' && !disabled && !rest.readOnly && (
+          <button
+            type="button"
+            onClick={togglePasswordVisibility}
+            className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none"
+            title={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+          >
+            <i className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+          </button>
+        )}
       </div>
       
       {error && (

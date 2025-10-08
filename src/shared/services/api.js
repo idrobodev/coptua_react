@@ -515,7 +515,7 @@ class ApiService {
 
         if (!user) return false;
 
-        const userRole = user.rol || ROLES.CONSULTA;
+        const userRole = user.rol || user.role || ROLES.CONSULTA;
 
         // Jerarquía de roles: ADMINISTRADOR > CONSULTA
         const roleHierarchy = {

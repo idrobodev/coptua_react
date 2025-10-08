@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router-dom";
 import Breadcrumbs from "features/dashboard/Breadcrumbs";
 import { useAuth } from "shared/contexts";
-import { api } from "shared/services";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 
 const Login = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [connectionStatus, setConnectionStatus] = useState(null);
   const { login } = useAuth();
 
   const location = useLocation();
@@ -22,21 +20,6 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  useEffect(() => {
-    const testConnection = async () => {
-      console.log('🔍 Testing API connectivity on Login page load...');
-      try {
-        const results = await api.testConnection();
-        console.log('📊 Connection test results:', results);
-        setConnectionStatus(results);
-      } catch (error) {
-        console.error('❌ Connection test failed:', error);
-        setConnectionStatus({ overall: { success: false, message: 'Error testing connection' } });
-      }
-    };
-
-    testConnection();
-  }, []);
 
   const onSubmit = async (data) => {
     try {
@@ -66,21 +49,6 @@ const Login = () => {
                   <p className="text-sm text-gray-500 mt-1">Accede con tu correo y contraseña</p>
                 </div>
 
-                {connectionStatus && (
-                  <div className={`mb-4 rounded-lg border px-4 py-2 text-sm ${
-                    connectionStatus.overall.success
-                      ? 'border-green-200 bg-green-50 text-green-700'
-                      : 'border-yellow-200 bg-yellow-50 text-yellow-700'
-                  }`}>
-                    <strong>Estado de conexión:</strong> {connectionStatus.overall.message}
-                    <br />
-                    <small>
-                      Auth: {connectionStatus.auth?.success ? '✅' : '❌'} ({connectionStatus.auth?.responseTime || '?'}ms)
-                      {' | '}
-                      Dashboard: {connectionStatus.dashboard?.success ? '✅' : '❌'} ({connectionStatus.dashboard?.responseTime || '?'}ms)
-                    </small>
-                  </div>
-                )}
 
                 {error && (
                   <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-2 text-sm text-red-700">

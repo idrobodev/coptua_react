@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import DashboardLayout from "components/layout/DashboardLayout";
 import { dbService, ROLES } from "shared/services";
 import { FilterBar } from "components/UI/Filter";
 import { StatsGrid } from "components/UI/Card";
-import { DataTable, ActionDropdown } from "components/UI/Table";
+import { DataTable } from "components/UI/Table";
 import { ViewDetailsModal, EditFormModal, CreateFormModal } from "components/common/CRUDModals";
 import { useFilters, useModal } from "shared/hooks";
 import { validateEmail } from "shared/utils/validationUtils";
@@ -25,7 +25,7 @@ const UsuariosComponent = () => {
   const crearModal = useModal();
 
   // Función para cargar usuarios
-  const loadUsuarios = async () => {
+  const loadUsuarios = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -48,23 +48,52 @@ const UsuariosComponent = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  // Cargar usuario actual y verificar permisos
+  // Exponer funciones globalmente para el menú desplegable
   useEffect(() => {
-    const loadCurrentUser = async () => {
+    window.verModal = verModal;
+    window.editarModal = editarModal;
+    window.deleteUser = async (userId) => {
       try {
-        // Verificar si tiene permisos de administrador
-        const hasPermission = await dbService.hasPermission(ROLES.ADMINISTRADOR);
-        setCanEdit(hasPermission);
-      } catch (err) {
-        console.error('Error cargando usuario actual:', err);
+        const result = await dbService.deleteUsuario(userId);
+        if (result.error) {
+          alert('Error al eliminar usuario: ' + result.error.message);
+        } else {
+          alert('Usuario eliminado exitosamente');
+          await loadUsuarios();
+        }
+      } catch (error) {
+        alert('Error al eliminar usuario: ' + error.message);
       }
     };
 
-    loadCurrentUser();
-    loadUsuarios();
-  }, []);
+    return () => {
+      delete window.verModal;
+      delete window.editarModal;
+      delete window.deleteUser;
+    };
+  }, [verModal, editarModal, loadUsuarios]);
+
+  // Cargar usuario actual y verificar permisos
+   useEffect(() => {
+     const loadCurrentUser = async () => {
+       try {
+         console.log('🔐 Verificando permisos de administrador...');
+         // Verificar si tiene permisos de administrador
+         const hasPermission = await dbService.hasPermission(ROLES.ADMINISTRADOR);
+         console.log('✅ Permisos de administrador obtenidos:', hasPermission);
+         setCanEdit(hasPermission);
+         console.log('🎯 canEdit establecido como:', hasPermission);
+       } catch (err) {
+         console.error('❌ Error cargando permisos:', err);
+         setCanEdit(false);
+       }
+     };
+
+     loadCurrentUser();
+     loadUsuarios();
+   }, [loadUsuarios]);
 
   // Filtrar usuarios
   const filteredUsuarios = useMemo(() => {
@@ -72,7 +101,7 @@ const UsuariosComponent = () => {
     let filtered = safeUsuarios;
 
     if (filtros.rol !== "Todos") {
-      filtered = filtered.filter(u => u.rol === filtros.rol);
+      filtered = filtered.filter(u => (u.rol || u.role) === filtros.rol);
     }
     if (filtros.busqueda) {
       filtered = filtered.filter(u =>
@@ -178,7 +207,20 @@ const UsuariosComponent = () => {
         <div className="mt-6">
         <div className="mb-6">
           <h3 className="text-lg font-semibold text-gray-800">Lista de Usuarios del sistema</h3>
-          <p className="text-sm text-gray-600 mt-1">Gestiona los usuarios del sistema</p>
+          <p className="text-sm text-gray-600 mt-1">
+            Gestiona los usuarios del sistema
+            {canEdit ? (
+              <span className="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                <i className="fas fa-user-shield mr-1"></i>
+                Modo Administrador
+              </span>
+            ) : (
+              <span className="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                <i className="fas fa-eye mr-1"></i>
+                Modo Solo Lectura
+              </span>
+            )}
+          </p>
         </div>
 
         {filteredUsuarios.length === 0 ? (
@@ -192,7 +234,7 @@ const UsuariosComponent = () => {
             columns={[
               {
                 key: 'email',
-                label: 'Email',
+                header: 'Email',
                 render: (usuario) => (
                   <div className="flex items-center">
                     <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
@@ -207,61 +249,93 @@ const UsuariosComponent = () => {
               },
               {
                 key: 'rol',
-                label: 'Rol',
-                render: (usuario) => (
-                  <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
-                    usuario.rol === ROLES.ADMINISTRADOR
-                      ? 'bg-purple-100 text-purple-800'
-                      : 'bg-green-100 text-green-800'
-                  }`}>
-                    <i className={`fas ${
-                      usuario.rol === ROLES.ADMINISTRADOR ? 'fa-user-shield' : 'fa-user'
-                    } mr-2`}></i>
-                    {usuario.rol === ROLES.ADMINISTRADOR ? 'Administrador' : 'Consulta'}
-                  </span>
-                )
+                header: 'Rol',
+                render: (usuario) => {
+                  const userRole = usuario.rol || usuario.role;
+                  return (
+                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
+                      userRole === ROLES.ADMINISTRADOR || userRole === 'ADMINISTRADOR'
+                        ? 'bg-purple-100 text-purple-800'
+                        : 'bg-green-100 text-green-800'
+                    }`}>
+                      <i className={`fas ${
+                        userRole === ROLES.ADMINISTRADOR || userRole === 'ADMINISTRADOR' ? 'fa-user-shield' : 'fa-user'
+                      } mr-2`}></i>
+                      {userRole === ROLES.ADMINISTRADOR || userRole === 'ADMINISTRADOR' ? 'Administrador' : 'Consulta'}
+                    </span>
+                  );
+                }
               },
               {
                 key: 'acciones',
-                label: 'Acciones',
-                render: (usuario) => (
-                  canEdit ? (
-                    <ActionDropdown
-                      actions={[
-                        {
-                          label: 'Ver detalles',
-                          icon: 'fas fa-eye',
-                          onClick: () => {
-                            verModal.setData(usuario);
-                            verModal.openModal();
-                          }
-                        },
-                        {
-                          label: 'Editar',
-                          icon: 'fas fa-edit',
-                          onClick: () => {
-                            editarModal.setData(usuario);
-                            editarModal.openModal();
-                          }
-                        }
-                      ]}
-                    />
-                  ) : (
-                    <button
-                      onClick={() => {
-                        verModal.setData(usuario);
-                        verModal.open();
-                      }}
-                      className="text-blue-600 hover:text-blue-800 text-sm font-medium"
-                    >
-                      <i className="fas fa-eye mr-1"></i>
-                      Ver
-                    </button>
-                  )
-                )
+                header: 'Acciones',
+                render: (usuario) => {
+                  console.log('🔍 Renderizando acciones para usuario:', usuario.email, 'canEdit:', canEdit);
+
+                  if (canEdit) {
+                    console.log('🎯 Renderizando ActionDropdown para:', usuario.email);
+                    const userRole = usuario.rol || usuario.role;
+                    const isAdmin = userRole === ROLES.ADMINISTRADOR || userRole === 'ADMINISTRADOR';
+
+                    return (
+                      <div className="flex items-center space-x-2">
+                        {!isAdmin && (
+                          <button
+                            onClick={() => {
+                              console.log('✏️ Editar usuario:', usuario.email);
+                              editarModal.openModal('edit', usuario);
+                            }}
+                            className="text-blue-600 hover:text-blue-800 p-2 rounded-lg hover:bg-blue-50"
+                            title="Editar usuario"
+                          >
+                            <i className="fas fa-edit"></i>
+                          </button>
+                        )}
+                        {!isAdmin && (
+                          <button
+                            onClick={() => {
+                              console.log('🗑️ Eliminar usuario:', usuario.email);
+                              if (window.confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
+                                window.deleteUser && window.deleteUser(usuario.id_usuario || usuario.id);
+                              }
+                            }}
+                            className="text-red-600 hover:text-red-800 p-2 rounded-lg hover:bg-red-50"
+                            title="Eliminar usuario"
+                          >
+                            <i className="fas fa-trash"></i>
+                          </button>
+                        )}
+                        {isAdmin && (
+                          <span className="text-xs text-gray-500 font-medium px-2 py-1 bg-gray-100 rounded">
+                            <i className="fas fa-shield-alt mr-1"></i>
+                            Protegido
+                          </span>
+                        )}
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <div className="flex items-center space-x-2">
+                        <button
+                          onClick={() => {
+                            console.log('👁️ Abriendo modal de solo lectura para:', usuario.email);
+                            verModal.openModal('view', usuario);
+                          }}
+                          className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                        >
+                          <i className="fas fa-eye mr-1"></i>
+                          Ver
+                        </button>
+                        <span className="text-xs text-yellow-600 font-medium">Solo lectura</span>
+                      </div>
+                    );
+                  }
+                }
               }
             ]}
             data={filteredUsuarios}
+            keyExtractor={(usuario) => usuario.id_usuario || usuario.id}
+            loading={loading}
           />
         )}
         </div>
@@ -272,12 +346,32 @@ const UsuariosComponent = () => {
         isOpen={verModal.isOpen}
         onClose={verModal.closeModal}
         title="Detalles del Usuario del sistema"
-        data={verModal.data ? [
-          { label: 'ID', value: verModal.data.id_usuario || verModal.data.id },
-          { label: 'Email', value: verModal.data.email },
+        data={verModal.modalData ? [
+          { label: 'ID', value: verModal.modalData.id_usuario || verModal.modalData.id },
+          { label: 'Email', value: verModal.modalData.email },
+          {
+            label: 'Contraseña',
+            value: '••••••••',
+            helperText: 'La contraseña está oculta por seguridad'
+          },
           {
             label: 'Rol',
-            value: verModal.data.rol === ROLES.ADMINISTRADOR ? 'Administrador' : 'Consulta'
+            value: (() => {
+              const rol = verModal.modalData.rol || verModal.modalData.role;
+              // Comparación más robusta
+              if (rol === ROLES.ADMINISTRADOR || rol === 'ADMINISTRADOR') {
+                return 'Administrador';
+              }
+              return 'Consulta';
+            })()
+          },
+          {
+            label: 'Fecha de creación',
+            value: new Date(verModal.modalData.created_at).toLocaleString('es-ES')
+          },
+          {
+            label: 'Última actualización',
+            value: new Date(verModal.modalData.updated_at).toLocaleString('es-ES')
           }
         ] : []}
       />
@@ -294,14 +388,14 @@ const UsuariosComponent = () => {
           }
 
           // Validar rol
-          if (!formData.rol || (formData.rol !== ROLES.ADMINISTRADOR && formData.rol !== ROLES.CONSULTA)) {
+          if (!formData.rol || (formData.rol !== ROLES.ADMINISTRADOR && formData.rol !== ROLES.CONSULTA && formData.rol !== 'ADMINISTRADOR' && formData.rol !== 'CONSULTA')) {
             throw new Error('Rol inválido');
           }
 
           // Si no se proporciona password, no lo incluimos en la actualización
           const updateData = {
             email: formData.email,
-            rol: formData.rol
+            role: formData.rol // El backend espera 'role', no 'rol'
           };
 
           if (formData.password && formData.password.trim()) {
@@ -311,35 +405,51 @@ const UsuariosComponent = () => {
             updateData.password = formData.password;
           }
 
-          const result = await dbService.updateUsuario(editarModal.data.id_usuario || editarModal.data.id, updateData);
+          const result = await dbService.updateUsuario(editarModal.modalData.id_usuario || editarModal.modalData.id, updateData);
           if (result.error) {
             throw new Error(result.error.message || 'Error al actualizar usuario');
           }
           await loadUsuarios();
         }}
-        initialData={editarModal.data}
+        initialData={editarModal.modalData ? {
+          email: editarModal.modalData.email,
+          password: '',
+          rol: editarModal.modalData.rol || editarModal.modalData.role
+        } : {
+          email: '',
+          password: '',
+          rol: ROLES.CONSULTA
+        }}
         fields={[
-          { 
-            name: 'email', 
-            label: 'Email', 
-            type: 'email', 
+          {
+            name: 'email',
+            label: 'Email',
+            type: 'email',
             required: true,
             placeholder: 'usuario@ejemplo.com'
           },
-          { 
-            name: 'password', 
-            label: 'Nueva Contraseña (opcional)', 
+          {
+            name: 'currentPassword',
+            label: 'Contraseña Actual (solo lectura)',
+            type: 'password',
+            readOnly: true,
+            placeholder: 'Contraseña actual del usuario',
+            value: '••••••••', // Mostrar puntos por seguridad
+            helperText: 'La contraseña actual no se puede ver por seguridad'
+          },
+          {
+            name: 'password',
+            label: 'Nueva Contraseña (opcional)',
             type: 'password',
             placeholder: 'Dejar en blanco para mantener la actual',
-            helperText: 'Mínimo 8 caracteres'
+            helperText: 'Mínimo 8 caracteres. Si se deja en blanco, mantiene la contraseña actual.'
           },
-          { 
-            name: 'rol', 
-            label: 'Rol', 
+          {
+            name: 'rol',
+            label: 'Rol',
             type: 'select',
             required: true,
             options: [
-              { value: ROLES.ADMINISTRADOR, label: 'Administrador' },
               { value: ROLES.CONSULTA, label: 'Consulta' }
             ]
           }
@@ -363,11 +473,18 @@ const UsuariosComponent = () => {
           }
 
           // Validar rol
-          if (!formData.rol || (formData.rol !== ROLES.ADMINISTRADOR && formData.rol !== ROLES.CONSULTA)) {
+          if (!formData.rol || (formData.rol !== ROLES.ADMINISTRADOR && formData.rol !== ROLES.CONSULTA && formData.rol !== 'ADMINISTRADOR' && formData.rol !== 'CONSULTA')) {
             throw new Error('Rol inválido');
           }
 
-          const result = await dbService.createUsuario(formData);
+          // Convertir 'rol' a 'role' para el backend
+          const userData = {
+            email: formData.email,
+            password: formData.password,
+            role: formData.rol
+          };
+
+          const result = await dbService.createUsuario(userData);
           if (result.error) {
             throw new Error(result.error.message || 'Error al crear usuario');
           }
@@ -379,24 +496,24 @@ const UsuariosComponent = () => {
           rol: ROLES.CONSULTA
         }}
         fields={[
-          { 
-            name: 'email', 
-            label: 'Email', 
-            type: 'email', 
+          {
+            name: 'email',
+            label: 'Email',
+            type: 'email',
             required: true,
             placeholder: 'usuario@ejemplo.com'
           },
-          { 
-            name: 'password', 
-            label: 'Contraseña', 
-            type: 'password', 
+          {
+            name: 'password',
+            label: 'Contraseña',
+            type: 'password',
             required: true,
             placeholder: 'Mínimo 8 caracteres',
-            helperText: 'Mínimo 8 caracteres'
+            helperText: 'Mínimo 8 caracteres. La contraseña debe ser segura.'
           },
-          { 
-            name: 'rol', 
-            label: 'Rol', 
+          {
+            name: 'rol',
+            label: 'Rol',
             type: 'select',
             required: true,
             options: [
