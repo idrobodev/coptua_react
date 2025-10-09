@@ -59,7 +59,7 @@ const AcudientesComponent = () => {
     try {
       console.log('🔄 Cargando participantes...');
       const result = await dbService.getParticipantes();
-      
+
       if (result.error) {
         console.error('Error cargando participantes:', result.error);
         setParticipantes([]);
@@ -352,6 +352,7 @@ const AcudientesComponent = () => {
           </div>
         ) : (
           <DataTable
+            keyExtractor={(row) => row.id_acudiente || row.id}
             columns={[
               {
                 key: 'acudiente',

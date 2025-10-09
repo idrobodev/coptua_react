@@ -142,7 +142,7 @@ const Finance = React.memo(() => {
         
         console.log('📊 Resultados:', { mensRes, partsRes, sedesRes, acudRes });
         
-        // Asegurar que siempre sean arrays
+        // Asegurar que siempre sean arrays (API service ya extrae el nested data)
         const mensualidadesData = Array.isArray(mensRes.data) ? mensRes.data : [];
         const participantesData = Array.isArray(partsRes.data) ? partsRes.data : [];
         const sedesData = Array.isArray(sedesRes.data) ? sedesRes.data : [];
@@ -153,7 +153,7 @@ const Finance = React.memo(() => {
         setSedes(sedesData);
         setAcudientes(acudientesData);
         setFilteredAcudientes(acudientesData);
-        
+
         console.log('✅ Datos cargados:', {
           mensualidades: mensualidadesData.length,
           participantes: participantesData.length,
@@ -259,7 +259,7 @@ const Finance = React.memo(() => {
       await dbService.updateMensualidad(id, { estado: newStatus });
       // Refresh data
       const { data } = await dbService.getMensualidades();
-      setMensualidades(data);
+      setMensualidades(data || []);
     } catch (err) {
       console.error('Error updating status:', err);
       // Optionally show error toast
@@ -314,7 +314,7 @@ const Finance = React.memo(() => {
       }
       closeModal();
       const { data } = await dbService.getMensualidades();
-      setMensualidades(data);
+      setMensualidades(data || []);
     } catch (err) {
       console.error('Error saving payment:', err);
       alert('Error al guardar la mensualidad: ' + (err.message || 'Error desconocido'));

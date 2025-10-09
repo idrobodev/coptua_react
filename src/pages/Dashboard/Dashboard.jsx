@@ -16,11 +16,14 @@ const DashboardComponent = () => {
         setLoading(true);
         
         // Load basic stats
-        const { participantes, mensualidades } = await dbService.getDashboardData();
+        const dashboardResponse = await dbService.getDashboardData();
+        console.log('Dashboard API Response:', dashboardResponse);
+        const { participantes, mensualidades } = dashboardResponse.data?.data || {};
+        console.log('Extracted data:', { participantes, mensualidades });
         
         // Load acudientes count
         const acudientesResult = await dbService.getAcudientes();
-        const totalAcudientes = acudientesResult?.data?.length || 0;
+        const totalAcudientes = acudientesResult?.data?.data?.length || 0;
         
         // Calculate stats from real data
         const stats = {

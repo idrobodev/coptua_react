@@ -39,12 +39,18 @@ const Participantes = React.memo(() => {
       
       const result = await dbService.getParticipantes();
       console.log('📊 Resultado participantes:', result);
-      
+      console.log('📦 result.data:', result.data);
+      console.log('📦 result.data type:', typeof result.data);
+      console.log('📦 result.data isArray:', Array.isArray(result.data));
+
       if (result.error) {
         throw new Error(result.error.message || 'Error al cargar participantes');
       }
-      
+
+      // The API returns {data: [...], error: null}, so result.data is already the array
       const participantesData = Array.isArray(result.data) ? result.data : [];
+      console.log('🔄 participantesData:', participantesData);
+      console.log('🔄 participantesData.length:', participantesData.length);
       setParticipantes(participantesData);
       console.log('✅ Participantes cargados:', participantesData.length);
     } catch (err) {

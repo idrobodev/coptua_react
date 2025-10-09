@@ -7,7 +7,7 @@ const AUTH_API_BASE_URL = process.env.REACT_APP_AUTH_API_BASE_URL ||
   `${window.location.protocol}//${window.location.hostname}:8080/api`;
 
 const DASHBOARD_API_BASE_URL = process.env.REACT_APP_DASHBOARD_API_BASE_URL ||
-  `${window.location.protocol}//${window.location.hostname}:8000/api`;
+  `${window.location.protocol}//${window.location.hostname}:8081/api`;
 
 console.log('🔧 AUTH_API_BASE_URL configurada como:', AUTH_API_BASE_URL);
 console.log('🔧 DASHBOARD_API_BASE_URL configurada como:', DASHBOARD_API_BASE_URL);
@@ -559,7 +559,7 @@ class ApiService {
   async getParticipantes() {
     try {
       const response = await dashboardClient.get('/participantes');
-      return { data: response.data || [], error: null };
+      return { data: response.data.data || [], error: null };
     } catch (error) {
       console.error('Error obteniendo participantes:', error);
       return {
@@ -635,7 +635,7 @@ class ApiService {
   async getMensualidades() {
     try {
       const response = await dashboardClient.get('/mensualidades');
-      return { data: response.data || [], error: null };
+      return { data: response.data.data || [], error: null };
     } catch (error) {
       console.error('Error obteniendo mensualidades:', error);
       return {
@@ -697,7 +697,7 @@ class ApiService {
   async getSedes() {
     try {
       const response = await dashboardClient.get('/sedes');
-      return { data: response.data || [], error: null };
+      return { data: response.data.data || [], error: null };
     } catch (error) {
       console.error('Error obteniendo sedes:', error);
       return {
@@ -875,7 +875,7 @@ class ApiService {
   async getAcudientes(filters = {}) {
     try {
       const response = await dashboardClient.get('/acudientes', { params: filters });
-      return { data: response.data || [], error: null };
+      return { data: response.data.data || [], error: null };
     } catch (error) {
       console.error('Error obteniendo acudientes:', error);
       return {
