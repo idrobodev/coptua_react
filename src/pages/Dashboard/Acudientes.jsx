@@ -339,106 +339,107 @@ const AcudientesComponent = () => {
 
         {/* Tabla de Acudientes */}
         <div className="mt-6">
-        <div className="mb-6">
-          <h3 className="text-lg font-semibold text-gray-800">Lista de Acudientes</h3>
-          <p className="text-sm text-gray-600 mt-1">Gestiona los acudientes de los participantes</p>
-        </div>
-
-        {filteredAcudientes.length === 0 ? (
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-            <i className="fas fa-user-friends text-gray-300 text-4xl mb-4"></i>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No se encontraron acudientes</h3>
-            <p className="text-gray-500">No hay acudientes que coincidan con los filtros aplicados.</p>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+          <div className="p-6 border-b border-gray-200">
+            <h3 className="text-lg font-semibold text-gray-800">Lista de Acudientes</h3>
           </div>
-        ) : (
-          <DataTable
-            keyExtractor={(row) => row.id_acudiente || row.id}
-            columns={[
-              {
-                key: 'acudiente',
-                label: 'Acudiente',
-                render: (acudiente) => (
-                  <div className="flex items-center">
-                    <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-3">
-                      <i className="fas fa-user-friends text-purple-600"></i>
+
+          {filteredAcudientes.length === 0 ? (
+            <div className="p-12 text-center">
+              <i className="fas fa-user-friends text-gray-300 text-4xl mb-4"></i>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">No se encontraron acudientes</h3>
+              <p className="text-gray-500">No hay acudientes que coincidan con los filtros aplicados.</p>
+            </div>
+          ) : (
+            <DataTable
+              keyExtractor={(row) => row.id_acudiente || row.id}
+              columns={[
+                {
+                  key: 'acudiente',
+                  label: 'Acudiente',
+                  render: (acudiente) => (
+                    <div className="flex items-center">
+                      <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                        <i className="fas fa-user-friends text-purple-600"></i>
+                      </div>
+                      <div>
+                        <p className="font-medium text-gray-900">
+                          {`${acudiente.nombres || ''} ${acudiente.apellidos || ''}`.trim() || 'Sin nombre'}
+                        </p>
+                        <p className="text-sm text-gray-500">
+                          {acudiente.tipo_documento || 'CC'}: {acudiente.numero_documento || 'N/A'}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-medium text-gray-900">
-                        {`${acudiente.nombres || ''} ${acudiente.apellidos || ''}`.trim() || 'Sin nombre'}
-                      </p>
-                      <p className="text-sm text-gray-500">
-                        {acudiente.tipo_documento || 'CC'}: {acudiente.numero_documento || 'N/A'}
-                      </p>
-                    </div>
-                  </div>
-                )
-              },
-              {
-                key: 'participante',
-                label: 'Participante',
-                render: (acudiente) => {
-                  // Buscar el participante asociado
-                  const participante = participantes.find(p => 
-                    (p.id_participante || p.id) === acudiente.id_participante
-                  );
-                  return (
+                  )
+                },
+                {
+                  key: 'participante',
+                  label: 'Participante',
+                  render: (acudiente) => {
+                    // Buscar el participante asociado
+                    const participante = participantes.find(p =>
+                      (p.id_participante || p.id) === acudiente.id_participante
+                    );
+                    return (
+                      <div>
+                        <p className="text-gray-900">
+                          {participante?.nombre || `${participante?.nombres || ''} ${participante?.apellidos || ''}`.trim() || 'N/A'}
+                        </p>
+                        <p className="text-sm text-gray-500">
+                          {acudiente.parentesco || 'Sin parentesco'}
+                        </p>
+                      </div>
+                    );
+                  }
+                },
+                {
+                  key: 'contacto',
+                  label: 'Contacto',
+                  render: (acudiente) => (
                     <div>
                       <p className="text-gray-900">
-                        {participante?.nombre || `${participante?.nombres || ''} ${participante?.apellidos || ''}`.trim() || 'N/A'}
+                        <i className="fas fa-phone text-gray-400 mr-2"></i>
+                        {acudiente.telefono || 'N/A'}
                       </p>
                       <p className="text-sm text-gray-500">
-                        {acudiente.parentesco || 'Sin parentesco'}
+                        <i className="fas fa-envelope text-gray-400 mr-2"></i>
+                        {acudiente.email || 'N/A'}
                       </p>
                     </div>
-                  );
+                  )
+                },
+                {
+                  key: 'acciones',
+                  label: 'Acciones',
+                  render: (acudiente) => (
+                    <ActionDropdown
+                      actions={[
+                        {
+                          label: 'Ver detalles',
+                          icon: 'fas fa-eye',
+                          onClick: () => {
+                            verModal.setData(acudiente);
+                            verModal.open();
+                          }
+                        },
+                        {
+                          label: 'Editar',
+                          icon: 'fas fa-edit',
+                          onClick: () => {
+                            editarModal.setData(acudiente);
+                            editarModal.open();
+                          }
+                        }
+                      ]}
+                    />
+                  )
                 }
-              },
-              {
-                key: 'contacto',
-                label: 'Contacto',
-                render: (acudiente) => (
-                  <div>
-                    <p className="text-gray-900">
-                      <i className="fas fa-phone text-gray-400 mr-2"></i>
-                      {acudiente.telefono || 'N/A'}
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      <i className="fas fa-envelope text-gray-400 mr-2"></i>
-                      {acudiente.email || 'N/A'}
-                    </p>
-                  </div>
-                )
-              },
-              {
-                key: 'acciones',
-                label: 'Acciones',
-                render: (acudiente) => (
-                  <ActionDropdown
-                    actions={[
-                      {
-                        label: 'Ver detalles',
-                        icon: 'fas fa-eye',
-                        onClick: () => {
-                          verModal.setData(acudiente);
-                          verModal.open();
-                        }
-                      },
-                      {
-                        label: 'Editar',
-                        icon: 'fas fa-edit',
-                        onClick: () => {
-                          editarModal.setData(acudiente);
-                          editarModal.open();
-                        }
-                      }
-                    ]}
-                  />
-                )
-              }
-            ]}
-            data={filteredAcudientes}
-          />
-        )}
+              ]}
+              data={filteredAcudientes}
+            />
+          )}
+        </div>
         </div>
       </section>
 
