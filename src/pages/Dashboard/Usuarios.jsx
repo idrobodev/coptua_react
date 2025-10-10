@@ -199,6 +199,7 @@ const UsuariosComponent = () => {
       }
     >
       <section className="px-6 py-6">
+        <div className="max-w-6xl mx-auto w-full">
         <FilterBar
           filters={filterConfig}
           values={filtros}
@@ -359,6 +360,7 @@ const UsuariosComponent = () => {
               loading={loading}
             />
           )}
+        </div>
         </div>
         </div>
       </section>
