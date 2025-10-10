@@ -326,8 +326,7 @@ const AcudientesComponent = () => {
         </div>
       }
     >
-      <section className={`${isMobile ? 'px-4 py-4' : 'px-6 py-6'}`}>
-        <div className="max-w-6xl mx-auto w-full">
+      <section className="px-6 py-6">
         <FilterBar
           filters={filterConfig}
           values={filtros}
@@ -447,7 +446,6 @@ const AcudientesComponent = () => {
               data={filteredAcudientes}
             />
           )}
-        </div>
         </div>
         </div>
       </section>
