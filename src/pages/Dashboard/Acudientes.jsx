@@ -5,7 +5,7 @@ import { FilterBar } from "components/UI/Filter";
 import { StatsGrid } from "components/UI/Card";
 import { DataTable, ActionDropdown } from "components/UI/Table";
 import { ViewDetailsModal, EditFormModal, CreateFormModal } from "components/common/CRUDModals";
-import { useFilters, useModal } from "shared/hooks";
+import { useFilters, useModal, useIsMobile } from "shared/hooks";
 import { 
   validateAcudienteDocumentoUnico, 
   validateEmail,
@@ -27,6 +27,9 @@ const AcudientesComponent = () => {
   const verModal = useModal();
   const editarModal = useModal();
   const crearModal = useModal();
+
+  // Mobile detection hook
+  const isMobile = useIsMobile();
 
   // Función para cargar acudientes
   const loadAcudientes = useCallback(async () => {
@@ -323,7 +326,7 @@ const AcudientesComponent = () => {
         </div>
       }
     >
-      <section className="px-6 py-6">
+      <section className={`${isMobile ? 'px-4 py-4' : 'px-6 py-6'}`}>
         <FilterBar
           filters={filterConfig}
           values={filtros}
@@ -334,7 +337,11 @@ const AcudientesComponent = () => {
 
         {/* Estadísticas Rápidas */}
         <div className="mt-6">
-          <StatsGrid stats={statsData} columns={1} />
+          <StatsGrid
+            stats={statsData}
+            columns={isMobile ? 1 : 3}
+            gap={isMobile ? "sm" : "md"}
+          />
         </div>
 
         {/* Tabla de Acudientes */}

@@ -5,7 +5,7 @@ import { FilterBar } from "components/UI/Filter";
 import { StatsGrid } from "components/UI/Card";
 import { DataTable } from "components/UI/Table";
 import { ViewDetailsModal, EditFormModal, CreateFormModal } from "components/common/CRUDModals";
-import { useFilters, useModal, useIsMobile } from "shared/hooks";
+import { useFilters, useModal } from "shared/hooks";
 import { validateEmail } from "shared/utils/validationUtils";
 
 const UsuariosComponent = () => {
@@ -13,9 +13,6 @@ const UsuariosComponent = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [canEdit, setCanEdit] = useState(false);
-
-  // Mobile detection hook
-  const isMobile = useIsMobile();
 
   // Use custom hooks
   const { filters: filtros, setFilter, clearFilters } = useFilters({
@@ -201,7 +198,7 @@ const UsuariosComponent = () => {
         )
       }
     >
-      <section className={`${isMobile ? 'px-4 py-4' : 'px-6 py-6'}`}>
+      <section className="px-6 py-6">
         <FilterBar
           filters={filterConfig}
           values={filtros}
@@ -214,16 +211,16 @@ const UsuariosComponent = () => {
         <div className="mt-6">
           <StatsGrid
             stats={statsData}
-            columns={isMobile ? 1 : 3}
-            gap={isMobile ? "sm" : "md"}
+            columns={3}
+            gap="md"
           />
         </div>
 
         {/* Tabla de Usuarios */}
         <div className="mt-6">
         <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-          <div className={`${isMobile ? 'p-4' : 'p-6'} border-b border-gray-200`}>
-            <div className={`${isMobile ? 'space-y-2' : 'flex items-center justify-between'}`}>
+          <div className="p-6 border-b border-gray-200">
+            <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-lg font-semibold text-gray-800">Lista de Usuarios del sistema</h3>
                 <p className="text-sm text-gray-600 mt-1">
@@ -231,12 +228,12 @@ const UsuariosComponent = () => {
                 </p>
               </div>
               {canEdit ? (
-                <span className={`inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-green-100 text-green-800 ${isMobile ? 'w-full justify-center' : ''}`}>
+                <span className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-green-100 text-green-800">
                   <i className="fas fa-user-shield mr-2"></i>
                   Modo Administrador
                 </span>
               ) : (
-                <span className={`inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800 ${isMobile ? 'w-full justify-center' : ''}`}>
+                <span className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
                   <i className="fas fa-eye mr-2"></i>
                   Modo Solo Lectura
                 </span>
@@ -245,7 +242,7 @@ const UsuariosComponent = () => {
           </div>
 
           {filteredUsuarios.length === 0 ? (
-            <div className={`${isMobile ? 'p-8' : 'p-12'} text-center`}>
+            <div className="p-12 text-center">
               <i className="fas fa-users text-gray-300 text-4xl mb-4"></i>
               <h3 className="text-lg font-medium text-gray-900 mb-2">No se encontraron usuarios del sistema</h3>
               <p className="text-gray-500">No hay usuarios que coincidan con los filtros aplicados.</p>
@@ -299,18 +296,17 @@ const UsuariosComponent = () => {
                       const isAdmin = userRole === ROLES.ADMINISTRADOR || userRole === 'ADMINISTRADOR';
 
                       return (
-                        <div className={`flex items-center ${isMobile ? 'flex-col space-y-1' : 'space-x-2'}`}>
+                        <div className="flex items-center space-x-2">
                           {!isAdmin && (
                             <button
                               onClick={() => {
                                 console.log('✏️ Editar usuario:', usuario.email);
                                 editarModal.openModal('edit', usuario);
                               }}
-                              className={`text-blue-600 hover:text-blue-800 ${isMobile ? 'p-3 w-full' : 'p-2'} rounded-lg hover:bg-blue-50 transition-colors ${isMobile ? 'text-center' : ''}`}
+                              className="text-blue-600 hover:text-blue-800 p-2 rounded-lg hover:bg-blue-50 transition-colors"
                               title="Editar usuario"
                             >
-                              <i className={`fas fa-edit ${isMobile ? 'mr-2' : ''}`}></i>
-                              {isMobile && <span className="text-sm">Editar</span>}
+                              <i className="fas fa-edit"></i>
                             </button>
                           )}
                           {!isAdmin && (
@@ -321,15 +317,14 @@ const UsuariosComponent = () => {
                                   window.deleteUser && window.deleteUser(usuario.id_usuario || usuario.id);
                                 }
                               }}
-                              className={`text-red-600 hover:text-red-800 ${isMobile ? 'p-3 w-full' : 'p-2'} rounded-lg hover:bg-red-50 transition-colors ${isMobile ? 'text-center' : ''}`}
+                              className="text-red-600 hover:text-red-800 p-2 rounded-lg hover:bg-red-50 transition-colors"
                               title="Eliminar usuario"
                             >
-                              <i className={`fas fa-trash ${isMobile ? 'mr-2' : ''}`}></i>
-                              {isMobile && <span className="text-sm">Eliminar</span>}
+                              <i className="fas fa-trash"></i>
                             </button>
                           )}
                           {isAdmin && (
-                            <span className={`text-xs text-gray-500 font-medium px-2 py-1 bg-gray-100 rounded ${isMobile ? 'w-full text-center' : ''}`}>
+                            <span className="text-xs text-gray-500 font-medium px-2 py-1 bg-gray-100 rounded">
                               <i className="fas fa-shield-alt mr-1"></i>
                               Protegido
                             </span>
@@ -338,18 +333,18 @@ const UsuariosComponent = () => {
                       );
                     } else {
                       return (
-                        <div className={`flex items-center ${isMobile ? 'flex-col space-y-2' : 'space-x-2'}`}>
+                        <div className="flex items-center space-x-2">
                           <button
                             onClick={() => {
                               console.log('👁️ Abriendo modal de solo lectura para:', usuario.email);
                               verModal.openModal('view', usuario);
                             }}
-                            className={`text-blue-600 hover:text-blue-800 ${isMobile ? 'p-3 w-full text-center bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors' : 'text-sm font-medium'}`}
+                            className="text-blue-600 hover:text-blue-800 text-sm font-medium"
                           >
-                            <i className={`fas fa-eye ${isMobile ? 'mr-2' : 'mr-1'}`}></i>
+                            <i className="fas fa-eye mr-1"></i>
                             Ver Detalles
                           </button>
-                          <span className={`text-xs text-yellow-600 font-medium ${isMobile ? 'w-full text-center px-3 py-2 bg-yellow-50 rounded-lg' : ''}`}>
+                          <span className="text-xs text-yellow-600 font-medium">
                             <i className="fas fa-lock mr-1"></i>
                             Solo Lectura
                           </span>
