@@ -27,9 +27,6 @@ ENV REACT_APP_SITE_URL=https://todoporunalma.org
 # Copy source code
 COPY . .
 
-# Copy environment file if it exists (for Dokploy)
-RUN if [ -f .env.dokploy ]; then cp .env.dokploy .env.production; fi
-
 # Build the application with explicit NODE_ENV
 RUN NODE_ENV=production npm run build
 
