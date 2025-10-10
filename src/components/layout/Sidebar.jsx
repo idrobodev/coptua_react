@@ -122,10 +122,10 @@ const Sidebar = ({ isOpen = false, onToggle = () => {}, isCollapsed = false, onT
       {isMobile && (
         <button
           onClick={onToggle}
-          className="fixed top-4 right-4 z-[60] md:hidden bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition-colors min-w-[48px] min-h-[48px] flex items-center justify-center"
+          className="fixed top-4 right-4 z-[60] md:hidden bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-200 min-w-[56px] min-h-[56px] flex items-center justify-center border-2 border-white/20 backdrop-blur-sm"
           aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
         >
-          <i className={`fas ${isOpen ? 'fa-times' : 'fa-bars'} text-lg`}></i>
+          <i className={`fas ${isOpen ? 'fa-times' : 'fa-bars'} text-xl transition-transform duration-200 ${isOpen ? 'rotate-90' : ''}`}></i>
         </button>
       )}
       
