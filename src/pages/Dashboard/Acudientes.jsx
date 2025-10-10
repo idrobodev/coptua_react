@@ -356,7 +356,7 @@ const AcudientesComponent = () => {
               columns={[
                 {
                   key: 'acudiente',
-                  label: 'Acudiente',
+                  header: 'Acudiente',
                   render: (acudiente) => (
                     <div className="flex items-center">
                       <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-3">
@@ -375,7 +375,7 @@ const AcudientesComponent = () => {
                 },
                 {
                   key: 'participante',
-                  label: 'Participante',
+                  header: 'Participante',
                   render: (acudiente) => {
                     // Buscar el participante asociado
                     const participante = participantes.find(p =>
@@ -395,7 +395,7 @@ const AcudientesComponent = () => {
                 },
                 {
                   key: 'contacto',
-                  label: 'Contacto',
+                  header: 'Contacto',
                   render: (acudiente) => (
                     <div>
                       <p className="text-gray-900">
@@ -411,7 +411,7 @@ const AcudientesComponent = () => {
                 },
                 {
                   key: 'acciones',
-                  label: 'Acciones',
+                  header: 'Acciones',
                   render: (acudiente) => (
                     <ActionDropdown
                       actions={[
