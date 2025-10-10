@@ -17,6 +17,12 @@ ENV NODE_ENV=production
 ENV CI=true
 ENV FAST_REFRESH=false
 ENV GENERATE_SOURCEMAP=false
+ENV REACT_APP_AUTH_API_BASE_URL=http://auth-service:8080/api
+ENV REACT_APP_DASHBOARD_API_BASE_URL=http://dashboard-service:8081/api
+ENV REACT_APP_API_BASE_URL=http://dashboard-service:8081/api
+ENV REACT_APP_FORMATOS_API_URL=http://formatos-service:8082/api
+ENV REACT_APP_CORS_ORIGINS=https://todoporunalma.org,https://www.todoporunalma.org
+ENV REACT_APP_SITE_URL=https://todoporunalma.org
 
 # Copy source code
 COPY . .
