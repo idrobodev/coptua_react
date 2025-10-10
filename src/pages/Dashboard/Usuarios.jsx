@@ -214,139 +214,141 @@ const UsuariosComponent = () => {
 
         {/* Tabla de Usuarios */}
         <div className="mt-6">
-        <div className="mb-6">
-          <h3 className="text-lg font-semibold text-gray-800">Lista de Usuarios del sistema</h3>
-          <p className="text-sm text-gray-600 mt-1">
-            Gestiona los usuarios del sistema
-            {canEdit ? (
-              <span className="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                <i className="fas fa-user-shield mr-1"></i>
-                Modo Administrador
-              </span>
-            ) : (
-              <span className="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                <i className="fas fa-eye mr-1"></i>
-                Modo Solo Lectura
-              </span>
-            )}
-          </p>
-        </div>
-
-        {filteredUsuarios.length === 0 ? (
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-            <i className="fas fa-users text-gray-300 text-4xl mb-4"></i>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No se encontraron usuarios del sistema</h3>
-            <p className="text-gray-500">No hay usuarios que coincidan con los filtros aplicados.</p>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+          <div className="p-6 border-b border-gray-200">
+            <h3 className="text-lg font-semibold text-gray-800">Lista de Usuarios del sistema</h3>
+            <p className="text-sm text-gray-600 mt-1">
+              Gestiona los usuarios del sistema
+              {canEdit ? (
+                <span className="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                  <i className="fas fa-user-shield mr-1"></i>
+                  Modo Administrador
+                </span>
+              ) : (
+                <span className="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                  <i className="fas fa-eye mr-1"></i>
+                  Modo Solo Lectura
+                </span>
+              )}
+            </p>
           </div>
-        ) : (
-          <DataTable
-            columns={[
-              {
-                key: 'email',
-                header: 'Email',
-                render: (usuario) => (
-                  <div className="flex items-center">
-                    <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
-                      <i className="fas fa-user text-blue-600"></i>
-                    </div>
-                    <div>
-                      <p className="font-medium text-gray-900">{usuario.email}</p>
-                      <p className="text-sm text-gray-500">ID: {usuario.id_usuario || usuario.id}</p>
-                    </div>
-                  </div>
-                )
-              },
-              {
-                key: 'rol',
-                header: 'Rol',
-                render: (usuario) => {
-                  const userRole = usuario.rol || usuario.role;
-                  return (
-                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
-                      userRole === ROLES.ADMINISTRADOR || userRole === 'ADMINISTRADOR'
-                        ? 'bg-purple-100 text-purple-800'
-                        : 'bg-green-100 text-green-800'
-                    }`}>
-                      <i className={`fas ${
-                        userRole === ROLES.ADMINISTRADOR || userRole === 'ADMINISTRADOR' ? 'fa-user-shield' : 'fa-user'
-                      } mr-2`}></i>
-                      {userRole === ROLES.ADMINISTRADOR || userRole === 'ADMINISTRADOR' ? 'Administrador' : 'Consulta'}
-                    </span>
-                  );
-                }
-              },
-              {
-                key: 'acciones',
-                header: 'Acciones',
-                render: (usuario) => {
-                  console.log('🔍 Renderizando acciones para usuario:', usuario.email, 'canEdit:', canEdit);
 
-                  if (canEdit) {
-                    console.log('🎯 Renderizando ActionDropdown para:', usuario.email);
+          {filteredUsuarios.length === 0 ? (
+            <div className="p-12 text-center">
+              <i className="fas fa-users text-gray-300 text-4xl mb-4"></i>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">No se encontraron usuarios del sistema</h3>
+              <p className="text-gray-500">No hay usuarios que coincidan con los filtros aplicados.</p>
+            </div>
+          ) : (
+            <DataTable
+              columns={[
+                {
+                  key: 'email',
+                  header: 'Email',
+                  render: (usuario) => (
+                    <div className="flex items-center">
+                      <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                        <i className="fas fa-user text-blue-600"></i>
+                      </div>
+                      <div>
+                        <p className="font-medium text-gray-900">{usuario.email}</p>
+                        <p className="text-sm text-gray-500">ID: {usuario.id_usuario || usuario.id}</p>
+                      </div>
+                    </div>
+                  )
+                },
+                {
+                  key: 'rol',
+                  header: 'Rol',
+                  render: (usuario) => {
                     const userRole = usuario.rol || usuario.role;
-                    const isAdmin = userRole === ROLES.ADMINISTRADOR || userRole === 'ADMINISTRADOR';
-
                     return (
-                      <div className="flex items-center space-x-2">
-                        {!isAdmin && (
-                          <button
-                            onClick={() => {
-                              console.log('✏️ Editar usuario:', usuario.email);
-                              editarModal.openModal('edit', usuario);
-                            }}
-                            className="text-blue-600 hover:text-blue-800 p-2 rounded-lg hover:bg-blue-50"
-                            title="Editar usuario"
-                          >
-                            <i className="fas fa-edit"></i>
-                          </button>
-                        )}
-                        {!isAdmin && (
-                          <button
-                            onClick={() => {
-                              console.log('🗑️ Eliminar usuario:', usuario.email);
-                              if (window.confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
-                                window.deleteUser && window.deleteUser(usuario.id_usuario || usuario.id);
-                              }
-                            }}
-                            className="text-red-600 hover:text-red-800 p-2 rounded-lg hover:bg-red-50"
-                            title="Eliminar usuario"
-                          >
-                            <i className="fas fa-trash"></i>
-                          </button>
-                        )}
-                        {isAdmin && (
-                          <span className="text-xs text-gray-500 font-medium px-2 py-1 bg-gray-100 rounded">
-                            <i className="fas fa-shield-alt mr-1"></i>
-                            Protegido
-                          </span>
-                        )}
-                      </div>
-                    );
-                  } else {
-                    return (
-                      <div className="flex items-center space-x-2">
-                        <button
-                          onClick={() => {
-                            console.log('👁️ Abriendo modal de solo lectura para:', usuario.email);
-                            verModal.openModal('view', usuario);
-                          }}
-                          className="text-blue-600 hover:text-blue-800 text-sm font-medium"
-                        >
-                          <i className="fas fa-eye mr-1"></i>
-                          Ver
-                        </button>
-                        <span className="text-xs text-yellow-600 font-medium">Solo lectura</span>
-                      </div>
+                      <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
+                        userRole === ROLES.ADMINISTRADOR || userRole === 'ADMINISTRADOR'
+                          ? 'bg-purple-100 text-purple-800'
+                          : 'bg-green-100 text-green-800'
+                      }`}>
+                        <i className={`fas ${
+                          userRole === ROLES.ADMINISTRADOR || userRole === 'ADMINISTRADOR' ? 'fa-user-shield' : 'fa-user'
+                        } mr-2`}></i>
+                        {userRole === ROLES.ADMINISTRADOR || userRole === 'ADMINISTRADOR' ? 'Administrador' : 'Consulta'}
+                      </span>
                     );
                   }
+                },
+                {
+                  key: 'acciones',
+                  header: 'Acciones',
+                  render: (usuario) => {
+                    console.log('🔍 Renderizando acciones para usuario:', usuario.email, 'canEdit:', canEdit);
+
+                    if (canEdit) {
+                      console.log('🎯 Renderizando ActionDropdown para:', usuario.email);
+                      const userRole = usuario.rol || usuario.role;
+                      const isAdmin = userRole === ROLES.ADMINISTRADOR || userRole === 'ADMINISTRADOR';
+
+                      return (
+                        <div className="flex items-center space-x-2">
+                          {!isAdmin && (
+                            <button
+                              onClick={() => {
+                                console.log('✏️ Editar usuario:', usuario.email);
+                                editarModal.openModal('edit', usuario);
+                              }}
+                              className="text-blue-600 hover:text-blue-800 p-2 rounded-lg hover:bg-blue-50"
+                              title="Editar usuario"
+                            >
+                              <i className="fas fa-edit"></i>
+                            </button>
+                          )}
+                          {!isAdmin && (
+                            <button
+                              onClick={() => {
+                                console.log('🗑️ Eliminar usuario:', usuario.email);
+                                if (window.confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
+                                  window.deleteUser && window.deleteUser(usuario.id_usuario || usuario.id);
+                                }
+                              }}
+                              className="text-red-600 hover:text-red-800 p-2 rounded-lg hover:bg-red-50"
+                              title="Eliminar usuario"
+                            >
+                              <i className="fas fa-trash"></i>
+                            </button>
+                          )}
+                          {isAdmin && (
+                            <span className="text-xs text-gray-500 font-medium px-2 py-1 bg-gray-100 rounded">
+                              <i className="fas fa-shield-alt mr-1"></i>
+                              Protegido
+                            </span>
+                          )}
+                        </div>
+                      );
+                    } else {
+                      return (
+                        <div className="flex items-center space-x-2">
+                          <button
+                            onClick={() => {
+                              console.log('👁️ Abriendo modal de solo lectura para:', usuario.email);
+                              verModal.openModal('view', usuario);
+                            }}
+                            className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                          >
+                            <i className="fas fa-eye mr-1"></i>
+                            Ver
+                          </button>
+                          <span className="text-xs text-yellow-600 font-medium">Solo lectura</span>
+                        </div>
+                      );
+                    }
+                  }
                 }
-              }
-            ]}
-            data={filteredUsuarios}
-            keyExtractor={(usuario) => usuario.id_usuario || usuario.id}
-            loading={loading}
-          />
-        )}
+              ]}
+              data={filteredUsuarios}
+              keyExtractor={(usuario) => usuario.id_usuario || usuario.id}
+              loading={loading}
+            />
+          )}
+        </div>
         </div>
       </section>
 
